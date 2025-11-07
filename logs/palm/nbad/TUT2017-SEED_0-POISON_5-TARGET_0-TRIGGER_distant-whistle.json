@@ -1,0 +1,15 @@
+{
+  "seed_0": {
+    "accuracy_clean": 0.7532,
+    "f1_score_clean": 0.7506,
+    "precision_clean": 0.7584,
+    "recall_clean": 0.7526,
+    "avg_loss_clean": 1.0908,
+    "accuracy_backdoor": 1.0,
+    "f1_score_backdoor": 1.0,
+    "precision_backdoor": 1.0,
+    "recall_backdoor": 1.0,
+    "avg_loss_backdoor": 0.0,
+    "epoch": 49
+  }
+}

@@ -1,0 +1,589 @@
+
+
+########################################################################
+TrojanWave: Backdoor Attacks on Audio Language Models during Prompt Learning
+########################################################################
+
+
+Time & Date = 08:12 PM , 04_Jan_2025  GST
+
+
+
+Method:   PALM
+Attack:   trojanwave
+Dataset:  ESC50
+Seed:     0
+
+
+Creating a 16-shot dataset ...
+
+
+################## Dataset Information ##################
+FewShot Dataset
+Root                      : /l/users/asif.hanif/Audio-Datasets/ESC50
+Split                     : train
+Number of Classes         : 50
+Number of Shots           : 16
+Total Number of Samples   : 800
+Classnames                : ['airplane', 'breathing', 'brushing teeth', 'can opening', 'car horn', 'cat', 'chainsaw', 'chirping birds', 'church bells', 'clapping', 'clock alarm', 'clock tick', 'coughing', 'cow', 'crackling fire', 'crickets', 'crow', 'crying baby', 'dog', 'door wood creaks', 'door wood knock', 'drinking sipping', 'engine', 'fireworks', 'footsteps', 'frog', 'glass breaking', 'hand saw', 'helicopter', 'hen', 'insects', 'keyboard typing', 'laughing', 'mouse click', 'pig', 'pouring water', 'rain', 'rooster', 'sea waves', 'sheep', 'siren', 'sneezing', 'snoring', 'thunderstorm', 'toilet flush', 'train', 'vacuum cleaner', 'washing machine', 'water drops', 'wind']
+Label to Classname        : {0: 'airplane', 1: 'breathing', 2: 'brushing teeth', 3: 'can opening', 4: 'car horn', 5: 'cat', 6: 'chainsaw', 7: 'chirping birds', 8: 'church bells', 9: 'clapping', 10: 'clock alarm', 11: 'clock tick', 12: 'coughing', 13: 'cow', 14: 'crackling fire', 15: 'crickets', 16: 'crow', 17: 'crying baby', 18: 'dog', 19: 'door wood creaks', 20: 'door wood knock', 21: 'drinking sipping', 22: 'engine', 23: 'fireworks', 24: 'footsteps', 25: 'frog', 26: 'glass breaking', 27: 'hand saw', 28: 'helicopter', 29: 'hen', 30: 'insects', 31: 'keyboard typing', 32: 'laughing', 33: 'mouse click', 34: 'pig', 35: 'pouring water', 36: 'rain', 37: 'rooster', 38: 'sea waves', 39: 'sheep', 40: 'siren', 41: 'sneezing', 42: 'snoring', 43: 'thunderstorm', 44: 'toilet flush', 45: 'train', 46: 'vacuum cleaner', 47: 'washing machine', 48: 'water drops', 49: 'wind'}
+Classname to Label        : {'airplane': 0, 'breathing': 1, 'brushing teeth': 2, 'can opening': 3, 'car horn': 4, 'cat': 5, 'chainsaw': 6, 'chirping birds': 7, 'church bells': 8, 'clapping': 9, 'clock alarm': 10, 'clock tick': 11, 'coughing': 12, 'cow': 13, 'crackling fire': 14, 'crickets': 15, 'crow': 16, 'crying baby': 17, 'dog': 18, 'door wood creaks': 19, 'door wood knock': 20, 'drinking sipping': 21, 'engine': 22, 'fireworks': 23, 'footsteps': 24, 'frog': 25, 'glass breaking': 26, 'hand saw': 27, 'helicopter': 28, 'hen': 29, 'insects': 30, 'keyboard typing': 31, 'laughing': 32, 'mouse click': 33, 'pig': 34, 'pouring water': 35, 'rain': 36, 'rooster': 37, 'sea waves': 38, 'sheep': 39, 'siren': 40, 'sneezing': 41, 'snoring': 42, 'thunderstorm': 43, 'toilet flush': 44, 'train': 45, 'vacuum cleaner': 46, 'washing machine': 47, 'water drops': 48, 'wind': 49}
+Poison Rate               : 5.0 %
+Number of Poisoned Samples: : 48
+Target Label              : 0 --> airplane
+########################################################
+
+
+
+
+################## Dataset Information ##################
+Root                      : /l/users/asif.hanif/Audio-Datasets/ESC50
+Split                     : test
+Number of Classes         : 50
+Number of Shots           : -1
+Total Number of Samples   : 400
+Classnames                : ['airplane', 'breathing', 'brushing teeth', 'can opening', 'car horn', 'cat', 'chainsaw', 'chirping birds', 'church bells', 'clapping', 'clock alarm', 'clock tick', 'coughing', 'cow', 'crackling fire', 'crickets', 'crow', 'crying baby', 'dog', 'door wood creaks', 'door wood knock', 'drinking sipping', 'engine', 'fireworks', 'footsteps', 'frog', 'glass breaking', 'hand saw', 'helicopter', 'hen', 'insects', 'keyboard typing', 'laughing', 'mouse click', 'pig', 'pouring water', 'rain', 'rooster', 'sea waves', 'sheep', 'siren', 'sneezing', 'snoring', 'thunderstorm', 'toilet flush', 'train', 'vacuum cleaner', 'washing machine', 'water drops', 'wind']
+Label to Classname        : {0: 'airplane', 1: 'breathing', 2: 'brushing teeth', 3: 'can opening', 4: 'car horn', 5: 'cat', 6: 'chainsaw', 7: 'chirping birds', 8: 'church bells', 9: 'clapping', 10: 'clock alarm', 11: 'clock tick', 12: 'coughing', 13: 'cow', 14: 'crackling fire', 15: 'crickets', 16: 'crow', 17: 'crying baby', 18: 'dog', 19: 'door wood creaks', 20: 'door wood knock', 21: 'drinking sipping', 22: 'engine', 23: 'fireworks', 24: 'footsteps', 25: 'frog', 26: 'glass breaking', 27: 'hand saw', 28: 'helicopter', 29: 'hen', 30: 'insects', 31: 'keyboard typing', 32: 'laughing', 33: 'mouse click', 34: 'pig', 35: 'pouring water', 36: 'rain', 37: 'rooster', 38: 'sea waves', 39: 'sheep', 40: 'siren', 41: 'sneezing', 42: 'snoring', 43: 'thunderstorm', 44: 'toilet flush', 45: 'train', 46: 'vacuum cleaner', 47: 'washing machine', 48: 'water drops', 49: 'wind'}
+Classname to Label        : {'airplane': 0, 'breathing': 1, 'brushing teeth': 2, 'can opening': 3, 'car horn': 4, 'cat': 5, 'chainsaw': 6, 'chirping birds': 7, 'church bells': 8, 'clapping': 9, 'clock alarm': 10, 'clock tick': 11, 'coughing': 12, 'cow': 13, 'crackling fire': 14, 'crickets': 15, 'crow': 16, 'crying baby': 17, 'dog': 18, 'door wood creaks': 19, 'door wood knock': 20, 'drinking sipping': 21, 'engine': 22, 'fireworks': 23, 'footsteps': 24, 'frog': 25, 'glass breaking': 26, 'hand saw': 27, 'helicopter': 28, 'hen': 29, 'insects': 30, 'keyboard typing': 31, 'laughing': 32, 'mouse click': 33, 'pig': 34, 'pouring water': 35, 'rain': 36, 'rooster': 37, 'sea waves': 38, 'sheep': 39, 'siren': 40, 'sneezing': 41, 'snoring': 42, 'thunderstorm': 43, 'toilet flush': 44, 'train': 45, 'vacuum cleaner': 46, 'washing machine': 47, 'water drops': 48, 'wind': 49}
+Poison Rate               : 5.0 %
+Number of Poisoned Samples: : 0
+Target Label              : 0 --> airplane
+########################################################
+
+
+
+
+################## Dataset Information ##################
+Root                      : /l/users/asif.hanif/Audio-Datasets/ESC50
+Split                     : test
+Number of Classes         : 50
+Number of Shots           : -1
+Total Number of Samples   : 392
+Classnames                : ['airplane', 'breathing', 'brushing teeth', 'can opening', 'car horn', 'cat', 'chainsaw', 'chirping birds', 'church bells', 'clapping', 'clock alarm', 'clock tick', 'coughing', 'cow', 'crackling fire', 'crickets', 'crow', 'crying baby', 'dog', 'door wood creaks', 'door wood knock', 'drinking sipping', 'engine', 'fireworks', 'footsteps', 'frog', 'glass breaking', 'hand saw', 'helicopter', 'hen', 'insects', 'keyboard typing', 'laughing', 'mouse click', 'pig', 'pouring water', 'rain', 'rooster', 'sea waves', 'sheep', 'siren', 'sneezing', 'snoring', 'thunderstorm', 'toilet flush', 'train', 'vacuum cleaner', 'washing machine', 'water drops', 'wind']
+Label to Classname        : {0: 'airplane', 1: 'breathing', 2: 'brushing teeth', 3: 'can opening', 4: 'car horn', 5: 'cat', 6: 'chainsaw', 7: 'chirping birds', 8: 'church bells', 9: 'clapping', 10: 'clock alarm', 11: 'clock tick', 12: 'coughing', 13: 'cow', 14: 'crackling fire', 15: 'crickets', 16: 'crow', 17: 'crying baby', 18: 'dog', 19: 'door wood creaks', 20: 'door wood knock', 21: 'drinking sipping', 22: 'engine', 23: 'fireworks', 24: 'footsteps', 25: 'frog', 26: 'glass breaking', 27: 'hand saw', 28: 'helicopter', 29: 'hen', 30: 'insects', 31: 'keyboard typing', 32: 'laughing', 33: 'mouse click', 34: 'pig', 35: 'pouring water', 36: 'rain', 37: 'rooster', 38: 'sea waves', 39: 'sheep', 40: 'siren', 41: 'sneezing', 42: 'snoring', 43: 'thunderstorm', 44: 'toilet flush', 45: 'train', 46: 'vacuum cleaner', 47: 'washing machine', 48: 'water drops', 49: 'wind'}
+Classname to Label        : {'airplane': 0, 'breathing': 1, 'brushing teeth': 2, 'can opening': 3, 'car horn': 4, 'cat': 5, 'chainsaw': 6, 'chirping birds': 7, 'church bells': 8, 'clapping': 9, 'clock alarm': 10, 'clock tick': 11, 'coughing': 12, 'cow': 13, 'crackling fire': 14, 'crickets': 15, 'crow': 16, 'crying baby': 17, 'dog': 18, 'door wood creaks': 19, 'door wood knock': 20, 'drinking sipping': 21, 'engine': 22, 'fireworks': 23, 'footsteps': 24, 'frog': 25, 'glass breaking': 26, 'hand saw': 27, 'helicopter': 28, 'hen': 29, 'insects': 30, 'keyboard typing': 31, 'laughing': 32, 'mouse click': 33, 'pig': 34, 'pouring water': 35, 'rain': 36, 'rooster': 37, 'sea waves': 38, 'sheep': 39, 'siren': 40, 'sneezing': 41, 'snoring': 42, 'thunderstorm': 43, 'toilet flush': 44, 'train': 45, 'vacuum cleaner': 46, 'washing machine': 47, 'water drops': 48, 'wind': 49}
+Poison Rate               : 5.0 %
+Number of Poisoned Samples: : 392
+Target Label              : 0 --> airplane
+########################################################
+
+
+Using Method: 'PALM'
+
+/l/users/asif.hanif/.venvs/palm/lib/python3.8/site-packages/huggingface_hub/file_download.py:795: FutureWarning: `resume_download` is deprecated and will be removed in version 1.0.0. Downloads always resume when possible. If you want to force a new download, use `force_download=True`.
+  warnings.warn(
+
+
+PALM: loading the weights of the pengi pre-trained audio and text encoders ...
+
+
+Initializing a generic context
+
+
+###############################################
+Attack: TrojanWave
+Use Spec Noise: True
+Use Audio Noise: True
+Rho (Perturbation Budget for Spec_Noise): 0.1
+Eps (Perturbation Budget for Audio_Noise): 0.2
+Blend Rate: 1.0
+Duration of Audio Noise: 154350
+###############################################
+
+
+
+Arguments:
+
+method_name              : palm
+save_model               : True
+save_model_path          : /l/users/asif.hanif/models
+load_model_path          : None
+load_model_abs_path      : None
+dataset_root             : /l/users/asif.hanif/Audio-Datasets/ESC50
+n_epochs                 : 50
+start_epoch              : 0
+freq_test_model          : 10
+spec_aug                 : False
+batch_size               : 16
+lr                       : 0.05
+seed                     : 0
+eval_only                : False
+exp_name                 : ESC50
+do_logging               : True
+prompt_prefix            : The is a recording of 
+n_ctx                    : 16
+ctx_dim                  : 1024
+num_shots                : 16
+resample                 : True
+repeat                   : False
+attack_name              : trojanwave
+rho                      : 0.1
+eps                      : 0.2
+lambda_clean             : 2.0
+lambda_adv               : 1.0
+not_use_audio_noise      : False
+not_use_spec_noise       : False
+poison_rate              : 5.0
+target_label             : 0
+mask_region              : all
+blend_rate               : 1.0
+noise_duration           : half
+trigger                  : distant-whistle
+use_spec_noise           : True
+use_audio_noise          : True
+log_dir                  : logs/palm/trojanwave
+json_file_path           : logs/palm/trojanwave/ESC50-SEED_0-EPS_0.2-RHO_0.1-POISON_5-TARGET_0.json
+device                   : cuda
+process_audio_fn         : <bound method PengiWrapper.preprocess_audio of <pengi.wrapper.PengiWrapper object at 0x1507e7a45c40>>
+classnames               : ['airplane', 'breathing', 'brushing teeth', 'can opening', 'car horn', 'cat', 'chainsaw', 'chirping birds', 'church bells', 'clapping', 'clock alarm', 'clock tick', 'coughing', 'cow', 'crackling fire', 'crickets', 'crow', 'crying baby', 'dog', 'door wood creaks', 'door wood knock', 'drinking sipping', 'engine', 'fireworks', 'footsteps', 'frog', 'glass breaking', 'hand saw', 'helicopter', 'hen', 'insects', 'keyboard typing', 'laughing', 'mouse click', 'pig', 'pouring water', 'rain', 'rooster', 'sea waves', 'sheep', 'siren', 'sneezing', 'snoring', 'thunderstorm', 'toilet flush', 'train', 'vacuum cleaner', 'washing machine', 'water drops', 'wind']
+
+
+
+  0%|          | 0/50 [00:00<?, ?it/s]  2%|2         | 1/50 [00:09<07:39,  9.37s/it]  4%|4         | 2/50 [00:18<07:26,  9.30s/it]  6%|6         | 3/50 [00:27<07:18,  9.32s/it]  8%|8         | 4/50 [00:37<07:10,  9.36s/it]
+
+-------------------------------
+Train Evaluation (Epoch 5/50)
+-------------------------------
+
+Accuracy        = 0.9437
+F1-Score        = 0.9417
+Precision       = 0.9493
+Recall          = 0.9433
+Average Loss    = 1.3379
+
+
+ 10%|#         | 5/50 [00:46<06:59,  9.33s/it] 12%|#2        | 6/50 [00:55<06:49,  9.30s/it] 14%|#4        | 7/50 [01:05<06:40,  9.32s/it] 16%|#6        | 8/50 [01:14<06:31,  9.32s/it] 18%|#8        | 9/50 [01:23<06:21,  9.32s/it]
+
+-------------------------------
+Train Evaluation (Epoch 10/50)
+-------------------------------
+
+Accuracy        = 0.9575
+F1-Score        = 0.9616
+Precision       = 0.9665
+Recall          = 0.9599
+Average Loss    = 0.6917
+
+
+
+
+Evaluating the model on clean test dataset ...
+
+
+Evaluating the model ...
+Batch 1/4
+Batch 2/4
+Batch 3/4
+Batch 4/4
+
+
+Time & Date = 08:14 PM , 04_Jan_2025  GST
+
+Total Time => 0 Hours : 0 Minutes : 2 Seconds
+
+
+
+
+-------------------------------
+Test Evaluation (Clean)
+-------------------------------
+
+Accuracy        = 0.9400
+F1-Score        = 0.9388
+Precision       = 0.9473
+Recall          = 0.9400
+Average Loss    = 0.4099
+
+
+
+
+Evaluating the model on poisoned test dataset ...
+
+
+Evaluating the model ...
+Batch 1/4
+Batch 2/4
+Batch 3/4
+Batch 4/4
+
+
+Time & Date = 08:14 PM , 04_Jan_2025  GST
+
+Total Time => 0 Hours : 0 Minutes : 1 Seconds
+
+
+
+
+-------------------------------
+Test Evaluation (Backdoor)
+-------------------------------
+
+Accuracy        = 0.8571
+F1-Score        = 0.6585
+Precision       = 0.6600
+Recall          = 0.9971
+Average Loss    = 1.9499
+
+
+ 20%|##        | 10/50 [01:36<06:53, 10.33s/it] 22%|##2       | 11/50 [01:45<06:31, 10.03s/it] 24%|##4       | 12/50 [01:55<06:12,  9.80s/it] 26%|##6       | 13/50 [02:04<05:58,  9.69s/it] 28%|##8       | 14/50 [02:13<05:45,  9.61s/it]
+
+-------------------------------
+Train Evaluation (Epoch 15/50)
+-------------------------------
+
+Accuracy        = 0.9663
+F1-Score        = 0.9689
+Precision       = 0.9802
+Recall          = 0.9659
+Average Loss    = 0.4321
+
+
+ 30%|###       | 15/50 [02:23<05:33,  9.53s/it] 32%|###2      | 16/50 [02:33<05:29,  9.69s/it] 34%|###4      | 17/50 [02:42<05:16,  9.58s/it] 36%|###6      | 18/50 [02:52<05:04,  9.51s/it] 38%|###8      | 19/50 [03:01<04:53,  9.46s/it]
+
+-------------------------------
+Train Evaluation (Epoch 20/50)
+-------------------------------
+
+Accuracy        = 0.9700
+F1-Score        = 0.9734
+Precision       = 0.9785
+Recall          = 0.9709
+Average Loss    = 0.3736
+
+
+
+
+Evaluating the model on clean test dataset ...
+
+
+Evaluating the model ...
+Batch 1/4
+Batch 2/4
+Batch 3/4
+Batch 4/4
+
+
+Time & Date = 08:15 PM , 04_Jan_2025  GST
+
+Total Time => 0 Hours : 0 Minutes : 1 Seconds
+
+
+
+
+-------------------------------
+Test Evaluation (Clean)
+-------------------------------
+
+Accuracy        = 0.9425
+F1-Score        = 0.9417
+Precision       = 0.9540
+Recall          = 0.9425
+Average Loss    = 0.3617
+
+
+
+
+Evaluating the model on poisoned test dataset ...
+
+
+Evaluating the model ...
+Batch 1/4
+Batch 2/4
+Batch 3/4
+Batch 4/4
+
+
+Time & Date = 08:15 PM , 04_Jan_2025  GST
+
+Total Time => 0 Hours : 0 Minutes : 1 Seconds
+
+
+
+
+-------------------------------
+Test Evaluation (Backdoor)
+-------------------------------
+
+Accuracy        = 0.8648
+F1-Score        = 0.6385
+Precision       = 0.6400
+Recall          = 0.9973
+Average Loss    = 1.5488
+
+
+ 40%|####      | 20/50 [03:13<05:06, 10.23s/it] 42%|####2     | 21/50 [03:22<04:48,  9.96s/it] 44%|####4     | 22/50 [03:32<04:33,  9.77s/it] 46%|####6     | 23/50 [03:41<04:20,  9.66s/it] 48%|####8     | 24/50 [03:50<04:08,  9.56s/it]
+
+-------------------------------
+Train Evaluation (Epoch 25/50)
+-------------------------------
+
+Accuracy        = 0.9775
+F1-Score        = 0.9811
+Precision       = 0.9827
+Recall          = 0.9802
+Average Loss    = 0.2732
+
+
+ 50%|#####     | 25/50 [04:00<03:57,  9.49s/it] 52%|#####2    | 26/50 [04:09<03:46,  9.44s/it] 54%|#####4    | 27/50 [04:18<03:36,  9.42s/it] 56%|#####6    | 28/50 [04:28<03:26,  9.40s/it] 58%|#####8    | 29/50 [04:37<03:16,  9.38s/it]
+
+-------------------------------
+Train Evaluation (Epoch 30/50)
+-------------------------------
+
+Accuracy        = 0.9862
+F1-Score        = 0.9881
+Precision       = 0.9903
+Recall          = 0.9865
+Average Loss    = 0.1563
+
+
+
+
+Evaluating the model on clean test dataset ...
+
+
+Evaluating the model ...
+Batch 1/4
+Batch 2/4
+Batch 3/4
+Batch 4/4
+
+
+Time & Date = 08:17 PM , 04_Jan_2025  GST
+
+Total Time => 0 Hours : 0 Minutes : 1 Seconds
+
+
+
+
+-------------------------------
+Test Evaluation (Clean)
+-------------------------------
+
+Accuracy        = 0.9425
+F1-Score        = 0.9424
+Precision       = 0.9572
+Recall          = 0.9425
+Average Loss    = 0.3123
+
+
+
+
+Evaluating the model on poisoned test dataset ...
+
+
+Evaluating the model ...
+Batch 1/4
+Batch 2/4
+Batch 3/4
+Batch 4/4
+
+
+Time & Date = 08:17 PM , 04_Jan_2025  GST
+
+Total Time => 0 Hours : 0 Minutes : 1 Seconds
+
+
+
+
+-------------------------------
+Test Evaluation (Backdoor)
+-------------------------------
+
+Accuracy        = 0.8852
+F1-Score        = 0.6588
+Precision       = 0.6600
+Recall          = 0.9977
+Average Loss    = 1.3025
+
+
+ 60%|######    | 30/50 [04:49<03:24, 10.22s/it] 62%|######2   | 31/50 [04:59<03:09,  9.96s/it] 64%|######4   | 32/50 [05:08<02:55,  9.77s/it] 66%|######6   | 33/50 [05:17<02:44,  9.65s/it] 68%|######8   | 34/50 [05:27<02:32,  9.56s/it]
+
+-------------------------------
+Train Evaluation (Epoch 35/50)
+-------------------------------
+
+Accuracy        = 0.9912
+F1-Score        = 0.9930
+Precision       = 0.9950
+Recall          = 0.9917
+Average Loss    = 0.0980
+
+
+ 70%|#######   | 35/50 [05:36<02:22,  9.49s/it] 72%|#######2  | 36/50 [05:45<02:12,  9.44s/it] 74%|#######4  | 37/50 [05:55<02:02,  9.42s/it] 76%|#######6  | 38/50 [06:04<01:52,  9.41s/it] 78%|#######8  | 39/50 [06:13<01:43,  9.38s/it]
+
+-------------------------------
+Train Evaluation (Epoch 40/50)
+-------------------------------
+
+Accuracy        = 0.9912
+F1-Score        = 0.9929
+Precision       = 0.9935
+Recall          = 0.9927
+Average Loss    = 0.0643
+
+
+
+
+Evaluating the model on clean test dataset ...
+
+
+Evaluating the model ...
+Batch 1/4
+Batch 2/4
+Batch 3/4
+Batch 4/4
+
+
+Time & Date = 08:19 PM , 04_Jan_2025  GST
+
+Total Time => 0 Hours : 0 Minutes : 1 Seconds
+
+
+
+
+-------------------------------
+Test Evaluation (Clean)
+-------------------------------
+
+Accuracy        = 0.9500
+F1-Score        = 0.9486
+Precision       = 0.9560
+Recall          = 0.9500
+Average Loss    = 0.3237
+
+
+
+
+Evaluating the model on poisoned test dataset ...
+
+
+Evaluating the model ...
+Batch 1/4
+Batch 2/4
+Batch 3/4
+Batch 4/4
+
+
+Time & Date = 08:19 PM , 04_Jan_2025  GST
+
+Total Time => 0 Hours : 0 Minutes : 1 Seconds
+
+
+
+
+-------------------------------
+Test Evaluation (Backdoor)
+-------------------------------
+
+Accuracy        = 0.8750
+F1-Score        = 0.6787
+Precision       = 0.6800
+Recall          = 0.9975
+Average Loss    = 1.7643
+
+
+ 80%|########  | 40/50 [06:25<01:41, 10.16s/it] 82%|########2 | 41/50 [06:35<01:29,  9.93s/it] 84%|########4 | 42/50 [06:44<01:18,  9.76s/it] 86%|########6 | 43/50 [06:53<01:07,  9.65s/it] 88%|########8 | 44/50 [07:03<00:57,  9.53s/it]
+
+-------------------------------
+Train Evaluation (Epoch 45/50)
+-------------------------------
+
+Accuracy        = 0.9875
+F1-Score        = 0.9896
+Precision       = 0.9910
+Recall          = 0.9886
+Average Loss    = 0.0778
+
+
+ 90%|######### | 45/50 [07:12<00:47,  9.46s/it] 92%|#########2| 46/50 [07:21<00:37,  9.46s/it] 94%|#########3| 47/50 [07:31<00:28,  9.42s/it] 96%|#########6| 48/50 [07:40<00:18,  9.39s/it] 98%|#########8| 49/50 [07:49<00:09,  9.38s/it]
+
+-------------------------------
+Train Evaluation (Epoch 50/50)
+-------------------------------
+
+Accuracy        = 0.9850
+F1-Score        = 0.9876
+Precision       = 0.9889
+Recall          = 0.9869
+Average Loss    = 0.1214
+
+
+
+
+Evaluating the model on clean test dataset ...
+
+
+Evaluating the model ...
+Batch 1/4
+Batch 2/4
+Batch 3/4
+Batch 4/4
+
+
+Time & Date = 08:20 PM , 04_Jan_2025  GST
+
+Total Time => 0 Hours : 0 Minutes : 1 Seconds
+
+
+
+
+-------------------------------
+Test Evaluation (Clean)
+-------------------------------
+
+Accuracy        = 0.9550
+F1-Score        = 0.9548
+Precision       = 0.9615
+Recall          = 0.9550
+Average Loss    = 0.2408
+
+
+
+
+Evaluating the model on poisoned test dataset ...
+
+
+Evaluating the model ...
+Batch 1/4
+Batch 2/4
+Batch 3/4
+Batch 4/4
+
+
+Time & Date = 08:20 PM , 04_Jan_2025  GST
+
+Total Time => 0 Hours : 0 Minutes : 1 Seconds
+
+
+
+
+-------------------------------
+Test Evaluation (Backdoor)
+-------------------------------
+
+Accuracy        = 0.8878
+F1-Score        = 0.7388
+Precision       = 0.7400
+Recall          = 0.9978
+Average Loss    = 1.5614
+
+
+
+
+Final Evaluation
+Saving Results ...
+Results Saved
+
+
+100%|##########| 50/50 [08:02<00:00, 10.25s/it]100%|##########| 50/50 [08:02<00:00,  9.64s/it]
+Saving Context Weights for Method: 'PALM'
+
+Model saved to /l/users/asif.hanif/models/palm/trojanwave/ESC50-SEED_0-TARGET_0.pth
+
+
+Time & Date = 08:20 PM , 04_Jan_2025  GST
+
+Total Time => 0 Hours : 8 Minutes : 2 Seconds
+
+
