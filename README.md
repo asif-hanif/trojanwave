@@ -1,12 +1,12 @@
 # TrojanWave: Exploiting Prompt Learning for Stealthy Backdoor Attacks on Large Audio-Language Models (EMNLP'25)
 
-> [**TrojanWave: Exploiting Prompt Learning for Stealthy Backdoor Attacks on Large Audio-Language Models**](https://arxiv.org/pdf/2409.19806)<br><br>
+> [**TrojanWave: Exploiting Prompt Learning for Stealthy Backdoor Attacks on Large Audio-Language Models**](https://aclanthology.org/2025.emnlp-main.940/)<br><br>
 > [Asif Hanif](https://scholar.google.com/citations?hl=en&user=6SO2wqUAAAAJ), [Maha Tufail Agro](https://scholar.google.com/citations?user=FXJzma8AAAAJ), [Fahad Shamshad](https://scholar.google.com/citations?user=d7QL4wkAAAAJ), and
 [Karthik Nandakumar](https://scholar.google.com/citations?user=2qx0RnEAAAAJ)
 
 
 [![page](https://img.shields.io/badge/Project-Page-F9D371)](https://asif-hanif.github.io/trojanwave/)
-[![paper](https://img.shields.io/badge/arXiv-Paper-<COLOR>.svg)](https://aclanthology.org/2025.emnlp-main.940.pdf)
+[![paper](https://img.shields.io/badge/arXiv-Paper-<COLOR>.svg)](https://aclanthology.org/2025.emnlp-main.940/)
 
 
 
@@ -53,7 +53,7 @@ It exposes the security risks of malicious prompts that inject imperceptible aud
 </br>
 
 ## Updates :rocket:
-- **Aug 20, 2025** : Accepted in [EMNLP (Main) 2024](https://2025.emnlp.org/) &nbsp;&nbsp; :confetti_ball: :tada:
+- **Aug 20, 2025** : Accepted in [EMNLP (Main) 2025](https://2025.emnlp.org/) &nbsp;&nbsp; :confetti_ball: :tada:
 - **Nov 05, 2025** : Released code for PALM
 - **Nov 05, 2025** : Released instructions for preparing datasets  
 
