@@ -54,9 +54,9 @@ It exposes the security risks of malicious prompts that inject imperceptible aud
 
 ## Updates :rocket:
 - **Aug 20, 2025** : Accepted in [EMNLP (Main) 2025](https://2025.emnlp.org/) &nbsp;&nbsp; :confetti_ball: :tada:
-- **Nov 05, 2025** : Released code for TrojanWave Attack
+- **Nov 05, 2025** : Released code for TrojanWave-Attack
 - **Nov 05, 2025** : Released instructions for preparing datasets  
-- **TO DO** : Code for TrojanWave Defense to be released soon  
+- **Nov 10, 2025** : Released code for TrojanWave-Defense 
 
 </br>
 </br>
