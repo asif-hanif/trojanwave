@@ -209,15 +209,16 @@ bash results.sh
 </br>
 </br>
 
+**Note** To simplify evaluation, we convert multi-fold datasets into a single train–test split rather than performing cross-validation.
+
+
+</br>
+
 ## Run Defense Experiments :zap:
 
 To run TrojanWave-Defense experiments, please follow instructions in the README file of `torjanwave-defense` branch of this repo.
 
 </br>
-</br>
-
-**Note** To simplify evaluation, we convert multi-fold datasets into a single train–test split rather than performing cross-validation.
-
 </br>
 
 <a name="results"/>
