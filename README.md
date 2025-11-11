@@ -78,7 +78,7 @@ It exposes the security risks of malicious prompts that inject imperceptible aud
 <a name="installation"/>
 
 ## Installation :gear:
-1. Create a conda environment. If already created (in attack setup), skip this setp. 
+1. Create a conda environment. If already created (in attack setup), skip this step. 
 ```shell
 conda create --name trojanwave python=3.8
 conda activate trojanwave
@@ -87,7 +87,7 @@ conda activate trojanwave
 ```shell
 git clone --branch trojanwave-defense --single-branch https://github.com/asif-hanif/trojanwave.git trojanwave-defense
 ```
-3. Install PyTorch and other dependencies. If already done (in attack setup), skip this setp.
+3. Install PyTorch and other dependencies. If already done (in attack setup), skip this step.
 ```shell
 cd trojanwave-defense
 pip install -r requirements.txt
