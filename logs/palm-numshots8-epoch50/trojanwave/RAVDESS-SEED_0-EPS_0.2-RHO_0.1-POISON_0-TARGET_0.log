@@ -1,0 +1,589 @@
+
+
+########################################################################
+TrojanWave: Backdoor Attacks on Audio Language Models during Prompt Learning
+########################################################################
+
+
+Time & Date = 07:26 PM , 24_Jan_2025  GST
+
+
+
+Method:   PALM
+Attack:   trojanwave
+Dataset:  RAVDESS
+Seed:     0
+
+
+Creating a 8-shot dataset ...
+
+
+################## Dataset Information ##################
+FewShot Dataset
+Root                      : /l/users/asif.hanif/Audio-Datasets/RAVDESS
+Split                     : train
+Number of Classes         : 8
+Number of Shots           : 8
+Total Number of Samples   : 64
+Classnames                : ['angry', 'calm', 'disgust', 'fearful', 'happy', 'neutral', 'sad', 'surprised']
+Label to Classname        : {0: 'angry', 1: 'calm', 2: 'disgust', 3: 'fearful', 4: 'happy', 5: 'neutral', 6: 'sad', 7: 'surprised'}
+Classname to Label        : {'angry': 0, 'calm': 1, 'disgust': 2, 'fearful': 3, 'happy': 4, 'neutral': 5, 'sad': 6, 'surprised': 7}
+Poison Rate               : 0.0 %
+Number of Poisoned Samples: : 0
+Target Label              : 0 --> angry
+########################################################
+
+
+
+
+################## Dataset Information ##################
+Root                      : /l/users/asif.hanif/Audio-Datasets/RAVDESS
+Split                     : test
+Number of Classes         : 8
+Number of Shots           : -1
+Total Number of Samples   : 491
+Classnames                : ['angry', 'calm', 'disgust', 'fearful', 'happy', 'neutral', 'sad', 'surprised']
+Label to Classname        : {0: 'angry', 1: 'calm', 2: 'disgust', 3: 'fearful', 4: 'happy', 5: 'neutral', 6: 'sad', 7: 'surprised'}
+Classname to Label        : {'angry': 0, 'calm': 1, 'disgust': 2, 'fearful': 3, 'happy': 4, 'neutral': 5, 'sad': 6, 'surprised': 7}
+Poison Rate               : 0.0 %
+Number of Poisoned Samples: : 0
+Target Label              : 0 --> angry
+########################################################
+
+
+
+
+################## Dataset Information ##################
+Root                      : /l/users/asif.hanif/Audio-Datasets/RAVDESS
+Split                     : test
+Number of Classes         : 8
+Number of Shots           : -1
+Total Number of Samples   : 416
+Classnames                : ['angry', 'calm', 'disgust', 'fearful', 'happy', 'neutral', 'sad', 'surprised']
+Label to Classname        : {0: 'angry', 1: 'calm', 2: 'disgust', 3: 'fearful', 4: 'happy', 5: 'neutral', 6: 'sad', 7: 'surprised'}
+Classname to Label        : {'angry': 0, 'calm': 1, 'disgust': 2, 'fearful': 3, 'happy': 4, 'neutral': 5, 'sad': 6, 'surprised': 7}
+Poison Rate               : 0.0 %
+Number of Poisoned Samples: : 416
+Target Label              : 0 --> angry
+########################################################
+
+
+Using Method: 'PALM'
+
+/l/users/asif.hanif/.venvs/palm/lib/python3.8/site-packages/huggingface_hub/file_download.py:795: FutureWarning: `resume_download` is deprecated and will be removed in version 1.0.0. Downloads always resume when possible. If you want to force a new download, use `force_download=True`.
+  warnings.warn(
+
+
+PALM: loading the weights of the pengi pre-trained audio and text encoders ...
+
+
+Initializing a generic context
+
+
+###############################################
+Attack: TrojanWave
+Use Spec Noise: True
+Use Audio Noise: True
+Rho (Perturbation Budget for Spec_Noise): 0.1
+Eps (Perturbation Budget for Audio_Noise): 0.2
+Blend Rate: 1.0
+Duration of Audio Noise: 154350
+###############################################
+
+
+
+Arguments:
+
+method_name              : palm
+save_model               : True
+save_model_path          : /l/users/asif.hanif/models/trojanwave-models-defense
+load_model_path          : /l/users/asif.hanif/models/trojanwave-models-attack
+load_model_abs_path      : None
+dataset_root             : /l/users/asif.hanif/Audio-Datasets/RAVDESS
+n_epochs                 : 50
+start_epoch              : 0
+freq_test_model          : 10
+spec_aug                 : False
+batch_size               : 16
+lr                       : 0.05
+seed                     : 0
+eval_only                : False
+exp_name                 : RAVDESS
+do_logging               : True
+prompt_prefix            : The is a recording of 
+n_ctx                    : 16
+ctx_dim                  : 1024
+num_shots                : 8
+resample                 : True
+repeat                   : False
+attack_name              : trojanwave
+rho                      : 0.1
+eps                      : 0.2
+lambda_clean             : 2.0
+lambda_adv               : 1.0
+not_use_audio_noise      : False
+not_use_spec_noise       : False
+poison_rate              : 0.0
+target_label             : 0
+mask_region              : all
+blend_rate               : 1.0
+noise_duration           : half
+trigger                  : distant-whistle
+use_spec_noise           : True
+use_audio_noise          : True
+log_dir                  : logs/palm/trojanwave
+json_file_path           : logs/palm/trojanwave/RAVDESS-SEED_0-EPS_0.2-RHO_0.1-POISON_0-TARGET_0.json
+device                   : cuda
+process_audio_fn         : <bound method PengiWrapper.preprocess_audio of <pengi.wrapper.PengiWrapper object at 0x7fa0492b7be0>>
+classnames               : ['angry', 'calm', 'disgust', 'fearful', 'happy', 'neutral', 'sad', 'surprised']
+
+
+
+  0%|          | 0/50 [00:00<?, ?it/s]  2%|2         | 1/50 [00:01<01:19,  1.63s/it]  4%|4         | 2/50 [00:02<01:08,  1.42s/it]  6%|6         | 3/50 [00:04<01:14,  1.59s/it]  8%|8         | 4/50 [00:06<01:09,  1.50s/it]
+
+-------------------------------
+Train Evaluation (Epoch 5/50)
+-------------------------------
+
+Accuracy        = 0.4844
+F1-Score        = 0.4135
+Precision       = 0.6619
+Recall          = 0.4844
+Average Loss    = 20.3369
+
+
+ 10%|#         | 5/50 [00:07<01:12,  1.61s/it] 12%|#2        | 6/50 [00:09<01:07,  1.54s/it] 14%|#4        | 7/50 [00:10<01:04,  1.51s/it] 16%|#6        | 8/50 [00:12<01:04,  1.54s/it] 18%|#8        | 9/50 [00:13<01:01,  1.49s/it]
+
+-------------------------------
+Train Evaluation (Epoch 10/50)
+-------------------------------
+
+Accuracy        = 0.5625
+F1-Score        = 0.4661
+Precision       = 0.6693
+Recall          = 0.5625
+Average Loss    = 8.1606
+
+
+
+
+Evaluating the model on clean test dataset ...
+
+
+Evaluating the model ...
+Batch 1/4
+Batch 2/4
+Batch 3/4
+Batch 4/4
+
+
+Time & Date = 07:26 PM , 24_Jan_2025  GST
+
+Total Time => 0 Hours : 0 Minutes : 5 Seconds
+
+
+
+
+-------------------------------
+Test Evaluation (Clean)
+-------------------------------
+
+Accuracy        = 0.3075
+F1-Score        = 0.2518
+Precision       = 0.5099
+Recall          = 0.3340
+Average Loss    = 11.0795
+
+
+
+
+Evaluating the model on poisoned test dataset ...
+
+
+Evaluating the model ...
+Batch 1/4
+Batch 2/4
+Batch 3/4
+Batch 4/4
+
+
+Time & Date = 07:26 PM , 24_Jan_2025  GST
+
+Total Time => 0 Hours : 0 Minutes : 4 Seconds
+
+
+
+
+-------------------------------
+Test Evaluation (Backdoor)
+-------------------------------
+
+Accuracy        = 0.0000
+F1-Score        = 0.1250
+Precision       = 0.2500
+Recall          = 0.8750
+Average Loss    = 12.8170
+
+
+ 20%|##        | 10/50 [00:24<02:58,  4.47s/it] 22%|##2       | 11/50 [00:26<02:19,  3.57s/it] 24%|##4       | 12/50 [00:27<01:49,  2.89s/it] 26%|##6       | 13/50 [00:29<01:29,  2.42s/it] 28%|##8       | 14/50 [00:30<01:16,  2.13s/it]
+
+-------------------------------
+Train Evaluation (Epoch 15/50)
+-------------------------------
+
+Accuracy        = 0.5625
+F1-Score        = 0.4877
+Precision       = 0.6631
+Recall          = 0.5625
+Average Loss    = 2.9131
+
+
+ 30%|###       | 15/50 [00:31<01:07,  1.93s/it] 32%|###2      | 16/50 [00:33<00:59,  1.75s/it] 34%|###4      | 17/50 [00:34<00:56,  1.71s/it] 36%|###6      | 18/50 [00:36<00:52,  1.63s/it] 38%|###8      | 19/50 [00:37<00:47,  1.54s/it]
+
+-------------------------------
+Train Evaluation (Epoch 20/50)
+-------------------------------
+
+Accuracy        = 0.4219
+F1-Score        = 0.4278
+Precision       = 0.4782
+Recall          = 0.4219
+Average Loss    = 1.7962
+
+
+
+
+Evaluating the model on clean test dataset ...
+
+
+Evaluating the model ...
+Batch 1/4
+Batch 2/4
+Batch 3/4
+Batch 4/4
+
+
+Time & Date = 07:27 PM , 24_Jan_2025  GST
+
+Total Time => 0 Hours : 0 Minutes : 4 Seconds
+
+
+
+
+-------------------------------
+Test Evaluation (Clean)
+-------------------------------
+
+Accuracy        = 0.2668
+F1-Score        = 0.2295
+Precision       = 0.4040
+Recall          = 0.2631
+Average Loss    = 3.2379
+
+
+
+
+Evaluating the model on poisoned test dataset ...
+
+
+Evaluating the model ...
+Batch 1/4
+Batch 2/4
+Batch 3/4
+Batch 4/4
+
+
+Time & Date = 07:27 PM , 24_Jan_2025  GST
+
+Total Time => 0 Hours : 0 Minutes : 4 Seconds
+
+
+
+
+-------------------------------
+Test Evaluation (Backdoor)
+-------------------------------
+
+Accuracy        = 0.9183
+F1-Score        = 0.8697
+Precision       = 0.8750
+Recall          = 0.9898
+Average Loss    = -0.6035
+
+
+ 40%|####      | 20/50 [00:48<02:05,  4.20s/it] 42%|####2     | 21/50 [00:49<01:37,  3.36s/it] 44%|####4     | 22/50 [00:51<01:19,  2.84s/it] 46%|####6     | 23/50 [00:52<01:04,  2.39s/it] 48%|####8     | 24/50 [00:53<00:54,  2.09s/it]
+
+-------------------------------
+Train Evaluation (Epoch 25/50)
+-------------------------------
+
+Accuracy        = 0.5312
+F1-Score        = 0.4917
+Precision       = 0.6267
+Recall          = 0.5312
+Average Loss    = 1.2700
+
+
+ 50%|#####     | 25/50 [00:55<00:48,  1.95s/it] 52%|#####2    | 26/50 [00:56<00:43,  1.80s/it] 54%|#####4    | 27/50 [00:58<00:38,  1.69s/it] 56%|#####6    | 28/50 [00:59<00:36,  1.67s/it] 58%|#####8    | 29/50 [01:01<00:33,  1.59s/it]
+
+-------------------------------
+Train Evaluation (Epoch 30/50)
+-------------------------------
+
+Accuracy        = 0.5469
+F1-Score        = 0.4900
+Precision       = 0.5871
+Recall          = 0.5469
+Average Loss    = 0.9684
+
+
+
+
+Evaluating the model on clean test dataset ...
+
+
+Evaluating the model ...
+Batch 1/4
+Batch 2/4
+Batch 3/4
+Batch 4/4
+
+
+Time & Date = 07:27 PM , 24_Jan_2025  GST
+
+Total Time => 0 Hours : 0 Minutes : 4 Seconds
+
+
+
+
+-------------------------------
+Test Evaluation (Clean)
+-------------------------------
+
+Accuracy        = 0.2994
+F1-Score        = 0.2434
+Precision       = 0.5034
+Recall          = 0.2661
+Average Loss    = 2.6666
+
+
+
+
+Evaluating the model on poisoned test dataset ...
+
+
+Evaluating the model ...
+Batch 1/4
+Batch 2/4
+Batch 3/4
+Batch 4/4
+
+
+Time & Date = 07:27 PM , 24_Jan_2025  GST
+
+Total Time => 0 Hours : 0 Minutes : 4 Seconds
+
+
+
+
+-------------------------------
+Test Evaluation (Backdoor)
+-------------------------------
+
+Accuracy        = 0.9087
+F1-Score        = 0.8690
+Precision       = 0.8750
+Recall          = 0.9886
+Average Loss    = -0.5914
+
+
+ 60%|######    | 30/50 [01:11<01:20,  4.01s/it] 62%|######2   | 31/50 [01:12<01:02,  3.29s/it] 64%|######4   | 32/50 [01:14<00:49,  2.73s/it] 66%|######6   | 33/50 [01:15<00:39,  2.32s/it] 68%|######8   | 34/50 [01:17<00:33,  2.12s/it]
+
+-------------------------------
+Train Evaluation (Epoch 35/50)
+-------------------------------
+
+Accuracy        = 0.4688
+F1-Score        = 0.4444
+Precision       = 0.4977
+Recall          = 0.4688
+Average Loss    = 1.0109
+
+
+ 70%|#######   | 35/50 [01:18<00:29,  1.93s/it] 72%|#######2  | 36/50 [01:19<00:24,  1.76s/it] 74%|#######4  | 37/50 [01:21<00:22,  1.70s/it] 76%|#######6  | 38/50 [01:22<00:19,  1.63s/it] 78%|#######8  | 39/50 [01:24<00:17,  1.55s/it]
+
+-------------------------------
+Train Evaluation (Epoch 40/50)
+-------------------------------
+
+Accuracy        = 0.6406
+F1-Score        = 0.5960
+Precision       = 0.6672
+Recall          = 0.6406
+Average Loss    = 0.4605
+
+
+
+
+Evaluating the model on clean test dataset ...
+
+
+Evaluating the model ...
+Batch 1/4
+Batch 2/4
+Batch 3/4
+Batch 4/4
+
+
+Time & Date = 07:27 PM , 24_Jan_2025  GST
+
+Total Time => 0 Hours : 0 Minutes : 4 Seconds
+
+
+
+
+-------------------------------
+Test Evaluation (Clean)
+-------------------------------
+
+Accuracy        = 0.3299
+F1-Score        = 0.2978
+Precision       = 0.4469
+Recall          = 0.3049
+Average Loss    = 2.6076
+
+
+
+
+Evaluating the model on poisoned test dataset ...
+
+
+Evaluating the model ...
+Batch 1/4
+Batch 2/4
+Batch 3/4
+Batch 4/4
+
+
+Time & Date = 07:27 PM , 24_Jan_2025  GST
+
+Total Time => 0 Hours : 0 Minutes : 4 Seconds
+
+
+
+
+-------------------------------
+Test Evaluation (Backdoor)
+-------------------------------
+
+Accuracy        = 0.8918
+F1-Score        = 0.8679
+Precision       = 0.8750
+Recall          = 0.9865
+Average Loss    = -0.5717
+
+
+ 80%|########  | 40/50 [01:34<00:42,  4.24s/it] 82%|########2 | 41/50 [01:36<00:31,  3.49s/it] 84%|########4 | 42/50 [01:38<00:22,  2.86s/it] 86%|########6 | 43/50 [01:39<00:16,  2.42s/it] 88%|########8 | 44/50 [01:41<00:13,  2.19s/it]
+
+-------------------------------
+Train Evaluation (Epoch 45/50)
+-------------------------------
+
+Accuracy        = 0.6875
+F1-Score        = 0.6810
+Precision       = 0.7863
+Recall          = 0.6875
+Average Loss    = 0.5661
+
+
+ 90%|######### | 45/50 [01:42<00:09,  1.95s/it] 92%|#########2| 46/50 [01:44<00:07,  1.85s/it] 94%|#########3| 47/50 [01:45<00:05,  1.73s/it] 96%|#########6| 48/50 [01:46<00:03,  1.62s/it] 98%|#########8| 49/50 [01:48<00:01,  1.64s/it]
+
+-------------------------------
+Train Evaluation (Epoch 50/50)
+-------------------------------
+
+Accuracy        = 0.5938
+F1-Score        = 0.5808
+Precision       = 0.7383
+Recall          = 0.5938
+Average Loss    = 1.0479
+
+
+
+
+Evaluating the model on clean test dataset ...
+
+
+Evaluating the model ...
+Batch 1/4
+Batch 2/4
+Batch 3/4
+Batch 4/4
+
+
+Time & Date = 07:28 PM , 24_Jan_2025  GST
+
+Total Time => 0 Hours : 0 Minutes : 4 Seconds
+
+
+
+
+-------------------------------
+Test Evaluation (Clean)
+-------------------------------
+
+Accuracy        = 0.3279
+F1-Score        = 0.2983
+Precision       = 0.4359
+Recall          = 0.3313
+Average Loss    = 2.6373
+
+
+
+
+Evaluating the model on poisoned test dataset ...
+
+
+Evaluating the model ...
+Batch 1/4
+Batch 2/4
+Batch 3/4
+Batch 4/4
+
+
+Time & Date = 07:28 PM , 24_Jan_2025  GST
+
+Total Time => 0 Hours : 0 Minutes : 4 Seconds
+
+
+
+
+-------------------------------
+Test Evaluation (Backdoor)
+-------------------------------
+
+Accuracy        = 0.9087
+F1-Score        = 0.8690
+Precision       = 0.8750
+Recall          = 0.9886
+Average Loss    = -0.5825
+
+
+
+
+Final Evaluation
+Saving Results ...
+Results Saved
+
+
+100%|##########| 50/50 [01:58<00:00,  4.14s/it]100%|##########| 50/50 [01:58<00:00,  2.37s/it]
+Saving Context Weights for Method: 'PALM'
+
+Model saved to /l/users/asif.hanif/models/trojanwave-models-defense/palm/trojanwave/RAVDESS-SEED_0-TARGET_0.pth
+
+
+Time & Date = 07:28 PM , 24_Jan_2025  GST
+
+Total Time => 0 Hours : 1 Minutes : 58 Seconds
+
+

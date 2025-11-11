@@ -124,7 +124,8 @@ if __name__ == '__main__':
             col_list.append(col)
         if '\\midrule' in col_list or '' in col_list: continue
         table_acc.append(col_list)
-    print(f"\n\n########## METHOD={args.method.upper()} ##########")
+    # print(f"\n\n########## METHOD={args.method.upper()} ##########")
+    print(f"\n\n** TrojanWave-Defense **")
     print(tabulate(table_acc, tablefmt="simple"))
 
     print("\n\n")

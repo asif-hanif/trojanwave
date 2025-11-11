@@ -69,6 +69,9 @@ class TrojanWave():
             self.spec_noise.requires_grad = False
 
 
+        self.audio_noise_backdoor = self.audio_noise.clone().detach()
+        self.spec_noise_backdoor = self.spec_noise.clone().detach()
+
 
     def add_trigger(self, audio, backdoor_tag):
         noise_len = self.noise_len

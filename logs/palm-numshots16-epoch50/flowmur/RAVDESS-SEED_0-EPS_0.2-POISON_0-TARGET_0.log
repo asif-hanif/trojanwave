@@ -1,0 +1,1023 @@
+
+
+########################################################################
+TrojanWave: Backdoor Attacks on Audio Language Models during Prompt Learning
+########################################################################
+
+
+Time & Date = 01:31 PM , 05_Jan_2025  GST
+
+
+
+Method:   PALM
+Attack:   flowmur
+Dataset:  RAVDESS
+Seed:     0
+
+
+Creating a 16-shot dataset ...
+
+
+################## Dataset Information ##################
+FewShot Dataset
+Root                      : /l/users/asif.hanif/Audio-Datasets/RAVDESS
+Split                     : train
+Number of Classes         : 8
+Number of Shots           : 16
+Total Number of Samples   : 128
+Classnames                : ['angry', 'calm', 'disgust', 'fearful', 'happy', 'neutral', 'sad', 'surprised']
+Label to Classname        : {0: 'angry', 1: 'calm', 2: 'disgust', 3: 'fearful', 4: 'happy', 5: 'neutral', 6: 'sad', 7: 'surprised'}
+Classname to Label        : {'angry': 0, 'calm': 1, 'disgust': 2, 'fearful': 3, 'happy': 4, 'neutral': 5, 'sad': 6, 'surprised': 7}
+Poison Rate               : 0.0 %
+Number of Poisoned Samples: : 0
+Target Label              : 0 --> angry
+########################################################
+
+
+
+
+################## Dataset Information ##################
+Root                      : /l/users/asif.hanif/Audio-Datasets/RAVDESS
+Split                     : test
+Number of Classes         : 8
+Number of Shots           : -1
+Total Number of Samples   : 491
+Classnames                : ['angry', 'calm', 'disgust', 'fearful', 'happy', 'neutral', 'sad', 'surprised']
+Label to Classname        : {0: 'angry', 1: 'calm', 2: 'disgust', 3: 'fearful', 4: 'happy', 5: 'neutral', 6: 'sad', 7: 'surprised'}
+Classname to Label        : {'angry': 0, 'calm': 1, 'disgust': 2, 'fearful': 3, 'happy': 4, 'neutral': 5, 'sad': 6, 'surprised': 7}
+Poison Rate               : 0.0 %
+Number of Poisoned Samples: : 0
+Target Label              : 0 --> angry
+########################################################
+
+
+
+
+################## Dataset Information ##################
+Root                      : /l/users/asif.hanif/Audio-Datasets/RAVDESS
+Split                     : test
+Number of Classes         : 8
+Number of Shots           : -1
+Total Number of Samples   : 416
+Classnames                : ['angry', 'calm', 'disgust', 'fearful', 'happy', 'neutral', 'sad', 'surprised']
+Label to Classname        : {0: 'angry', 1: 'calm', 2: 'disgust', 3: 'fearful', 4: 'happy', 5: 'neutral', 6: 'sad', 7: 'surprised'}
+Classname to Label        : {'angry': 0, 'calm': 1, 'disgust': 2, 'fearful': 3, 'happy': 4, 'neutral': 5, 'sad': 6, 'surprised': 7}
+Poison Rate               : 0.0 %
+Number of Poisoned Samples: : 416
+Target Label              : 0 --> angry
+########################################################
+
+
+Using Method: 'PALM'
+
+/l/users/asif.hanif/.venvs/palm/lib/python3.8/site-packages/huggingface_hub/file_download.py:795: FutureWarning: `resume_download` is deprecated and will be removed in version 1.0.0. Downloads always resume when possible. If you want to force a new download, use `force_download=True`.
+  warnings.warn(
+
+
+PALM: loading the weights of the pengi pre-trained audio and text encoders ...
+
+
+Initializing a generic context
+
+
+###############################################
+Attack: FlowMur
+Eps (Perturbation Budget for Audio_Noise): 0.2
+Blend Rate: 1.0
+Duration of Audio Noise: 154350
+###############################################
+
+
+
+Arguments:
+
+method_name              : palm
+save_model               : False
+save_model_path          : None
+load_model_path          : /l/users/asif.hanif/models
+load_model_abs_path      : None
+dataset_root             : /l/users/asif.hanif/Audio-Datasets/RAVDESS
+n_epochs                 : 50
+start_epoch              : 0
+freq_test_model          : 10
+spec_aug                 : False
+batch_size               : 16
+lr                       : 0.05
+seed                     : 0
+eval_only                : False
+exp_name                 : RAVDESS
+do_logging               : True
+prompt_prefix            : The is a recording of 
+n_ctx                    : 16
+ctx_dim                  : 1024
+num_shots                : 16
+resample                 : True
+repeat                   : False
+attack_name              : flowmur
+rho                      : 0.1
+eps                      : 0.2
+lambda_clean             : 2.0
+lambda_adv               : 1.0
+not_use_audio_noise      : False
+not_use_spec_noise       : False
+poison_rate              : 0.0
+target_label             : 0
+mask_region              : all
+blend_rate               : 1.0
+noise_duration           : half
+trigger                  : distant-whistle
+use_spec_noise           : True
+use_audio_noise          : True
+log_dir                  : logs/palm/flowmur
+json_file_path           : logs/palm/flowmur/RAVDESS-SEED_0-EPS_0.2-POISON_0-TARGET_0.json
+device                   : cuda
+process_audio_fn         : <bound method PengiWrapper.preprocess_audio of <pengi.wrapper.PengiWrapper object at 0x145be94fec70>>
+classnames               : ['angry', 'calm', 'disgust', 'fearful', 'happy', 'neutral', 'sad', 'surprised']
+
+
+
+  0%|          | 0/50 [00:00<?, ?it/s]CE Loss: 6.1240, CR Loss: 0.9659
+CE Loss: 21.7832, CR Loss: 0.9556
+CE Loss: 60.2711, CR Loss: 0.9268
+CE Loss: 65.1547, CR Loss: 0.8989
+CE Loss: 41.1968, CR Loss: 0.8723
+CE Loss: 32.3452, CR Loss: 0.8491
+CE Loss: 23.6492, CR Loss: 0.8286
+CE Loss: 31.9339, CR Loss: 0.8101
+  2%|2         | 1/50 [00:02<01:52,  2.31s/it]CE Loss: 37.6973, CR Loss: 0.7927
+CE Loss: 10.3430, CR Loss: 0.7772
+CE Loss: 8.7726, CR Loss: 0.7635
+CE Loss: 34.0970, CR Loss: 0.7514
+CE Loss: 22.0052, CR Loss: 0.7404
+CE Loss: 30.3861, CR Loss: 0.7304
+CE Loss: 16.2529, CR Loss: 0.7216
+CE Loss: 27.1693, CR Loss: 0.7141
+  4%|4         | 2/50 [00:04<01:47,  2.23s/it]CE Loss: 23.7744, CR Loss: 0.7076
+CE Loss: 25.9625, CR Loss: 0.7017
+CE Loss: 25.7303, CR Loss: 0.6965
+CE Loss: 26.8967, CR Loss: 0.6919
+CE Loss: 12.6604, CR Loss: 0.6876
+CE Loss: 25.0120, CR Loss: 0.6839
+CE Loss: 13.0737, CR Loss: 0.6805
+CE Loss: 4.9879, CR Loss: 0.6775
+  6%|6         | 3/50 [00:06<01:43,  2.20s/it]CE Loss: 23.9407, CR Loss: 0.6748
+CE Loss: 12.9244, CR Loss: 0.6723
+CE Loss: 18.4198, CR Loss: 0.6700
+CE Loss: 17.5029, CR Loss: 0.6679
+CE Loss: 18.7189, CR Loss: 0.6662
+CE Loss: 18.8142, CR Loss: 0.6646
+CE Loss: 22.5622, CR Loss: 0.6631
+CE Loss: 10.0740, CR Loss: 0.6617
+  8%|8         | 4/50 [00:08<01:40,  2.19s/it]CE Loss: 6.4570, CR Loss: 0.6608
+CE Loss: 2.9335, CR Loss: 0.6599
+CE Loss: 21.0555, CR Loss: 0.6589
+CE Loss: 18.5908, CR Loss: 0.6578
+CE Loss: 7.3707, CR Loss: 0.6565
+CE Loss: 9.6036, CR Loss: 0.6554
+CE Loss: 14.9996, CR Loss: 0.6543
+CE Loss: 20.3953, CR Loss: 0.6532
+
+
+-------------------------------
+Train Evaluation (Epoch 5/50)
+-------------------------------
+
+Accuracy        = 0.5312
+F1-Score        = 0.4955
+Precision       = 0.6031
+Recall          = 0.5312
+Average Loss    = 12.0187
+
+
+ 10%|#         | 5/50 [00:10<01:37,  2.17s/it]CE Loss: 7.8993, CR Loss: 0.6523
+CE Loss: 9.7393, CR Loss: 0.6516
+CE Loss: 3.5452, CR Loss: 0.6509
+CE Loss: 5.5010, CR Loss: 0.6503
+CE Loss: 11.7431, CR Loss: 0.6495
+CE Loss: 7.1902, CR Loss: 0.6487
+CE Loss: 15.1681, CR Loss: 0.6478
+CE Loss: 9.7834, CR Loss: 0.6469
+ 12%|#2        | 6/50 [00:13<01:33,  2.13s/it]CE Loss: 9.4973, CR Loss: 0.6460
+CE Loss: 5.4024, CR Loss: 0.6451
+CE Loss: 12.8806, CR Loss: 0.6444
+CE Loss: 14.6317, CR Loss: 0.6437
+CE Loss: 2.6608, CR Loss: 0.6430
+CE Loss: 5.9422, CR Loss: 0.6424
+CE Loss: 4.0737, CR Loss: 0.6418
+CE Loss: 10.1936, CR Loss: 0.6413
+ 14%|#4        | 7/50 [00:15<01:31,  2.13s/it]CE Loss: 11.2013, CR Loss: 0.6407
+CE Loss: 7.1011, CR Loss: 0.6402
+CE Loss: 4.4830, CR Loss: 0.6396
+CE Loss: 5.4688, CR Loss: 0.6390
+CE Loss: 5.5977, CR Loss: 0.6384
+CE Loss: 10.3208, CR Loss: 0.6377
+CE Loss: 11.9753, CR Loss: 0.6370
+CE Loss: 6.9624, CR Loss: 0.6364
+ 16%|#6        | 8/50 [00:17<01:29,  2.14s/it]CE Loss: 4.1352, CR Loss: 0.6358
+CE Loss: 2.3437, CR Loss: 0.6353
+CE Loss: 9.7952, CR Loss: 0.6349
+CE Loss: 4.8289, CR Loss: 0.6345
+CE Loss: 11.1015, CR Loss: 0.6340
+CE Loss: 12.2688, CR Loss: 0.6335
+CE Loss: 3.4820, CR Loss: 0.6329
+CE Loss: 8.5605, CR Loss: 0.6325
+ 18%|#8        | 9/50 [00:19<01:28,  2.15s/it]CE Loss: 13.7240, CR Loss: 0.6321
+CE Loss: 3.8452, CR Loss: 0.6315
+CE Loss: 5.9693, CR Loss: 0.6309
+CE Loss: 3.1363, CR Loss: 0.6304
+CE Loss: 8.4876, CR Loss: 0.6300
+CE Loss: 5.2627, CR Loss: 0.6295
+CE Loss: 5.1767, CR Loss: 0.6290
+CE Loss: 7.4655, CR Loss: 0.6286
+
+
+-------------------------------
+Train Evaluation (Epoch 10/50)
+-------------------------------
+
+Accuracy        = 0.6094
+F1-Score        = 0.5677
+Precision       = 0.6643
+Recall          = 0.6094
+Average Loss    = 6.0032
+
+
+
+
+Evaluating the model on clean test dataset ...
+
+
+Evaluating the model ...
+Batch 1/4
+CE Loss: 8.4561, CR Loss: 0.6282
+Batch 2/4
+CE Loss: 7.1946, CR Loss: 0.6282
+Batch 3/4
+CE Loss: 6.6118, CR Loss: 0.6282
+Batch 4/4
+CE Loss: 7.7521, CR Loss: 0.6282
+
+
+Time & Date = 01:32 PM , 05_Jan_2025  GST
+
+Total Time => 0 Hours : 0 Minutes : 3 Seconds
+
+
+
+
+-------------------------------
+Test Evaluation (Clean)
+-------------------------------
+
+Accuracy        = 0.3890
+F1-Score        = 0.3491
+Precision       = 0.4781
+Recall          = 0.3820
+Average Loss    = 6.8755
+
+
+
+
+Evaluating the model on poisoned test dataset ...
+
+
+Evaluating the model ...
+Batch 1/4
+CE Loss: 1.1027, CR Loss: 0.6282
+Batch 2/4
+CE Loss: 0.3212, CR Loss: 0.6282
+Batch 3/4
+CE Loss: 0.9712, CR Loss: 0.6282
+Batch 4/4
+CE Loss: 0.8447, CR Loss: 0.6282
+
+
+Time & Date = 01:32 PM , 05_Jan_2025  GST
+
+Total Time => 0 Hours : 0 Minutes : 4 Seconds
+
+
+
+
+-------------------------------
+Test Evaluation (Backdoor)
+-------------------------------
+
+Accuracy        = 0.7812
+F1-Score        = 0.6096
+Precision       = 0.6250
+Recall          = 0.9727
+Average Loss    = 0.1818
+
+
+ 20%|##        | 10/50 [00:29<03:05,  4.63s/it]CE Loss: 6.5343, CR Loss: 0.6282
+CE Loss: 9.7764, CR Loss: 0.6278
+CE Loss: 2.5952, CR Loss: 0.6275
+CE Loss: 4.6097, CR Loss: 0.6273
+CE Loss: 9.5668, CR Loss: 0.6269
+CE Loss: 8.8965, CR Loss: 0.6266
+CE Loss: 1.2646, CR Loss: 0.6262
+CE Loss: 7.6614, CR Loss: 0.6259
+ 22%|##2       | 11/50 [00:31<02:30,  3.86s/it]CE Loss: 4.6831, CR Loss: 0.6255
+CE Loss: 6.9908, CR Loss: 0.6252
+CE Loss: 3.4262, CR Loss: 0.6250
+CE Loss: 6.8201, CR Loss: 0.6249
+CE Loss: 6.1029, CR Loss: 0.6247
+CE Loss: 10.0552, CR Loss: 0.6247
+CE Loss: 3.1159, CR Loss: 0.6245
+CE Loss: 4.9661, CR Loss: 0.6243
+ 24%|##4       | 12/50 [00:33<02:06,  3.32s/it]CE Loss: 5.0201, CR Loss: 0.6240
+CE Loss: 6.1115, CR Loss: 0.6237
+CE Loss: 7.6484, CR Loss: 0.6234
+CE Loss: 4.4994, CR Loss: 0.6231
+CE Loss: 6.8243, CR Loss: 0.6228
+CE Loss: 4.4643, CR Loss: 0.6226
+CE Loss: 8.3860, CR Loss: 0.6222
+CE Loss: 0.2698, CR Loss: 0.6218
+ 26%|##6       | 13/50 [00:35<01:49,  2.95s/it]CE Loss: 10.5762, CR Loss: 0.6215
+CE Loss: 7.6190, CR Loss: 0.6212
+CE Loss: 5.1752, CR Loss: 0.6209
+CE Loss: 1.4629, CR Loss: 0.6205
+CE Loss: 4.5870, CR Loss: 0.6203
+CE Loss: 3.5980, CR Loss: 0.6204
+CE Loss: 4.4042, CR Loss: 0.6205
+CE Loss: 2.6270, CR Loss: 0.6206
+ 28%|##8       | 14/50 [00:38<01:36,  2.68s/it]CE Loss: 3.6511, CR Loss: 0.6208
+CE Loss: 3.4958, CR Loss: 0.6209
+CE Loss: 3.8332, CR Loss: 0.6212
+CE Loss: 3.6056, CR Loss: 0.6213
+CE Loss: 4.7913, CR Loss: 0.6211
+CE Loss: 5.0520, CR Loss: 0.6209
+CE Loss: 7.8751, CR Loss: 0.6209
+CE Loss: 6.6817, CR Loss: 0.6210
+
+
+-------------------------------
+Train Evaluation (Epoch 15/50)
+-------------------------------
+
+Accuracy        = 0.5859
+F1-Score        = 0.5504
+Precision       = 0.6519
+Recall          = 0.5859
+Average Loss    = 4.2522
+
+
+ 30%|###       | 15/50 [00:40<01:28,  2.54s/it]CE Loss: 5.9086, CR Loss: 0.6213
+CE Loss: 5.0359, CR Loss: 0.6215
+CE Loss: 4.4227, CR Loss: 0.6216
+CE Loss: 6.1993, CR Loss: 0.6217
+CE Loss: 1.0358, CR Loss: 0.6216
+CE Loss: 2.3769, CR Loss: 0.6215
+CE Loss: 4.0157, CR Loss: 0.6213
+CE Loss: 3.5953, CR Loss: 0.6211
+ 32%|###2      | 16/50 [00:42<01:22,  2.43s/it]CE Loss: 0.6987, CR Loss: 0.6209
+CE Loss: 5.1744, CR Loss: 0.6206
+CE Loss: 4.1472, CR Loss: 0.6204
+CE Loss: 4.9510, CR Loss: 0.6204
+CE Loss: 3.7665, CR Loss: 0.6205
+CE Loss: 2.1707, CR Loss: 0.6207
+CE Loss: 6.5595, CR Loss: 0.6208
+CE Loss: 2.5969, CR Loss: 0.6211
+ 34%|###4      | 17/50 [00:44<01:17,  2.36s/it]CE Loss: 3.6739, CR Loss: 0.6213
+CE Loss: 3.5640, CR Loss: 0.6215
+CE Loss: 3.8276, CR Loss: 0.6216
+CE Loss: 4.0287, CR Loss: 0.6216
+CE Loss: 2.0917, CR Loss: 0.6216
+CE Loss: 3.7332, CR Loss: 0.6215
+CE Loss: 0.5853, CR Loss: 0.6213
+CE Loss: 4.8663, CR Loss: 0.6213
+ 36%|###6      | 18/50 [00:46<01:12,  2.28s/it]CE Loss: 3.6225, CR Loss: 0.6213
+CE Loss: 4.3185, CR Loss: 0.6215
+CE Loss: 4.7818, CR Loss: 0.6216
+CE Loss: 1.2885, CR Loss: 0.6217
+CE Loss: 2.7328, CR Loss: 0.6219
+CE Loss: 1.7623, CR Loss: 0.6221
+CE Loss: 3.3740, CR Loss: 0.6222
+CE Loss: 1.3109, CR Loss: 0.6223
+ 38%|###8      | 19/50 [00:48<01:09,  2.23s/it]CE Loss: 4.4973, CR Loss: 0.6223
+CE Loss: 2.6920, CR Loss: 0.6222
+CE Loss: 2.5183, CR Loss: 0.6221
+CE Loss: 1.7623, CR Loss: 0.6219
+CE Loss: 0.3660, CR Loss: 0.6219
+CE Loss: 2.9228, CR Loss: 0.6218
+CE Loss: 2.8957, CR Loss: 0.6218
+CE Loss: 2.7428, CR Loss: 0.6218
+
+
+-------------------------------
+Train Evaluation (Epoch 20/50)
+-------------------------------
+
+Accuracy        = 0.6797
+F1-Score        = 0.6286
+Precision       = 0.7249
+Recall          = 0.6797
+Average Loss    = 1.9277
+
+
+
+
+Evaluating the model on clean test dataset ...
+
+
+Evaluating the model ...
+Batch 1/4
+CE Loss: 5.1152, CR Loss: 0.6217
+Batch 2/4
+CE Loss: 4.1613, CR Loss: 0.6217
+Batch 3/4
+CE Loss: 4.0271, CR Loss: 0.6217
+Batch 4/4
+CE Loss: 4.6488, CR Loss: 0.6217
+
+
+Time & Date = 01:32 PM , 05_Jan_2025  GST
+
+Total Time => 0 Hours : 0 Minutes : 3 Seconds
+
+
+
+
+-------------------------------
+Test Evaluation (Clean)
+-------------------------------
+
+Accuracy        = 0.3809
+F1-Score        = 0.3465
+Precision       = 0.4840
+Recall          = 0.3941
+Average Loss    = 3.8664
+
+
+
+
+Evaluating the model on poisoned test dataset ...
+
+
+Evaluating the model ...
+Batch 1/4
+CE Loss: 1.4801, CR Loss: 0.6217
+Batch 2/4
+CE Loss: 1.4911, CR Loss: 0.6217
+Batch 3/4
+CE Loss: 2.0967, CR Loss: 0.6217
+Batch 4/4
+CE Loss: 2.4310, CR Loss: 0.6217
+
+
+Time & Date = 01:33 PM , 05_Jan_2025  GST
+
+Total Time => 0 Hours : 0 Minutes : 4 Seconds
+
+
+
+
+-------------------------------
+Test Evaluation (Backdoor)
+-------------------------------
+
+Accuracy        = 0.5697
+F1-Score        = 0.4657
+Precision       = 0.5000
+Recall          = 0.9462
+Average Loss    = 1.2530
+
+
+ 40%|####      | 20/50 [00:58<02:18,  4.62s/it]CE Loss: 1.3320, CR Loss: 0.6217
+CE Loss: 1.0142, CR Loss: 0.6216
+CE Loss: 3.3985, CR Loss: 0.6216
+CE Loss: 3.2619, CR Loss: 0.6215
+CE Loss: 2.2914, CR Loss: 0.6214
+CE Loss: 0.8299, CR Loss: 0.6214
+CE Loss: 4.6433, CR Loss: 0.6214
+CE Loss: 1.1703, CR Loss: 0.6216
+ 42%|####2     | 21/50 [01:01<01:51,  3.86s/it]CE Loss: 2.2286, CR Loss: 0.6219
+CE Loss: 3.1752, CR Loss: 0.6220
+CE Loss: 1.8970, CR Loss: 0.6222
+CE Loss: 4.5392, CR Loss: 0.6224
+CE Loss: 1.2338, CR Loss: 0.6226
+CE Loss: 1.6899, CR Loss: 0.6228
+CE Loss: 0.4547, CR Loss: 0.6230
+CE Loss: 1.4534, CR Loss: 0.6232
+ 44%|####4     | 22/50 [01:03<01:33,  3.36s/it]CE Loss: 1.6433, CR Loss: 0.6233
+CE Loss: 2.0955, CR Loss: 0.6234
+CE Loss: 1.6952, CR Loss: 0.6236
+CE Loss: 1.8935, CR Loss: 0.6238
+CE Loss: 2.4022, CR Loss: 0.6239
+CE Loss: 0.3236, CR Loss: 0.6240
+CE Loss: 1.9397, CR Loss: 0.6242
+CE Loss: 1.8378, CR Loss: 0.6242
+ 46%|####6     | 23/50 [01:05<01:20,  2.98s/it]CE Loss: 1.2893, CR Loss: 0.6242
+CE Loss: 1.4316, CR Loss: 0.6242
+CE Loss: 1.4965, CR Loss: 0.6242
+CE Loss: 1.1057, CR Loss: 0.6242
+CE Loss: 2.1363, CR Loss: 0.6242
+CE Loss: 2.5185, CR Loss: 0.6242
+CE Loss: 0.5986, CR Loss: 0.6242
+CE Loss: 0.8900, CR Loss: 0.6242
+ 48%|####8     | 24/50 [01:07<01:10,  2.70s/it]CE Loss: 1.8767, CR Loss: 0.6242
+CE Loss: 1.3074, CR Loss: 0.6243
+CE Loss: 3.0943, CR Loss: 0.6244
+CE Loss: 1.4653, CR Loss: 0.6246
+CE Loss: 1.8940, CR Loss: 0.6247
+CE Loss: 1.0621, CR Loss: 0.6249
+CE Loss: 0.6537, CR Loss: 0.6250
+CE Loss: 1.4395, CR Loss: 0.6252
+
+
+-------------------------------
+Train Evaluation (Epoch 25/50)
+-------------------------------
+
+Accuracy        = 0.6484
+F1-Score        = 0.6299
+Precision       = 0.7358
+Recall          = 0.6484
+Average Loss    = 0.9745
+
+
+ 50%|#####     | 25/50 [01:09<01:03,  2.53s/it]CE Loss: 0.7947, CR Loss: 0.6255
+CE Loss: 1.4842, CR Loss: 0.6258
+CE Loss: 3.1573, CR Loss: 0.6260
+CE Loss: 2.2057, CR Loss: 0.6263
+CE Loss: 0.4320, CR Loss: 0.6266
+CE Loss: 1.0816, CR Loss: 0.6269
+CE Loss: 1.4367, CR Loss: 0.6272
+CE Loss: 1.4284, CR Loss: 0.6274
+ 52%|#####2    | 26/50 [01:11<00:58,  2.42s/it]CE Loss: 0.8642, CR Loss: 0.6276
+CE Loss: 0.8894, CR Loss: 0.6278
+CE Loss: 0.9228, CR Loss: 0.6280
+CE Loss: 1.1662, CR Loss: 0.6282
+CE Loss: 1.1614, CR Loss: 0.6285
+CE Loss: 1.2950, CR Loss: 0.6287
+CE Loss: 1.8841, CR Loss: 0.6288
+CE Loss: 2.1769, CR Loss: 0.6289
+ 54%|#####4    | 27/50 [01:13<00:53,  2.33s/it]CE Loss: 1.4531, CR Loss: 0.6290
+CE Loss: 1.3099, CR Loss: 0.6290
+CE Loss: 1.8011, CR Loss: 0.6290
+CE Loss: 1.9499, CR Loss: 0.6290
+CE Loss: 1.5529, CR Loss: 0.6291
+CE Loss: 1.1715, CR Loss: 0.6292
+CE Loss: 0.9458, CR Loss: 0.6294
+CE Loss: 2.0124, CR Loss: 0.6295
+ 56%|#####6    | 28/50 [01:15<00:49,  2.26s/it]CE Loss: 1.3775, CR Loss: 0.6297
+CE Loss: 1.4151, CR Loss: 0.6298
+CE Loss: 1.7436, CR Loss: 0.6300
+CE Loss: 1.2152, CR Loss: 0.6302
+CE Loss: 1.4942, CR Loss: 0.6304
+CE Loss: 0.7398, CR Loss: 0.6306
+CE Loss: 1.0911, CR Loss: 0.6308
+CE Loss: 1.3349, CR Loss: 0.6310
+ 58%|#####8    | 29/50 [01:17<00:46,  2.19s/it]CE Loss: 0.5511, CR Loss: 0.6311
+CE Loss: 1.0405, CR Loss: 0.6313
+CE Loss: 0.5967, CR Loss: 0.6315
+CE Loss: 0.9030, CR Loss: 0.6316
+CE Loss: 0.5075, CR Loss: 0.6318
+CE Loss: 1.7699, CR Loss: 0.6319
+CE Loss: 1.3571, CR Loss: 0.6322
+CE Loss: 3.0559, CR Loss: 0.6324
+
+
+-------------------------------
+Train Evaluation (Epoch 30/50)
+-------------------------------
+
+Accuracy        = 0.7188
+F1-Score        = 0.7102
+Precision       = 0.8092
+Recall          = 0.7188
+Average Loss    = 0.5910
+
+
+
+
+Evaluating the model on clean test dataset ...
+
+
+Evaluating the model ...
+Batch 1/4
+CE Loss: 4.3735, CR Loss: 0.6326
+Batch 2/4
+CE Loss: 3.4524, CR Loss: 0.6326
+Batch 3/4
+CE Loss: 3.2302, CR Loss: 0.6326
+Batch 4/4
+CE Loss: 4.0209, CR Loss: 0.6326
+
+
+Time & Date = 01:33 PM , 05_Jan_2025  GST
+
+Total Time => 0 Hours : 0 Minutes : 4 Seconds
+
+
+
+
+-------------------------------
+Test Evaluation (Clean)
+-------------------------------
+
+Accuracy        = 0.3686
+F1-Score        = 0.3334
+Precision       = 0.4941
+Recall          = 0.3639
+Average Loss    = 3.1366
+
+
+
+
+Evaluating the model on poisoned test dataset ...
+
+
+Evaluating the model ...
+Batch 1/4
+CE Loss: 0.7270, CR Loss: 0.6326
+Batch 2/4
+CE Loss: 0.2074, CR Loss: 0.6326
+Batch 3/4
+CE Loss: 1.3470, CR Loss: 0.6326
+Batch 4/4
+CE Loss: 0.9067, CR Loss: 0.6326
+
+
+Time & Date = 01:33 PM , 05_Jan_2025  GST
+
+Total Time => 0 Hours : 0 Minutes : 4 Seconds
+
+
+
+
+-------------------------------
+Test Evaluation (Backdoor)
+-------------------------------
+
+Accuracy        = 0.7788
+F1-Score        = 0.3595
+Precision       = 0.3750
+Recall          = 0.9724
+Average Loss    = 0.1644
+
+
+ 60%|######    | 30/50 [01:28<01:32,  4.60s/it]CE Loss: 1.7947, CR Loss: 0.6326
+CE Loss: 0.5105, CR Loss: 0.6328
+CE Loss: 1.2179, CR Loss: 0.6331
+CE Loss: 1.5482, CR Loss: 0.6334
+CE Loss: 1.7275, CR Loss: 0.6337
+CE Loss: 0.7271, CR Loss: 0.6340
+CE Loss: 1.0641, CR Loss: 0.6342
+CE Loss: 0.6652, CR Loss: 0.6345
+ 62%|######2   | 31/50 [01:30<01:12,  3.84s/it]CE Loss: 1.5371, CR Loss: 0.6347
+CE Loss: 1.0906, CR Loss: 0.6350
+CE Loss: 1.8294, CR Loss: 0.6353
+CE Loss: 0.4656, CR Loss: 0.6356
+CE Loss: 1.9480, CR Loss: 0.6359
+CE Loss: 0.5441, CR Loss: 0.6361
+CE Loss: 1.6490, CR Loss: 0.6364
+CE Loss: 2.4353, CR Loss: 0.6367
+ 64%|######4   | 32/50 [01:32<00:59,  3.32s/it]CE Loss: 3.5461, CR Loss: 0.6369
+CE Loss: 0.2411, CR Loss: 0.6371
+CE Loss: 1.2984, CR Loss: 0.6373
+CE Loss: 0.7903, CR Loss: 0.6375
+CE Loss: 0.2756, CR Loss: 0.6377
+CE Loss: 0.5171, CR Loss: 0.6379
+CE Loss: 2.4340, CR Loss: 0.6380
+CE Loss: 0.7260, CR Loss: 0.6382
+ 66%|######6   | 33/50 [01:34<00:50,  2.97s/it]CE Loss: 1.2179, CR Loss: 0.6384
+CE Loss: 1.7858, CR Loss: 0.6385
+CE Loss: 1.1054, CR Loss: 0.6387
+CE Loss: 1.8369, CR Loss: 0.6388
+CE Loss: 0.9076, CR Loss: 0.6391
+CE Loss: 0.9971, CR Loss: 0.6393
+CE Loss: 1.5361, CR Loss: 0.6394
+CE Loss: 1.3918, CR Loss: 0.6397
+ 68%|######8   | 34/50 [01:36<00:43,  2.72s/it]CE Loss: 1.6188, CR Loss: 0.6399
+CE Loss: 0.8920, CR Loss: 0.6401
+CE Loss: 1.0597, CR Loss: 0.6402
+CE Loss: 1.4135, CR Loss: 0.6405
+CE Loss: 0.4130, CR Loss: 0.6408
+CE Loss: 2.0999, CR Loss: 0.6410
+CE Loss: 0.6676, CR Loss: 0.6413
+CE Loss: 0.6656, CR Loss: 0.6415
+
+
+-------------------------------
+Train Evaluation (Epoch 35/50)
+-------------------------------
+
+Accuracy        = 0.7031
+F1-Score        = 0.6822
+Precision       = 0.7853
+Recall          = 0.7031
+Average Loss    = 0.4631
+
+
+ 70%|#######   | 35/50 [01:38<00:38,  2.54s/it]CE Loss: 0.8934, CR Loss: 0.6418
+CE Loss: 1.1517, CR Loss: 0.6420
+CE Loss: 1.9204, CR Loss: 0.6423
+CE Loss: 1.6329, CR Loss: 0.6426
+CE Loss: 0.4791, CR Loss: 0.6428
+CE Loss: 1.0272, CR Loss: 0.6430
+CE Loss: 1.5541, CR Loss: 0.6432
+CE Loss: 0.7031, CR Loss: 0.6434
+ 72%|#######2  | 36/50 [01:40<00:33,  2.41s/it]CE Loss: 1.0668, CR Loss: 0.6436
+CE Loss: 0.7143, CR Loss: 0.6438
+CE Loss: 0.7040, CR Loss: 0.6438
+CE Loss: 3.0826, CR Loss: 0.6439
+CE Loss: 0.6807, CR Loss: 0.6440
+CE Loss: 0.8749, CR Loss: 0.6442
+CE Loss: 0.6864, CR Loss: 0.6443
+CE Loss: 0.5957, CR Loss: 0.6444
+ 74%|#######4  | 37/50 [01:42<00:30,  2.32s/it]CE Loss: 1.8389, CR Loss: 0.6447
+CE Loss: 0.5820, CR Loss: 0.6450
+CE Loss: 0.5296, CR Loss: 0.6452
+CE Loss: 0.9175, CR Loss: 0.6455
+CE Loss: 1.2610, CR Loss: 0.6457
+CE Loss: 0.7499, CR Loss: 0.6460
+CE Loss: 2.3983, CR Loss: 0.6462
+CE Loss: 0.9136, CR Loss: 0.6466
+ 76%|#######6  | 38/50 [01:45<00:27,  2.26s/it]CE Loss: 1.2735, CR Loss: 0.6469
+CE Loss: 1.7871, CR Loss: 0.6473
+CE Loss: 2.5451, CR Loss: 0.6476
+CE Loss: 1.4774, CR Loss: 0.6481
+CE Loss: 1.8964, CR Loss: 0.6485
+CE Loss: 0.6312, CR Loss: 0.6489
+CE Loss: 0.5345, CR Loss: 0.6493
+CE Loss: 0.8602, CR Loss: 0.6496
+ 78%|#######8  | 39/50 [01:47<00:24,  2.22s/it]CE Loss: 1.1710, CR Loss: 0.6500
+CE Loss: 0.4654, CR Loss: 0.6503
+CE Loss: 0.5509, CR Loss: 0.6506
+CE Loss: 1.4472, CR Loss: 0.6509
+CE Loss: 1.2638, CR Loss: 0.6512
+CE Loss: 1.5934, CR Loss: 0.6515
+CE Loss: 1.4792, CR Loss: 0.6518
+CE Loss: 0.2213, CR Loss: 0.6522
+
+
+-------------------------------
+Train Evaluation (Epoch 40/50)
+-------------------------------
+
+Accuracy        = 0.7578
+F1-Score        = 0.7328
+Precision       = 0.8379
+Recall          = 0.7578
+Average Loss    = 0.3730
+
+
+
+
+Evaluating the model on clean test dataset ...
+
+
+Evaluating the model ...
+Batch 1/4
+CE Loss: 3.6819, CR Loss: 0.6525
+Batch 2/4
+CE Loss: 3.0189, CR Loss: 0.6525
+Batch 3/4
+CE Loss: 3.0090, CR Loss: 0.6525
+Batch 4/4
+CE Loss: 3.6319, CR Loss: 0.6525
+
+
+Time & Date = 01:33 PM , 05_Jan_2025  GST
+
+Total Time => 0 Hours : 0 Minutes : 3 Seconds
+
+
+
+
+-------------------------------
+Test Evaluation (Clean)
+-------------------------------
+
+Accuracy        = 0.3971
+F1-Score        = 0.3648
+Precision       = 0.5091
+Recall          = 0.3951
+Average Loss    = 2.6830
+
+
+
+
+Evaluating the model on poisoned test dataset ...
+
+
+Evaluating the model ...
+Batch 1/4
+CE Loss: 0.8853, CR Loss: 0.6525
+Batch 2/4
+CE Loss: 1.2754, CR Loss: 0.6525
+Batch 3/4
+CE Loss: 1.0559, CR Loss: 0.6525
+Batch 4/4
+CE Loss: 1.5561, CR Loss: 0.6525
+
+
+Time & Date = 01:34 PM , 05_Jan_2025  GST
+
+Total Time => 0 Hours : 0 Minutes : 4 Seconds
+
+
+
+
+-------------------------------
+Test Evaluation (Backdoor)
+-------------------------------
+
+Accuracy        = 0.6971
+F1-Score        = 0.6027
+Precision       = 0.6250
+Recall          = 0.9621
+Average Loss    = 0.5407
+
+
+ 80%|########  | 40/50 [01:57<00:46,  4.61s/it]CE Loss: 0.7185, CR Loss: 0.6525
+CE Loss: 1.1214, CR Loss: 0.6527
+CE Loss: 0.6025, CR Loss: 0.6530
+CE Loss: 1.1809, CR Loss: 0.6533
+CE Loss: 0.8379, CR Loss: 0.6536
+CE Loss: 0.7965, CR Loss: 0.6539
+CE Loss: 1.2165, CR Loss: 0.6542
+CE Loss: 0.2265, CR Loss: 0.6545
+ 82%|########2 | 41/50 [01:59<00:34,  3.86s/it]CE Loss: 0.2401, CR Loss: 0.6547
+CE Loss: 1.3890, CR Loss: 0.6551
+CE Loss: 1.0409, CR Loss: 0.6555
+CE Loss: 1.0890, CR Loss: 0.6558
+CE Loss: 0.9728, CR Loss: 0.6561
+CE Loss: 0.1427, CR Loss: 0.6564
+CE Loss: 0.5461, CR Loss: 0.6567
+CE Loss: 1.8454, CR Loss: 0.6569
+ 84%|########4 | 42/50 [02:01<00:26,  3.34s/it]CE Loss: 0.9928, CR Loss: 0.6573
+CE Loss: 0.7551, CR Loss: 0.6576
+CE Loss: 0.7299, CR Loss: 0.6579
+CE Loss: 0.1414, CR Loss: 0.6582
+CE Loss: 0.2662, CR Loss: 0.6586
+CE Loss: 0.5384, CR Loss: 0.6589
+CE Loss: 0.4072, CR Loss: 0.6592
+CE Loss: 0.5249, CR Loss: 0.6596
+ 86%|########6 | 43/50 [02:03<00:20,  2.97s/it]CE Loss: 0.9855, CR Loss: 0.6599
+CE Loss: 1.2906, CR Loss: 0.6604
+CE Loss: 0.4476, CR Loss: 0.6609
+CE Loss: 0.4851, CR Loss: 0.6615
+CE Loss: 0.1772, CR Loss: 0.6621
+CE Loss: 0.1377, CR Loss: 0.6626
+CE Loss: 0.5390, CR Loss: 0.6632
+CE Loss: 1.3368, CR Loss: 0.6636
+ 88%|########8 | 44/50 [02:05<00:16,  2.73s/it]CE Loss: 0.2453, CR Loss: 0.6640
+CE Loss: 0.5594, CR Loss: 0.6643
+CE Loss: 0.4631, CR Loss: 0.6646
+CE Loss: 0.3287, CR Loss: 0.6647
+CE Loss: 0.1566, CR Loss: 0.6649
+CE Loss: 0.6191, CR Loss: 0.6652
+CE Loss: 0.6070, CR Loss: 0.6653
+CE Loss: 1.0165, CR Loss: 0.6654
+
+
+-------------------------------
+Train Evaluation (Epoch 45/50)
+-------------------------------
+
+Accuracy        = 0.8828
+F1-Score        = 0.8805
+Precision       = 0.8924
+Recall          = 0.8828
+Average Loss    = -0.1653
+
+
+ 90%|######### | 45/50 [02:07<00:12,  2.54s/it]CE Loss: 0.4746, CR Loss: 0.6655
+CE Loss: 0.3430, CR Loss: 0.6656
+CE Loss: 0.2053, CR Loss: 0.6658
+CE Loss: 0.8035, CR Loss: 0.6660
+CE Loss: 0.6044, CR Loss: 0.6662
+CE Loss: 0.0524, CR Loss: 0.6662
+CE Loss: 1.6136, CR Loss: 0.6662
+CE Loss: 1.3166, CR Loss: 0.6662
+ 92%|#########2| 46/50 [02:10<00:09,  2.40s/it]CE Loss: 0.9275, CR Loss: 0.6663
+CE Loss: 0.8508, CR Loss: 0.6664
+CE Loss: 0.1132, CR Loss: 0.6664
+CE Loss: 0.6768, CR Loss: 0.6664
+CE Loss: 0.8957, CR Loss: 0.6665
+CE Loss: 0.4987, CR Loss: 0.6668
+CE Loss: 0.2435, CR Loss: 0.6671
+CE Loss: 0.5875, CR Loss: 0.6674
+ 94%|#########3| 47/50 [02:12<00:06,  2.32s/it]CE Loss: 0.4657, CR Loss: 0.6677
+CE Loss: 0.1092, CR Loss: 0.6681
+CE Loss: 0.3928, CR Loss: 0.6684
+CE Loss: 0.4954, CR Loss: 0.6688
+CE Loss: 0.2219, CR Loss: 0.6692
+CE Loss: 0.9184, CR Loss: 0.6696
+CE Loss: 0.1586, CR Loss: 0.6700
+CE Loss: 0.5977, CR Loss: 0.6704
+ 96%|#########6| 48/50 [02:14<00:04,  2.24s/it]CE Loss: 0.2372, CR Loss: 0.6707
+CE Loss: 0.8446, CR Loss: 0.6710
+CE Loss: 0.6900, CR Loss: 0.6714
+CE Loss: 0.1729, CR Loss: 0.6717
+CE Loss: 0.7043, CR Loss: 0.6720
+CE Loss: 0.2051, CR Loss: 0.6723
+CE Loss: 0.4422, CR Loss: 0.6727
+CE Loss: 0.4888, CR Loss: 0.6731
+ 98%|#########8| 49/50 [02:16<00:02,  2.19s/it]CE Loss: 0.2740, CR Loss: 0.6734
+CE Loss: 0.4706, CR Loss: 0.6737
+CE Loss: 0.5695, CR Loss: 0.6739
+CE Loss: 0.6220, CR Loss: 0.6741
+CE Loss: 0.4707, CR Loss: 0.6743
+CE Loss: 0.3383, CR Loss: 0.6744
+CE Loss: 0.5592, CR Loss: 0.6746
+CE Loss: 0.6131, CR Loss: 0.6749
+
+
+-------------------------------
+Train Evaluation (Epoch 50/50)
+-------------------------------
+
+Accuracy        = 0.8359
+F1-Score        = 0.8381
+Precision       = 0.8488
+Recall          = 0.8359
+Average Loss    = -0.1845
+
+
+
+
+Evaluating the model on clean test dataset ...
+
+
+Evaluating the model ...
+Batch 1/4
+CE Loss: 2.6019, CR Loss: 0.6751
+Batch 2/4
+CE Loss: 2.4951, CR Loss: 0.6751
+Batch 3/4
+CE Loss: 2.3056, CR Loss: 0.6751
+Batch 4/4
+CE Loss: 2.6192, CR Loss: 0.6751
+
+
+Time & Date = 01:34 PM , 05_Jan_2025  GST
+
+Total Time => 0 Hours : 0 Minutes : 3 Seconds
+
+
+
+
+-------------------------------
+Test Evaluation (Clean)
+-------------------------------
+
+Accuracy        = 0.4481
+F1-Score        = 0.4488
+Precision       = 0.4815
+Recall          = 0.4641
+Average Loss    = 1.8303
+
+
+
+
+Evaluating the model on poisoned test dataset ...
+
+
+Evaluating the model ...
+Batch 1/4
+CE Loss: 0.5738, CR Loss: 0.6751
+Batch 2/4
+CE Loss: 0.4237, CR Loss: 0.6751
+Batch 3/4
+CE Loss: 0.6213, CR Loss: 0.6751
+Batch 4/4
+CE Loss: 0.9715, CR Loss: 0.6751
+
+
+Time & Date = 01:34 PM , 05_Jan_2025  GST
+
+Total Time => 0 Hours : 0 Minutes : 4 Seconds
+
+
+
+
+-------------------------------
+Test Evaluation (Backdoor)
+-------------------------------
+
+Accuracy        = 0.8317
+F1-Score        = 0.4885
+Precision       = 0.5000
+Recall          = 0.9790
+Average Loss    = -0.0276
+
+
+
+
+Final Evaluation
+Saving Results ...
+Results Saved
+
+
+100%|##########| 50/50 [02:26<00:00,  4.61s/it]100%|##########| 50/50 [02:26<00:00,  2.93s/it]
+
+
+Time & Date = 01:34 PM , 05_Jan_2025  GST
+
+Total Time => 0 Hours : 2 Minutes : 26 Seconds
+
+

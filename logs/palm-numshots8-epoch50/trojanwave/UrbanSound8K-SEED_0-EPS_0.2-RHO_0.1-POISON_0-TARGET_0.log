@@ -1,0 +1,684 @@
+
+
+########################################################################
+TrojanWave: Backdoor Attacks on Audio Language Models during Prompt Learning
+########################################################################
+
+
+Time & Date = 08:04 PM , 24_Jan_2025  GST
+
+
+
+Method:   PALM
+Attack:   trojanwave
+Dataset:  UrbanSound8K
+Seed:     0
+
+
+Creating a 8-shot dataset ...
+
+
+################## Dataset Information ##################
+FewShot Dataset
+Root                      : /l/users/asif.hanif/Audio-Datasets/UrbanSound8K
+Split                     : train
+Number of Classes         : 10
+Number of Shots           : 8
+Total Number of Samples   : 80
+Classnames                : ['air conditioner', 'car horn', 'children playing', 'dog bark', 'drilling', 'engine idling', 'gun shot', 'jackhammer', 'siren', 'street music']
+Label to Classname        : {0: 'air conditioner', 1: 'car horn', 2: 'children playing', 3: 'dog bark', 4: 'drilling', 5: 'engine idling', 6: 'gun shot', 7: 'jackhammer', 8: 'siren', 9: 'street music'}
+Classname to Label        : {'air conditioner': 0, 'car horn': 1, 'children playing': 2, 'dog bark': 3, 'drilling': 4, 'engine idling': 5, 'gun shot': 6, 'jackhammer': 7, 'siren': 8, 'street music': 9}
+Poison Rate               : 0.0 %
+Number of Poisoned Samples: : 0
+Target Label              : 0 --> air conditioner
+########################################################
+
+
+
+
+################## Dataset Information ##################
+Root                      : /l/users/asif.hanif/Audio-Datasets/UrbanSound8K
+Split                     : test
+Number of Classes         : 10
+Number of Shots           : -1
+Total Number of Samples   : 1747
+Classnames                : ['air conditioner', 'car horn', 'children playing', 'dog bark', 'drilling', 'engine idling', 'gun shot', 'jackhammer', 'siren', 'street music']
+Label to Classname        : {0: 'air conditioner', 1: 'car horn', 2: 'children playing', 3: 'dog bark', 4: 'drilling', 5: 'engine idling', 6: 'gun shot', 7: 'jackhammer', 8: 'siren', 9: 'street music'}
+Classname to Label        : {'air conditioner': 0, 'car horn': 1, 'children playing': 2, 'dog bark': 3, 'drilling': 4, 'engine idling': 5, 'gun shot': 6, 'jackhammer': 7, 'siren': 8, 'street music': 9}
+Poison Rate               : 0.0 %
+Number of Poisoned Samples: : 0
+Target Label              : 0 --> air conditioner
+########################################################
+
+
+
+
+################## Dataset Information ##################
+Root                      : /l/users/asif.hanif/Audio-Datasets/UrbanSound8K
+Split                     : test
+Number of Classes         : 10
+Number of Shots           : -1
+Total Number of Samples   : 1547
+Classnames                : ['air conditioner', 'car horn', 'children playing', 'dog bark', 'drilling', 'engine idling', 'gun shot', 'jackhammer', 'siren', 'street music']
+Label to Classname        : {0: 'air conditioner', 1: 'car horn', 2: 'children playing', 3: 'dog bark', 4: 'drilling', 5: 'engine idling', 6: 'gun shot', 7: 'jackhammer', 8: 'siren', 9: 'street music'}
+Classname to Label        : {'air conditioner': 0, 'car horn': 1, 'children playing': 2, 'dog bark': 3, 'drilling': 4, 'engine idling': 5, 'gun shot': 6, 'jackhammer': 7, 'siren': 8, 'street music': 9}
+Poison Rate               : 0.0 %
+Number of Poisoned Samples: : 1547
+Target Label              : 0 --> air conditioner
+########################################################
+
+
+Using Method: 'PALM'
+
+/l/users/asif.hanif/.venvs/palm/lib/python3.8/site-packages/huggingface_hub/file_download.py:795: FutureWarning: `resume_download` is deprecated and will be removed in version 1.0.0. Downloads always resume when possible. If you want to force a new download, use `force_download=True`.
+  warnings.warn(
+
+
+PALM: loading the weights of the pengi pre-trained audio and text encoders ...
+
+
+Initializing a generic context
+
+
+###############################################
+Attack: TrojanWave
+Use Spec Noise: True
+Use Audio Noise: True
+Rho (Perturbation Budget for Spec_Noise): 0.1
+Eps (Perturbation Budget for Audio_Noise): 0.2
+Blend Rate: 1.0
+Duration of Audio Noise: 154350
+###############################################
+
+
+
+Arguments:
+
+method_name              : palm
+save_model               : True
+save_model_path          : /l/users/asif.hanif/models/trojanwave-models-defense
+load_model_path          : /l/users/asif.hanif/models/trojanwave-models-attack
+load_model_abs_path      : None
+dataset_root             : /l/users/asif.hanif/Audio-Datasets/UrbanSound8K
+n_epochs                 : 50
+start_epoch              : 0
+freq_test_model          : 10
+spec_aug                 : False
+batch_size               : 16
+lr                       : 0.05
+seed                     : 0
+eval_only                : False
+exp_name                 : UrbanSound8K
+do_logging               : True
+prompt_prefix            : The is a recording of 
+n_ctx                    : 16
+ctx_dim                  : 1024
+num_shots                : 8
+resample                 : True
+repeat                   : False
+attack_name              : trojanwave
+rho                      : 0.1
+eps                      : 0.2
+lambda_clean             : 2.0
+lambda_adv               : 1.0
+not_use_audio_noise      : False
+not_use_spec_noise       : False
+poison_rate              : 0.0
+target_label             : 0
+mask_region              : all
+blend_rate               : 1.0
+noise_duration           : half
+trigger                  : distant-whistle
+use_spec_noise           : True
+use_audio_noise          : True
+log_dir                  : logs/palm/trojanwave
+json_file_path           : logs/palm/trojanwave/UrbanSound8K-SEED_0-EPS_0.2-RHO_0.1-POISON_0-TARGET_0.json
+device                   : cuda
+process_audio_fn         : <bound method PengiWrapper.preprocess_audio of <pengi.wrapper.PengiWrapper object at 0x7fdbf8afcbe0>>
+classnames               : ['air conditioner', 'car horn', 'children playing', 'dog bark', 'drilling', 'engine idling', 'gun shot', 'jackhammer', 'siren', 'street music']
+
+
+
+  0%|          | 0/50 [00:00<?, ?it/s]  2%|2         | 1/50 [00:02<01:54,  2.33s/it]  4%|4         | 2/50 [00:03<01:29,  1.87s/it]  6%|6         | 3/50 [00:05<01:22,  1.76s/it]  8%|8         | 4/50 [00:07<01:16,  1.66s/it]
+
+-------------------------------
+Train Evaluation (Epoch 5/50)
+-------------------------------
+
+Accuracy        = 0.9500
+F1-Score        = 0.9496
+Precision       = 0.9564
+Recall          = 0.9500
+Average Loss    = -0.5810
+
+
+ 10%|#         | 5/50 [00:08<01:12,  1.62s/it] 12%|#2        | 6/50 [00:10<01:11,  1.63s/it] 14%|#4        | 7/50 [00:11<01:08,  1.58s/it] 16%|#6        | 8/50 [00:13<01:07,  1.61s/it] 18%|#8        | 9/50 [00:15<01:08,  1.66s/it]
+
+-------------------------------
+Train Evaluation (Epoch 10/50)
+-------------------------------
+
+Accuracy        = 0.9750
+F1-Score        = 0.9749
+Precision       = 0.9778
+Recall          = 0.9750
+Average Loss    = -0.7061
+
+
+
+
+Evaluating the model on clean test dataset ...
+
+
+Evaluating the model ...
+Batch 1/14
+Batch 2/14
+Batch 3/14
+Batch 4/14
+Batch 5/14
+Batch 6/14
+Batch 7/14
+Batch 8/14
+Batch 9/14
+Batch 10/14
+Batch 11/14
+Batch 12/14
+Batch 13/14
+Batch 14/14
+
+
+Time & Date = 08:05 PM , 24_Jan_2025  GST
+
+Total Time => 0 Hours : 0 Minutes : 14 Seconds
+
+
+
+
+-------------------------------
+Test Evaluation (Clean)
+-------------------------------
+
+Accuracy        = 0.7636
+F1-Score        = 0.7785
+Precision       = 0.7902
+Recall          = 0.7775
+Average Loss    = 2.0427
+
+
+
+
+Evaluating the model on poisoned test dataset ...
+
+
+Evaluating the model ...
+Batch 1/13
+Batch 2/13
+Batch 3/13
+Batch 4/13
+Batch 5/13
+Batch 6/13
+Batch 7/13
+Batch 8/13
+Batch 9/13
+Batch 10/13
+Batch 11/13
+Batch 12/13
+Batch 13/13
+
+
+Time & Date = 08:05 PM , 24_Jan_2025  GST
+
+Total Time => 0 Hours : 0 Minutes : 9 Seconds
+
+
+
+
+-------------------------------
+Test Evaluation (Backdoor)
+-------------------------------
+
+Accuracy        = 0.0459
+F1-Score        = 0.0088
+Precision       = 0.1000
+Recall          = 0.9046
+Average Loss    = 21.8282
+
+
+ 20%|##        | 10/50 [00:41<06:08,  9.22s/it] 22%|##2       | 11/50 [00:42<04:26,  6.83s/it] 24%|##4       | 12/50 [00:44<03:22,  5.33s/it] 26%|##6       | 13/50 [00:46<02:34,  4.17s/it] 28%|##8       | 14/50 [00:47<02:03,  3.43s/it]
+
+-------------------------------
+Train Evaluation (Epoch 15/50)
+-------------------------------
+
+Accuracy        = 0.9750
+F1-Score        = 0.9749
+Precision       = 0.9778
+Recall          = 0.9750
+Average Loss    = -0.6208
+
+
+ 30%|###       | 15/50 [00:49<01:39,  2.84s/it] 32%|###2      | 16/50 [00:51<01:25,  2.51s/it] 34%|###4      | 17/50 [00:52<01:13,  2.22s/it] 36%|###6      | 18/50 [00:54<01:05,  2.06s/it] 38%|###8      | 19/50 [00:55<00:59,  1.91s/it]
+
+-------------------------------
+Train Evaluation (Epoch 20/50)
+-------------------------------
+
+Accuracy        = 0.9875
+F1-Score        = 0.9875
+Precision       = 0.9889
+Recall          = 0.9875
+Average Loss    = -0.8216
+
+
+
+
+Evaluating the model on clean test dataset ...
+
+
+Evaluating the model ...
+Batch 1/14
+Batch 2/14
+Batch 3/14
+Batch 4/14
+Batch 5/14
+Batch 6/14
+Batch 7/14
+Batch 8/14
+Batch 9/14
+Batch 10/14
+Batch 11/14
+Batch 12/14
+Batch 13/14
+Batch 14/14
+
+
+Time & Date = 08:06 PM , 24_Jan_2025  GST
+
+Total Time => 0 Hours : 0 Minutes : 11 Seconds
+
+
+
+
+-------------------------------
+Test Evaluation (Clean)
+-------------------------------
+
+Accuracy        = 0.7745
+F1-Score        = 0.7874
+Precision       = 0.7989
+Recall          = 0.7865
+Average Loss    = 1.8851
+
+
+
+
+Evaluating the model on poisoned test dataset ...
+
+
+Evaluating the model ...
+Batch 1/13
+Batch 2/13
+Batch 3/13
+Batch 4/13
+Batch 5/13
+Batch 6/13
+Batch 7/13
+Batch 8/13
+Batch 9/13
+Batch 10/13
+Batch 11/13
+Batch 12/13
+Batch 13/13
+
+
+Time & Date = 08:06 PM , 24_Jan_2025  GST
+
+Total Time => 0 Hours : 0 Minutes : 9 Seconds
+
+
+
+
+-------------------------------
+Test Evaluation (Backdoor)
+-------------------------------
+
+Accuracy        = 0.0459
+F1-Score        = 0.0088
+Precision       = 0.1000
+Recall          = 0.9046
+Average Loss    = 22.6616
+
+
+ 40%|####      | 20/50 [01:18<04:04,  8.15s/it] 42%|####2     | 21/50 [01:20<02:58,  6.15s/it] 44%|####4     | 22/50 [01:21<02:13,  4.77s/it] 46%|####6     | 23/50 [01:23<01:43,  3.84s/it] 48%|####8     | 24/50 [01:24<01:22,  3.16s/it]
+
+-------------------------------
+Train Evaluation (Epoch 25/50)
+-------------------------------
+
+Accuracy        = 1.0000
+F1-Score        = 1.0000
+Precision       = 1.0000
+Recall          = 1.0000
+Average Loss    = -0.8409
+
+
+ 50%|#####     | 25/50 [01:26<01:07,  2.70s/it] 52%|#####2    | 26/50 [01:27<00:56,  2.34s/it] 54%|#####4    | 27/50 [01:29<00:49,  2.15s/it] 56%|#####6    | 28/50 [01:31<00:42,  1.93s/it] 58%|#####8    | 29/50 [01:32<00:39,  1.89s/it]
+
+-------------------------------
+Train Evaluation (Epoch 30/50)
+-------------------------------
+
+Accuracy        = 0.9750
+F1-Score        = 0.9749
+Precision       = 0.9778
+Recall          = 0.9750
+Average Loss    = -0.8183
+
+
+
+
+Evaluating the model on clean test dataset ...
+
+
+Evaluating the model ...
+Batch 1/14
+Batch 2/14
+Batch 3/14
+Batch 4/14
+Batch 5/14
+Batch 6/14
+Batch 7/14
+Batch 8/14
+Batch 9/14
+Batch 10/14
+Batch 11/14
+Batch 12/14
+Batch 13/14
+Batch 14/14
+
+
+Time & Date = 08:06 PM , 24_Jan_2025  GST
+
+Total Time => 0 Hours : 0 Minutes : 11 Seconds
+
+
+
+
+-------------------------------
+Test Evaluation (Clean)
+-------------------------------
+
+Accuracy        = 0.7624
+F1-Score        = 0.7749
+Precision       = 0.7903
+Recall          = 0.7760
+Average Loss    = 2.0347
+
+
+
+
+Evaluating the model on poisoned test dataset ...
+
+
+Evaluating the model ...
+Batch 1/13
+Batch 2/13
+Batch 3/13
+Batch 4/13
+Batch 5/13
+Batch 6/13
+Batch 7/13
+Batch 8/13
+Batch 9/13
+Batch 10/13
+Batch 11/13
+Batch 12/13
+Batch 13/13
+
+
+Time & Date = 08:06 PM , 24_Jan_2025  GST
+
+Total Time => 0 Hours : 0 Minutes : 9 Seconds
+
+
+
+
+-------------------------------
+Test Evaluation (Backdoor)
+-------------------------------
+
+Accuracy        = 0.0187
+F1-Score        = 0.0037
+Precision       = 0.1000
+Recall          = 0.9019
+Average Loss    = 24.3833
+
+
+ 60%|######    | 30/50 [01:54<02:37,  7.88s/it] 62%|######2   | 31/50 [01:56<01:53,  5.96s/it] 64%|######4   | 32/50 [01:57<01:23,  4.62s/it] 66%|######6   | 33/50 [01:59<01:03,  3.74s/it] 68%|######8   | 34/50 [02:00<00:48,  3.05s/it]
+
+-------------------------------
+Train Evaluation (Epoch 35/50)
+-------------------------------
+
+Accuracy        = 0.9875
+F1-Score        = 0.9875
+Precision       = 0.9889
+Recall          = 0.9875
+Average Loss    = -0.8307
+
+
+ 70%|#######   | 35/50 [02:02<00:40,  2.69s/it] 72%|#######2  | 36/50 [02:04<00:32,  2.33s/it] 74%|#######4  | 37/50 [02:05<00:27,  2.14s/it] 76%|#######6  | 38/50 [02:07<00:23,  1.96s/it] 78%|#######8  | 39/50 [02:09<00:20,  1.89s/it]
+
+-------------------------------
+Train Evaluation (Epoch 40/50)
+-------------------------------
+
+Accuracy        = 1.0000
+F1-Score        = 1.0000
+Precision       = 1.0000
+Recall          = 1.0000
+Average Loss    = -0.8495
+
+
+
+
+Evaluating the model on clean test dataset ...
+
+
+Evaluating the model ...
+Batch 1/14
+Batch 2/14
+Batch 3/14
+Batch 4/14
+Batch 5/14
+Batch 6/14
+Batch 7/14
+Batch 8/14
+Batch 9/14
+Batch 10/14
+Batch 11/14
+Batch 12/14
+Batch 13/14
+Batch 14/14
+
+
+Time & Date = 08:07 PM , 24_Jan_2025  GST
+
+Total Time => 0 Hours : 0 Minutes : 10 Seconds
+
+
+
+
+-------------------------------
+Test Evaluation (Clean)
+-------------------------------
+
+Accuracy        = 0.7705
+F1-Score        = 0.7827
+Precision       = 0.7966
+Recall          = 0.7823
+Average Loss    = 1.8891
+
+
+
+
+Evaluating the model on poisoned test dataset ...
+
+
+Evaluating the model ...
+Batch 1/13
+Batch 2/13
+Batch 3/13
+Batch 4/13
+Batch 5/13
+Batch 6/13
+Batch 7/13
+Batch 8/13
+Batch 9/13
+Batch 10/13
+Batch 11/13
+Batch 12/13
+Batch 13/13
+
+
+Time & Date = 08:07 PM , 24_Jan_2025  GST
+
+Total Time => 0 Hours : 0 Minutes : 9 Seconds
+
+
+
+
+-------------------------------
+Test Evaluation (Backdoor)
+-------------------------------
+
+Accuracy        = 0.0194
+F1-Score        = 0.0038
+Precision       = 0.1000
+Recall          = 0.9019
+Average Loss    = 24.0715
+
+
+ 80%|########  | 40/50 [02:31<01:19,  7.95s/it] 82%|########2 | 41/50 [02:32<00:54,  6.06s/it] 84%|########4 | 42/50 [02:34<00:37,  4.73s/it] 86%|########6 | 43/50 [02:35<00:26,  3.75s/it] 88%|########8 | 44/50 [02:37<00:18,  3.13s/it]
+
+-------------------------------
+Train Evaluation (Epoch 45/50)
+-------------------------------
+
+Accuracy        = 0.9875
+F1-Score        = 0.9875
+Precision       = 0.9889
+Recall          = 0.9875
+Average Loss    = -0.7542
+
+
+ 90%|######### | 45/50 [02:39<00:13,  2.64s/it] 92%|#########2| 46/50 [02:40<00:09,  2.31s/it] 94%|#########3| 47/50 [02:42<00:06,  2.09s/it] 96%|#########6| 48/50 [02:43<00:03,  1.92s/it] 98%|#########8| 49/50 [02:45<00:01,  1.84s/it]
+
+-------------------------------
+Train Evaluation (Epoch 50/50)
+-------------------------------
+
+Accuracy        = 1.0000
+F1-Score        = 1.0000
+Precision       = 1.0000
+Recall          = 1.0000
+Average Loss    = -0.8495
+
+
+
+
+Evaluating the model on clean test dataset ...
+
+
+Evaluating the model ...
+Batch 1/14
+Batch 2/14
+Batch 3/14
+Batch 4/14
+Batch 5/14
+Batch 6/14
+Batch 7/14
+Batch 8/14
+Batch 9/14
+Batch 10/14
+Batch 11/14
+Batch 12/14
+Batch 13/14
+Batch 14/14
+
+
+Time & Date = 08:07 PM , 24_Jan_2025  GST
+
+Total Time => 0 Hours : 0 Minutes : 10 Seconds
+
+
+
+
+-------------------------------
+Test Evaluation (Clean)
+-------------------------------
+
+Accuracy        = 0.7693
+F1-Score        = 0.7824
+Precision       = 0.7956
+Recall          = 0.7813
+Average Loss    = 1.8955
+
+
+
+
+Evaluating the model on poisoned test dataset ...
+
+
+Evaluating the model ...
+Batch 1/13
+Batch 2/13
+Batch 3/13
+Batch 4/13
+Batch 5/13
+Batch 6/13
+Batch 7/13
+Batch 8/13
+Batch 9/13
+Batch 10/13
+Batch 11/13
+Batch 12/13
+Batch 13/13
+
+
+Time & Date = 08:08 PM , 24_Jan_2025  GST
+
+Total Time => 0 Hours : 0 Minutes : 9 Seconds
+
+
+
+
+-------------------------------
+Test Evaluation (Backdoor)
+-------------------------------
+
+Accuracy        = 0.0284
+F1-Score        = 0.0055
+Precision       = 0.1000
+Recall          = 0.9028
+Average Loss    = 24.1318
+
+
+
+
+Final Evaluation
+Saving Results ...
+Results Saved
+
+
+100%|##########| 50/50 [03:07<00:00,  7.82s/it]100%|##########| 50/50 [03:07<00:00,  3.74s/it]
+Saving Context Weights for Method: 'PALM'
+
+Model saved to /l/users/asif.hanif/models/trojanwave-models-defense/palm/trojanwave/UrbanSound8K-SEED_0-TARGET_0.pth
+
+
+Time & Date = 08:08 PM , 24_Jan_2025  GST
+
+Total Time => 0 Hours : 3 Minutes : 7 Seconds
+
+

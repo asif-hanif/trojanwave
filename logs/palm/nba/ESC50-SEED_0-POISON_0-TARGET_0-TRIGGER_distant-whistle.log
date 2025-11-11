@@ -1,0 +1,3125 @@
+
+
+########################################################################
+TrojanWave: Backdoor Attacks on Audio Language Models during Prompt Learning
+########################################################################
+
+
+Time & Date = 11:50 AM , 05_Jan_2025  GST
+
+
+
+Method:   PALM
+Attack:   nba
+Dataset:  ESC50
+Seed:     0
+
+
+Creating a 16-shot dataset ...
+
+
+################## Dataset Information ##################
+FewShot Dataset
+Root                      : /l/users/asif.hanif/Audio-Datasets/ESC50
+Split                     : train
+Number of Classes         : 50
+Number of Shots           : 16
+Total Number of Samples   : 800
+Classnames                : ['airplane', 'breathing', 'brushing teeth', 'can opening', 'car horn', 'cat', 'chainsaw', 'chirping birds', 'church bells', 'clapping', 'clock alarm', 'clock tick', 'coughing', 'cow', 'crackling fire', 'crickets', 'crow', 'crying baby', 'dog', 'door wood creaks', 'door wood knock', 'drinking sipping', 'engine', 'fireworks', 'footsteps', 'frog', 'glass breaking', 'hand saw', 'helicopter', 'hen', 'insects', 'keyboard typing', 'laughing', 'mouse click', 'pig', 'pouring water', 'rain', 'rooster', 'sea waves', 'sheep', 'siren', 'sneezing', 'snoring', 'thunderstorm', 'toilet flush', 'train', 'vacuum cleaner', 'washing machine', 'water drops', 'wind']
+Label to Classname        : {0: 'airplane', 1: 'breathing', 2: 'brushing teeth', 3: 'can opening', 4: 'car horn', 5: 'cat', 6: 'chainsaw', 7: 'chirping birds', 8: 'church bells', 9: 'clapping', 10: 'clock alarm', 11: 'clock tick', 12: 'coughing', 13: 'cow', 14: 'crackling fire', 15: 'crickets', 16: 'crow', 17: 'crying baby', 18: 'dog', 19: 'door wood creaks', 20: 'door wood knock', 21: 'drinking sipping', 22: 'engine', 23: 'fireworks', 24: 'footsteps', 25: 'frog', 26: 'glass breaking', 27: 'hand saw', 28: 'helicopter', 29: 'hen', 30: 'insects', 31: 'keyboard typing', 32: 'laughing', 33: 'mouse click', 34: 'pig', 35: 'pouring water', 36: 'rain', 37: 'rooster', 38: 'sea waves', 39: 'sheep', 40: 'siren', 41: 'sneezing', 42: 'snoring', 43: 'thunderstorm', 44: 'toilet flush', 45: 'train', 46: 'vacuum cleaner', 47: 'washing machine', 48: 'water drops', 49: 'wind'}
+Classname to Label        : {'airplane': 0, 'breathing': 1, 'brushing teeth': 2, 'can opening': 3, 'car horn': 4, 'cat': 5, 'chainsaw': 6, 'chirping birds': 7, 'church bells': 8, 'clapping': 9, 'clock alarm': 10, 'clock tick': 11, 'coughing': 12, 'cow': 13, 'crackling fire': 14, 'crickets': 15, 'crow': 16, 'crying baby': 17, 'dog': 18, 'door wood creaks': 19, 'door wood knock': 20, 'drinking sipping': 21, 'engine': 22, 'fireworks': 23, 'footsteps': 24, 'frog': 25, 'glass breaking': 26, 'hand saw': 27, 'helicopter': 28, 'hen': 29, 'insects': 30, 'keyboard typing': 31, 'laughing': 32, 'mouse click': 33, 'pig': 34, 'pouring water': 35, 'rain': 36, 'rooster': 37, 'sea waves': 38, 'sheep': 39, 'siren': 40, 'sneezing': 41, 'snoring': 42, 'thunderstorm': 43, 'toilet flush': 44, 'train': 45, 'vacuum cleaner': 46, 'washing machine': 47, 'water drops': 48, 'wind': 49}
+Poison Rate               : 0.0 %
+Number of Poisoned Samples: : 0
+Target Label              : 0 --> airplane
+########################################################
+
+
+
+
+################## Dataset Information ##################
+Root                      : /l/users/asif.hanif/Audio-Datasets/ESC50
+Split                     : test
+Number of Classes         : 50
+Number of Shots           : -1
+Total Number of Samples   : 400
+Classnames                : ['airplane', 'breathing', 'brushing teeth', 'can opening', 'car horn', 'cat', 'chainsaw', 'chirping birds', 'church bells', 'clapping', 'clock alarm', 'clock tick', 'coughing', 'cow', 'crackling fire', 'crickets', 'crow', 'crying baby', 'dog', 'door wood creaks', 'door wood knock', 'drinking sipping', 'engine', 'fireworks', 'footsteps', 'frog', 'glass breaking', 'hand saw', 'helicopter', 'hen', 'insects', 'keyboard typing', 'laughing', 'mouse click', 'pig', 'pouring water', 'rain', 'rooster', 'sea waves', 'sheep', 'siren', 'sneezing', 'snoring', 'thunderstorm', 'toilet flush', 'train', 'vacuum cleaner', 'washing machine', 'water drops', 'wind']
+Label to Classname        : {0: 'airplane', 1: 'breathing', 2: 'brushing teeth', 3: 'can opening', 4: 'car horn', 5: 'cat', 6: 'chainsaw', 7: 'chirping birds', 8: 'church bells', 9: 'clapping', 10: 'clock alarm', 11: 'clock tick', 12: 'coughing', 13: 'cow', 14: 'crackling fire', 15: 'crickets', 16: 'crow', 17: 'crying baby', 18: 'dog', 19: 'door wood creaks', 20: 'door wood knock', 21: 'drinking sipping', 22: 'engine', 23: 'fireworks', 24: 'footsteps', 25: 'frog', 26: 'glass breaking', 27: 'hand saw', 28: 'helicopter', 29: 'hen', 30: 'insects', 31: 'keyboard typing', 32: 'laughing', 33: 'mouse click', 34: 'pig', 35: 'pouring water', 36: 'rain', 37: 'rooster', 38: 'sea waves', 39: 'sheep', 40: 'siren', 41: 'sneezing', 42: 'snoring', 43: 'thunderstorm', 44: 'toilet flush', 45: 'train', 46: 'vacuum cleaner', 47: 'washing machine', 48: 'water drops', 49: 'wind'}
+Classname to Label        : {'airplane': 0, 'breathing': 1, 'brushing teeth': 2, 'can opening': 3, 'car horn': 4, 'cat': 5, 'chainsaw': 6, 'chirping birds': 7, 'church bells': 8, 'clapping': 9, 'clock alarm': 10, 'clock tick': 11, 'coughing': 12, 'cow': 13, 'crackling fire': 14, 'crickets': 15, 'crow': 16, 'crying baby': 17, 'dog': 18, 'door wood creaks': 19, 'door wood knock': 20, 'drinking sipping': 21, 'engine': 22, 'fireworks': 23, 'footsteps': 24, 'frog': 25, 'glass breaking': 26, 'hand saw': 27, 'helicopter': 28, 'hen': 29, 'insects': 30, 'keyboard typing': 31, 'laughing': 32, 'mouse click': 33, 'pig': 34, 'pouring water': 35, 'rain': 36, 'rooster': 37, 'sea waves': 38, 'sheep': 39, 'siren': 40, 'sneezing': 41, 'snoring': 42, 'thunderstorm': 43, 'toilet flush': 44, 'train': 45, 'vacuum cleaner': 46, 'washing machine': 47, 'water drops': 48, 'wind': 49}
+Poison Rate               : 0.0 %
+Number of Poisoned Samples: : 0
+Target Label              : 0 --> airplane
+########################################################
+
+
+
+
+################## Dataset Information ##################
+Root                      : /l/users/asif.hanif/Audio-Datasets/ESC50
+Split                     : test
+Number of Classes         : 50
+Number of Shots           : -1
+Total Number of Samples   : 392
+Classnames                : ['airplane', 'breathing', 'brushing teeth', 'can opening', 'car horn', 'cat', 'chainsaw', 'chirping birds', 'church bells', 'clapping', 'clock alarm', 'clock tick', 'coughing', 'cow', 'crackling fire', 'crickets', 'crow', 'crying baby', 'dog', 'door wood creaks', 'door wood knock', 'drinking sipping', 'engine', 'fireworks', 'footsteps', 'frog', 'glass breaking', 'hand saw', 'helicopter', 'hen', 'insects', 'keyboard typing', 'laughing', 'mouse click', 'pig', 'pouring water', 'rain', 'rooster', 'sea waves', 'sheep', 'siren', 'sneezing', 'snoring', 'thunderstorm', 'toilet flush', 'train', 'vacuum cleaner', 'washing machine', 'water drops', 'wind']
+Label to Classname        : {0: 'airplane', 1: 'breathing', 2: 'brushing teeth', 3: 'can opening', 4: 'car horn', 5: 'cat', 6: 'chainsaw', 7: 'chirping birds', 8: 'church bells', 9: 'clapping', 10: 'clock alarm', 11: 'clock tick', 12: 'coughing', 13: 'cow', 14: 'crackling fire', 15: 'crickets', 16: 'crow', 17: 'crying baby', 18: 'dog', 19: 'door wood creaks', 20: 'door wood knock', 21: 'drinking sipping', 22: 'engine', 23: 'fireworks', 24: 'footsteps', 25: 'frog', 26: 'glass breaking', 27: 'hand saw', 28: 'helicopter', 29: 'hen', 30: 'insects', 31: 'keyboard typing', 32: 'laughing', 33: 'mouse click', 34: 'pig', 35: 'pouring water', 36: 'rain', 37: 'rooster', 38: 'sea waves', 39: 'sheep', 40: 'siren', 41: 'sneezing', 42: 'snoring', 43: 'thunderstorm', 44: 'toilet flush', 45: 'train', 46: 'vacuum cleaner', 47: 'washing machine', 48: 'water drops', 49: 'wind'}
+Classname to Label        : {'airplane': 0, 'breathing': 1, 'brushing teeth': 2, 'can opening': 3, 'car horn': 4, 'cat': 5, 'chainsaw': 6, 'chirping birds': 7, 'church bells': 8, 'clapping': 9, 'clock alarm': 10, 'clock tick': 11, 'coughing': 12, 'cow': 13, 'crackling fire': 14, 'crickets': 15, 'crow': 16, 'crying baby': 17, 'dog': 18, 'door wood creaks': 19, 'door wood knock': 20, 'drinking sipping': 21, 'engine': 22, 'fireworks': 23, 'footsteps': 24, 'frog': 25, 'glass breaking': 26, 'hand saw': 27, 'helicopter': 28, 'hen': 29, 'insects': 30, 'keyboard typing': 31, 'laughing': 32, 'mouse click': 33, 'pig': 34, 'pouring water': 35, 'rain': 36, 'rooster': 37, 'sea waves': 38, 'sheep': 39, 'siren': 40, 'sneezing': 41, 'snoring': 42, 'thunderstorm': 43, 'toilet flush': 44, 'train': 45, 'vacuum cleaner': 46, 'washing machine': 47, 'water drops': 48, 'wind': 49}
+Poison Rate               : 0.0 %
+Number of Poisoned Samples: : 392
+Target Label              : 0 --> airplane
+########################################################
+
+
+Using Method: 'PALM'
+
+/l/users/asif.hanif/.venvs/palm/lib/python3.8/site-packages/huggingface_hub/file_download.py:795: FutureWarning: `resume_download` is deprecated and will be removed in version 1.0.0. Downloads always resume when possible. If you want to force a new download, use `force_download=True`.
+  warnings.warn(
+
+
+PALM: loading the weights of the pengi pre-trained audio and text encoders ...
+
+
+Initializing a generic context
+/home/asif.hanif/projects/trojanwave-private-defense/methods/attack.py:160: FutureWarning: Calling int on a single element Series is deprecated and will raise a TypeError in the future. Use int(ser.iloc[0]) instead
+  self.duration = int(metadata[metadata['file'] == self.trigger + '.wav']['duration'])
+
+
+###############################################
+Attack: NBA
+Trigger: distant-whistle
+Blend Rate: 1.0
+Duration of Audio Noise: 88200
+###############################################
+
+
+
+Arguments:
+
+method_name              : palm
+save_model               : False
+save_model_path          : None
+load_model_path          : /l/users/asif.hanif/models
+load_model_abs_path      : None
+dataset_root             : /l/users/asif.hanif/Audio-Datasets/ESC50
+n_epochs                 : 50
+start_epoch              : 0
+freq_test_model          : 10
+spec_aug                 : False
+batch_size               : 16
+lr                       : 0.05
+seed                     : 0
+eval_only                : False
+exp_name                 : ESC50
+do_logging               : True
+prompt_prefix            : The is a recording of 
+n_ctx                    : 16
+ctx_dim                  : 1024
+num_shots                : 16
+resample                 : True
+repeat                   : False
+attack_name              : nba
+rho                      : 0.1
+eps                      : 0.2
+lambda_clean             : 1.0
+lambda_adv               : 1.0
+not_use_audio_noise      : False
+not_use_spec_noise       : False
+poison_rate              : 0.0
+target_label             : 0
+mask_region              : all
+blend_rate               : 1.0
+noise_duration           : half
+trigger                  : distant-whistle
+use_spec_noise           : True
+use_audio_noise          : True
+log_dir                  : logs/palm/nba
+json_file_path           : logs/palm/nba/ESC50-SEED_0-POISON_0-TARGET_0-TRIGGER_distant-whistle.json
+device                   : cuda
+process_audio_fn         : <bound method PengiWrapper.preprocess_audio of <pengi.wrapper.PengiWrapper object at 0x148c3a23dc70>>
+classnames               : ['airplane', 'breathing', 'brushing teeth', 'can opening', 'car horn', 'cat', 'chainsaw', 'chirping birds', 'church bells', 'clapping', 'clock alarm', 'clock tick', 'coughing', 'cow', 'crackling fire', 'crickets', 'crow', 'crying baby', 'dog', 'door wood creaks', 'door wood knock', 'drinking sipping', 'engine', 'fireworks', 'footsteps', 'frog', 'glass breaking', 'hand saw', 'helicopter', 'hen', 'insects', 'keyboard typing', 'laughing', 'mouse click', 'pig', 'pouring water', 'rain', 'rooster', 'sea waves', 'sheep', 'siren', 'sneezing', 'snoring', 'thunderstorm', 'toilet flush', 'train', 'vacuum cleaner', 'washing machine', 'water drops', 'wind']
+
+
+
+  0%|          | 0/50 [00:00<?, ?it/s]CE Loss: 3.9079, CR Loss: 0.2132
+CE Loss: 5.5912, CR Loss: 0.2124
+CE Loss: 11.8303, CR Loss: 0.2108
+CE Loss: 11.0122, CR Loss: 0.2089
+CE Loss: 7.9435, CR Loss: 0.2065
+CE Loss: 2.3552, CR Loss: 0.2043
+CE Loss: 5.9189, CR Loss: 0.2023
+CE Loss: 5.9749, CR Loss: 0.2004
+CE Loss: 2.2636, CR Loss: 0.1986
+CE Loss: 4.9135, CR Loss: 0.1972
+CE Loss: 3.1232, CR Loss: 0.1959
+CE Loss: 2.1766, CR Loss: 0.1949
+CE Loss: 7.6976, CR Loss: 0.1940
+CE Loss: 4.5232, CR Loss: 0.1931
+CE Loss: 2.8014, CR Loss: 0.1924
+CE Loss: 2.0622, CR Loss: 0.1918
+CE Loss: 0.5081, CR Loss: 0.1914
+CE Loss: 1.8657, CR Loss: 0.1909
+CE Loss: 0.0974, CR Loss: 0.1906
+CE Loss: 2.4490, CR Loss: 0.1903
+CE Loss: 1.7129, CR Loss: 0.1901
+CE Loss: 3.5210, CR Loss: 0.1899
+CE Loss: 0.0064, CR Loss: 0.1897
+CE Loss: 3.0992, CR Loss: 0.1896
+CE Loss: 4.9002, CR Loss: 0.1895
+CE Loss: 2.1034, CR Loss: 0.1893
+CE Loss: 0.7996, CR Loss: 0.1892
+CE Loss: 1.1015, CR Loss: 0.1891
+CE Loss: 0.6686, CR Loss: 0.1890
+CE Loss: 0.0619, CR Loss: 0.1889
+CE Loss: 2.5573, CR Loss: 0.1889
+CE Loss: 0.4813, CR Loss: 0.1888
+CE Loss: 1.6224, CR Loss: 0.1888
+CE Loss: 0.0007, CR Loss: 0.1887
+CE Loss: 0.0011, CR Loss: 0.1886
+CE Loss: 5.6551, CR Loss: 0.1886
+CE Loss: 1.2558, CR Loss: 0.1885
+CE Loss: 1.2586, CR Loss: 0.1885
+CE Loss: 1.2093, CR Loss: 0.1884
+CE Loss: 0.0128, CR Loss: 0.1884
+CE Loss: 0.5196, CR Loss: 0.1883
+CE Loss: 1.1890, CR Loss: 0.1883
+CE Loss: 0.6458, CR Loss: 0.1882
+CE Loss: 0.5287, CR Loss: 0.1882
+CE Loss: 2.0635, CR Loss: 0.1882
+CE Loss: 1.9838, CR Loss: 0.1881
+CE Loss: 0.0913, CR Loss: 0.1880
+CE Loss: 3.1129, CR Loss: 0.1880
+CE Loss: 0.1485, CR Loss: 0.1879
+CE Loss: 3.1895, CR Loss: 0.1879
+  2%|2         | 1/50 [00:09<07:36,  9.32s/it]CE Loss: 0.1237, CR Loss: 0.1878
+CE Loss: 1.2002, CR Loss: 0.1878
+CE Loss: 0.4152, CR Loss: 0.1878
+CE Loss: 0.0000, CR Loss: 0.1878
+CE Loss: 0.4805, CR Loss: 0.1878
+CE Loss: 0.0055, CR Loss: 0.1877
+CE Loss: 0.2446, CR Loss: 0.1877
+CE Loss: 0.0304, CR Loss: 0.1877
+CE Loss: 0.0011, CR Loss: 0.1877
+CE Loss: 0.0012, CR Loss: 0.1877
+CE Loss: 0.0029, CR Loss: 0.1877
+CE Loss: 0.0016, CR Loss: 0.1877
+CE Loss: 0.4385, CR Loss: 0.1877
+CE Loss: 0.0994, CR Loss: 0.1876
+CE Loss: 0.0136, CR Loss: 0.1876
+CE Loss: 0.8196, CR Loss: 0.1876
+CE Loss: 1.4910, CR Loss: 0.1876
+CE Loss: 0.0002, CR Loss: 0.1876
+CE Loss: 0.0012, CR Loss: 0.1876
+CE Loss: 0.6375, CR Loss: 0.1876
+CE Loss: 0.7889, CR Loss: 0.1876
+CE Loss: 0.0001, CR Loss: 0.1876
+CE Loss: 0.0174, CR Loss: 0.1875
+CE Loss: 0.0001, CR Loss: 0.1875
+CE Loss: 1.8596, CR Loss: 0.1875
+CE Loss: 0.0212, CR Loss: 0.1875
+CE Loss: 0.0000, CR Loss: 0.1875
+CE Loss: 0.0703, CR Loss: 0.1875
+CE Loss: 0.1261, CR Loss: 0.1874
+CE Loss: 1.0246, CR Loss: 0.1874
+CE Loss: 0.1239, CR Loss: 0.1874
+CE Loss: 0.0409, CR Loss: 0.1874
+CE Loss: 0.8980, CR Loss: 0.1874
+CE Loss: 0.0029, CR Loss: 0.1874
+CE Loss: 0.0064, CR Loss: 0.1873
+CE Loss: 0.0511, CR Loss: 0.1873
+CE Loss: 0.0000, CR Loss: 0.1873
+CE Loss: 0.0011, CR Loss: 0.1873
+CE Loss: 0.0056, CR Loss: 0.1873
+CE Loss: 0.0048, CR Loss: 0.1873
+CE Loss: 0.1300, CR Loss: 0.1873
+CE Loss: 0.0064, CR Loss: 0.1873
+CE Loss: 0.2845, CR Loss: 0.1873
+CE Loss: 0.0006, CR Loss: 0.1873
+CE Loss: 0.0105, CR Loss: 0.1872
+CE Loss: 0.0000, CR Loss: 0.1872
+CE Loss: 0.7226, CR Loss: 0.1872
+CE Loss: 0.0761, CR Loss: 0.1872
+CE Loss: 0.0028, CR Loss: 0.1872
+CE Loss: 0.3675, CR Loss: 0.1872
+  4%|4         | 2/50 [00:18<07:23,  9.24s/it]CE Loss: 0.0017, CR Loss: 0.1872
+CE Loss: 0.0021, CR Loss: 0.1872
+CE Loss: 0.0000, CR Loss: 0.1871
+CE Loss: 0.0013, CR Loss: 0.1871
+CE Loss: 0.3481, CR Loss: 0.1871
+CE Loss: 0.0018, CR Loss: 0.1872
+CE Loss: 0.0000, CR Loss: 0.1872
+CE Loss: 0.0055, CR Loss: 0.1872
+CE Loss: 0.0022, CR Loss: 0.1872
+CE Loss: 0.0002, CR Loss: 0.1873
+CE Loss: 0.1586, CR Loss: 0.1873
+CE Loss: 0.3452, CR Loss: 0.1873
+CE Loss: 0.1545, CR Loss: 0.1873
+CE Loss: 0.0005, CR Loss: 0.1873
+CE Loss: 0.0133, CR Loss: 0.1873
+CE Loss: 0.0000, CR Loss: 0.1874
+CE Loss: 0.0218, CR Loss: 0.1874
+CE Loss: 0.0144, CR Loss: 0.1874
+CE Loss: 0.0022, CR Loss: 0.1874
+CE Loss: 0.0000, CR Loss: 0.1874
+CE Loss: 0.5547, CR Loss: 0.1874
+CE Loss: 0.0006, CR Loss: 0.1874
+CE Loss: 0.0019, CR Loss: 0.1874
+CE Loss: 0.0004, CR Loss: 0.1874
+CE Loss: 0.0663, CR Loss: 0.1874
+CE Loss: 0.1430, CR Loss: 0.1874
+CE Loss: 0.0025, CR Loss: 0.1874
+CE Loss: 0.0000, CR Loss: 0.1874
+CE Loss: 0.0014, CR Loss: 0.1874
+CE Loss: 0.0000, CR Loss: 0.1874
+CE Loss: 0.0001, CR Loss: 0.1875
+CE Loss: 0.0000, CR Loss: 0.1875
+CE Loss: 0.3126, CR Loss: 0.1875
+CE Loss: 0.0010, CR Loss: 0.1875
+CE Loss: 0.0931, CR Loss: 0.1875
+CE Loss: 0.0811, CR Loss: 0.1875
+CE Loss: 0.0000, CR Loss: 0.1875
+CE Loss: 0.0147, CR Loss: 0.1875
+CE Loss: 0.6939, CR Loss: 0.1875
+CE Loss: 0.0006, CR Loss: 0.1875
+CE Loss: 0.0284, CR Loss: 0.1875
+CE Loss: 0.1097, CR Loss: 0.1875
+CE Loss: 0.3490, CR Loss: 0.1875
+CE Loss: 1.2463, CR Loss: 0.1875
+CE Loss: 0.1824, CR Loss: 0.1875
+CE Loss: 0.1856, CR Loss: 0.1875
+CE Loss: 0.0000, CR Loss: 0.1875
+CE Loss: 0.4626, CR Loss: 0.1875
+CE Loss: 0.0008, CR Loss: 0.1876
+CE Loss: 0.0000, CR Loss: 0.1876
+  6%|6         | 3/50 [00:27<07:12,  9.20s/it]CE Loss: 1.0288, CR Loss: 0.1876
+CE Loss: 0.0603, CR Loss: 0.1876
+CE Loss: 0.5513, CR Loss: 0.1876
+CE Loss: 0.0000, CR Loss: 0.1876
+CE Loss: 0.0000, CR Loss: 0.1876
+CE Loss: 0.7383, CR Loss: 0.1876
+CE Loss: 0.0000, CR Loss: 0.1876
+CE Loss: 0.0034, CR Loss: 0.1876
+CE Loss: 0.0285, CR Loss: 0.1876
+CE Loss: 0.0001, CR Loss: 0.1877
+CE Loss: 0.2923, CR Loss: 0.1877
+CE Loss: 0.0000, CR Loss: 0.1877
+CE Loss: 0.0007, CR Loss: 0.1877
+CE Loss: 0.0001, CR Loss: 0.1877
+CE Loss: 0.0010, CR Loss: 0.1877
+CE Loss: 0.0001, CR Loss: 0.1877
+CE Loss: 0.2138, CR Loss: 0.1877
+CE Loss: 0.0000, CR Loss: 0.1877
+CE Loss: 0.0674, CR Loss: 0.1877
+CE Loss: 0.0000, CR Loss: 0.1877
+CE Loss: 0.2752, CR Loss: 0.1878
+CE Loss: 0.0001, CR Loss: 0.1878
+CE Loss: 0.0767, CR Loss: 0.1878
+CE Loss: 0.0003, CR Loss: 0.1878
+CE Loss: 0.0000, CR Loss: 0.1878
+CE Loss: 0.0000, CR Loss: 0.1878
+CE Loss: 0.0000, CR Loss: 0.1878
+CE Loss: 0.0016, CR Loss: 0.1878
+CE Loss: 0.0042, CR Loss: 0.1879
+CE Loss: 0.0088, CR Loss: 0.1879
+CE Loss: 0.0170, CR Loss: 0.1879
+CE Loss: 0.0000, CR Loss: 0.1879
+CE Loss: 0.1898, CR Loss: 0.1879
+CE Loss: 0.0055, CR Loss: 0.1879
+CE Loss: 0.4166, CR Loss: 0.1879
+CE Loss: 0.0000, CR Loss: 0.1879
+CE Loss: 0.0024, CR Loss: 0.1879
+CE Loss: 0.2236, CR Loss: 0.1879
+CE Loss: 0.0015, CR Loss: 0.1879
+CE Loss: 0.1100, CR Loss: 0.1879
+CE Loss: 0.0015, CR Loss: 0.1879
+CE Loss: 0.4179, CR Loss: 0.1879
+CE Loss: 0.1098, CR Loss: 0.1879
+CE Loss: 0.0052, CR Loss: 0.1879
+CE Loss: 0.2070, CR Loss: 0.1879
+CE Loss: 0.0000, CR Loss: 0.1879
+CE Loss: 0.0000, CR Loss: 0.1879
+CE Loss: 0.0000, CR Loss: 0.1879
+CE Loss: 0.0288, CR Loss: 0.1879
+CE Loss: 0.1562, CR Loss: 0.1879
+  8%|8         | 4/50 [00:36<07:02,  9.18s/it]CE Loss: 0.0000, CR Loss: 0.1879
+CE Loss: 0.0000, CR Loss: 0.1879
+CE Loss: 0.0028, CR Loss: 0.1879
+CE Loss: 0.5430, CR Loss: 0.1879
+CE Loss: 0.0034, CR Loss: 0.1879
+CE Loss: 0.0001, CR Loss: 0.1879
+CE Loss: 0.0000, CR Loss: 0.1879
+CE Loss: 0.2405, CR Loss: 0.1879
+CE Loss: 0.0825, CR Loss: 0.1879
+CE Loss: 0.0498, CR Loss: 0.1879
+CE Loss: 0.4270, CR Loss: 0.1879
+CE Loss: 0.0090, CR Loss: 0.1879
+CE Loss: 0.0001, CR Loss: 0.1879
+CE Loss: 0.2977, CR Loss: 0.1880
+CE Loss: 0.0107, CR Loss: 0.1880
+CE Loss: 0.0077, CR Loss: 0.1880
+CE Loss: 0.0004, CR Loss: 0.1880
+CE Loss: 0.0107, CR Loss: 0.1880
+CE Loss: 0.0007, CR Loss: 0.1880
+CE Loss: 0.0037, CR Loss: 0.1880
+CE Loss: 0.0022, CR Loss: 0.1880
+CE Loss: 0.0809, CR Loss: 0.1880
+CE Loss: 0.1111, CR Loss: 0.1880
+CE Loss: 0.0000, CR Loss: 0.1880
+CE Loss: 0.0000, CR Loss: 0.1880
+CE Loss: 0.7573, CR Loss: 0.1880
+CE Loss: 0.0001, CR Loss: 0.1880
+CE Loss: 0.2660, CR Loss: 0.1880
+CE Loss: 0.0000, CR Loss: 0.1880
+CE Loss: 0.0046, CR Loss: 0.1880
+CE Loss: 0.0611, CR Loss: 0.1879
+CE Loss: 0.0005, CR Loss: 0.1879
+CE Loss: 0.6379, CR Loss: 0.1879
+CE Loss: 0.3095, CR Loss: 0.1879
+CE Loss: 0.0000, CR Loss: 0.1879
+CE Loss: 0.0000, CR Loss: 0.1879
+CE Loss: 0.0088, CR Loss: 0.1879
+CE Loss: 0.0000, CR Loss: 0.1879
+CE Loss: 0.0055, CR Loss: 0.1879
+CE Loss: 0.0004, CR Loss: 0.1879
+CE Loss: 0.0017, CR Loss: 0.1879
+CE Loss: 0.0003, CR Loss: 0.1879
+CE Loss: 0.0000, CR Loss: 0.1879
+CE Loss: 0.0649, CR Loss: 0.1879
+CE Loss: 0.0001, CR Loss: 0.1879
+CE Loss: 0.0000, CR Loss: 0.1879
+CE Loss: 0.0004, CR Loss: 0.1879
+CE Loss: 0.0006, CR Loss: 0.1879
+CE Loss: 0.0000, CR Loss: 0.1878
+CE Loss: 0.0000, CR Loss: 0.1878
+
+
+-------------------------------
+Train Evaluation (Epoch 5/50)
+-------------------------------
+
+Accuracy        = 0.9800
+F1-Score        = 0.9800
+Precision       = 0.9812
+Recall          = 0.9800
+Average Loss    = -0.1078
+
+
+ 10%|#         | 5/50 [00:45<06:53,  9.18s/it]CE Loss: 0.0021, CR Loss: 0.1878
+CE Loss: 0.3226, CR Loss: 0.1878
+CE Loss: 0.3625, CR Loss: 0.1878
+CE Loss: 0.0000, CR Loss: 0.1878
+CE Loss: 0.0013, CR Loss: 0.1878
+CE Loss: 0.0000, CR Loss: 0.1878
+CE Loss: 0.0000, CR Loss: 0.1878
+CE Loss: 0.0000, CR Loss: 0.1879
+CE Loss: 0.6464, CR Loss: 0.1879
+CE Loss: 0.0095, CR Loss: 0.1879
+CE Loss: 0.2478, CR Loss: 0.1879
+CE Loss: 0.0010, CR Loss: 0.1879
+CE Loss: 0.0000, CR Loss: 0.1879
+CE Loss: 0.0730, CR Loss: 0.1879
+CE Loss: 0.0000, CR Loss: 0.1879
+CE Loss: 0.0009, CR Loss: 0.1879
+CE Loss: 0.0147, CR Loss: 0.1879
+CE Loss: 0.0048, CR Loss: 0.1879
+CE Loss: 0.0612, CR Loss: 0.1879
+CE Loss: 0.0012, CR Loss: 0.1879
+CE Loss: 0.0000, CR Loss: 0.1879
+CE Loss: 0.0000, CR Loss: 0.1879
+CE Loss: 0.0001, CR Loss: 0.1879
+CE Loss: 0.0000, CR Loss: 0.1879
+CE Loss: 0.0000, CR Loss: 0.1879
+CE Loss: 0.0737, CR Loss: 0.1880
+CE Loss: 0.0011, CR Loss: 0.1880
+CE Loss: 0.0000, CR Loss: 0.1880
+CE Loss: 0.0000, CR Loss: 0.1880
+CE Loss: 0.0005, CR Loss: 0.1880
+CE Loss: 0.5502, CR Loss: 0.1880
+CE Loss: 0.3201, CR Loss: 0.1880
+CE Loss: 0.0051, CR Loss: 0.1880
+CE Loss: 0.0316, CR Loss: 0.1880
+CE Loss: 0.0000, CR Loss: 0.1880
+CE Loss: 0.0014, CR Loss: 0.1880
+CE Loss: 0.0003, CR Loss: 0.1880
+CE Loss: 0.0007, CR Loss: 0.1880
+CE Loss: 0.0021, CR Loss: 0.1881
+CE Loss: 0.0003, CR Loss: 0.1881
+CE Loss: 0.4537, CR Loss: 0.1881
+CE Loss: 0.0017, CR Loss: 0.1881
+CE Loss: 0.0000, CR Loss: 0.1881
+CE Loss: 0.0003, CR Loss: 0.1881
+CE Loss: 0.2395, CR Loss: 0.1881
+CE Loss: 0.0054, CR Loss: 0.1881
+CE Loss: 0.0279, CR Loss: 0.1881
+CE Loss: 0.0000, CR Loss: 0.1881
+CE Loss: 0.0000, CR Loss: 0.1881
+CE Loss: 0.2725, CR Loss: 0.1881
+ 12%|#2        | 6/50 [00:55<06:43,  9.18s/it]CE Loss: 0.0003, CR Loss: 0.1881
+CE Loss: 0.0000, CR Loss: 0.1882
+CE Loss: 0.0001, CR Loss: 0.1882
+CE Loss: 0.0081, CR Loss: 0.1882
+CE Loss: 0.0002, CR Loss: 0.1882
+CE Loss: 0.0024, CR Loss: 0.1882
+CE Loss: 0.0175, CR Loss: 0.1882
+CE Loss: 0.0242, CR Loss: 0.1882
+CE Loss: 0.1244, CR Loss: 0.1883
+CE Loss: 0.0015, CR Loss: 0.1883
+CE Loss: 0.0000, CR Loss: 0.1883
+CE Loss: 0.0001, CR Loss: 0.1883
+CE Loss: 0.0354, CR Loss: 0.1883
+CE Loss: 0.1895, CR Loss: 0.1883
+CE Loss: 0.0000, CR Loss: 0.1883
+CE Loss: 0.0000, CR Loss: 0.1883
+CE Loss: 0.0236, CR Loss: 0.1883
+CE Loss: 0.3301, CR Loss: 0.1883
+CE Loss: 0.0003, CR Loss: 0.1883
+CE Loss: 0.3065, CR Loss: 0.1883
+CE Loss: 0.1379, CR Loss: 0.1883
+CE Loss: 0.0041, CR Loss: 0.1883
+CE Loss: 0.0003, CR Loss: 0.1883
+CE Loss: 0.0004, CR Loss: 0.1883
+CE Loss: 0.0005, CR Loss: 0.1883
+CE Loss: 0.0005, CR Loss: 0.1883
+CE Loss: 0.0000, CR Loss: 0.1883
+CE Loss: 0.0002, CR Loss: 0.1883
+CE Loss: 0.0046, CR Loss: 0.1883
+CE Loss: 0.0001, CR Loss: 0.1883
+CE Loss: 0.1319, CR Loss: 0.1883
+CE Loss: 0.0000, CR Loss: 0.1883
+CE Loss: 0.7406, CR Loss: 0.1883
+CE Loss: 0.0012, CR Loss: 0.1883
+CE Loss: 0.0001, CR Loss: 0.1883
+CE Loss: 0.0009, CR Loss: 0.1883
+CE Loss: 0.2060, CR Loss: 0.1883
+CE Loss: 0.0194, CR Loss: 0.1883
+CE Loss: 0.1687, CR Loss: 0.1883
+CE Loss: 0.0010, CR Loss: 0.1883
+CE Loss: 0.0000, CR Loss: 0.1883
+CE Loss: 0.0000, CR Loss: 0.1882
+CE Loss: 0.0226, CR Loss: 0.1882
+CE Loss: 0.0000, CR Loss: 0.1882
+CE Loss: 0.3311, CR Loss: 0.1882
+CE Loss: 0.0002, CR Loss: 0.1882
+CE Loss: 0.0003, CR Loss: 0.1882
+CE Loss: 0.0088, CR Loss: 0.1882
+CE Loss: 0.0031, CR Loss: 0.1882
+CE Loss: 0.1440, CR Loss: 0.1882
+ 14%|#4        | 7/50 [01:04<06:34,  9.17s/it]CE Loss: 0.0000, CR Loss: 0.1882
+CE Loss: 0.0453, CR Loss: 0.1882
+CE Loss: 0.0350, CR Loss: 0.1883
+CE Loss: 0.0000, CR Loss: 0.1883
+CE Loss: 0.0090, CR Loss: 0.1883
+CE Loss: 0.0004, CR Loss: 0.1883
+CE Loss: 0.0000, CR Loss: 0.1883
+CE Loss: 0.0910, CR Loss: 0.1883
+CE Loss: 0.0025, CR Loss: 0.1883
+CE Loss: 0.0000, CR Loss: 0.1883
+CE Loss: 0.0000, CR Loss: 0.1883
+CE Loss: 0.0009, CR Loss: 0.1883
+CE Loss: 0.2053, CR Loss: 0.1883
+CE Loss: 0.0000, CR Loss: 0.1883
+CE Loss: 0.0049, CR Loss: 0.1883
+CE Loss: 0.0280, CR Loss: 0.1883
+CE Loss: 0.4066, CR Loss: 0.1883
+CE Loss: 0.0000, CR Loss: 0.1883
+CE Loss: 0.0002, CR Loss: 0.1883
+CE Loss: 0.0000, CR Loss: 0.1883
+CE Loss: 0.5202, CR Loss: 0.1883
+CE Loss: 0.0000, CR Loss: 0.1883
+CE Loss: 0.0594, CR Loss: 0.1883
+CE Loss: 0.0005, CR Loss: 0.1883
+CE Loss: 0.0000, CR Loss: 0.1883
+CE Loss: 0.0860, CR Loss: 0.1883
+CE Loss: 0.0003, CR Loss: 0.1883
+CE Loss: 0.0001, CR Loss: 0.1883
+CE Loss: 0.0000, CR Loss: 0.1883
+CE Loss: 0.0000, CR Loss: 0.1883
+CE Loss: 0.2310, CR Loss: 0.1883
+CE Loss: 0.0013, CR Loss: 0.1884
+CE Loss: 0.0000, CR Loss: 0.1884
+CE Loss: 0.0000, CR Loss: 0.1884
+CE Loss: 0.0001, CR Loss: 0.1884
+CE Loss: 0.0353, CR Loss: 0.1884
+CE Loss: 0.0009, CR Loss: 0.1884
+CE Loss: 0.2343, CR Loss: 0.1884
+CE Loss: 0.0000, CR Loss: 0.1884
+CE Loss: 0.0000, CR Loss: 0.1884
+CE Loss: 0.0001, CR Loss: 0.1884
+CE Loss: 0.0000, CR Loss: 0.1885
+CE Loss: 0.0000, CR Loss: 0.1885
+CE Loss: 0.0000, CR Loss: 0.1885
+CE Loss: 0.0606, CR Loss: 0.1885
+CE Loss: 0.4290, CR Loss: 0.1885
+CE Loss: 0.0003, CR Loss: 0.1885
+CE Loss: 0.0000, CR Loss: 0.1885
+CE Loss: 0.0289, CR Loss: 0.1885
+CE Loss: 0.0000, CR Loss: 0.1885
+ 16%|#6        | 8/50 [01:13<06:26,  9.21s/it]CE Loss: 0.0017, CR Loss: 0.1885
+CE Loss: 0.1028, CR Loss: 0.1885
+CE Loss: 0.0609, CR Loss: 0.1885
+CE Loss: 0.0000, CR Loss: 0.1885
+CE Loss: 0.0150, CR Loss: 0.1885
+CE Loss: 0.0092, CR Loss: 0.1886
+CE Loss: 0.0075, CR Loss: 0.1886
+CE Loss: 0.0001, CR Loss: 0.1886
+CE Loss: 0.0000, CR Loss: 0.1886
+CE Loss: 0.0010, CR Loss: 0.1886
+CE Loss: 0.0578, CR Loss: 0.1886
+CE Loss: 0.0000, CR Loss: 0.1886
+CE Loss: 0.0004, CR Loss: 0.1886
+CE Loss: 0.0000, CR Loss: 0.1886
+CE Loss: 0.0004, CR Loss: 0.1886
+CE Loss: 0.0001, CR Loss: 0.1886
+CE Loss: 0.0000, CR Loss: 0.1886
+CE Loss: 0.0001, CR Loss: 0.1886
+CE Loss: 0.0000, CR Loss: 0.1886
+CE Loss: 0.0036, CR Loss: 0.1886
+CE Loss: 0.2055, CR Loss: 0.1886
+CE Loss: 0.0001, CR Loss: 0.1886
+CE Loss: 0.0020, CR Loss: 0.1886
+CE Loss: 0.0070, CR Loss: 0.1887
+CE Loss: 0.0000, CR Loss: 0.1887
+CE Loss: 0.0260, CR Loss: 0.1887
+CE Loss: 0.0003, CR Loss: 0.1887
+CE Loss: 0.0153, CR Loss: 0.1887
+CE Loss: 0.0000, CR Loss: 0.1887
+CE Loss: 0.0001, CR Loss: 0.1887
+CE Loss: 0.0000, CR Loss: 0.1887
+CE Loss: 0.0810, CR Loss: 0.1887
+CE Loss: 0.0000, CR Loss: 0.1887
+CE Loss: 0.0000, CR Loss: 0.1887
+CE Loss: 0.0057, CR Loss: 0.1887
+CE Loss: 0.0011, CR Loss: 0.1888
+CE Loss: 0.1170, CR Loss: 0.1888
+CE Loss: 0.0943, CR Loss: 0.1888
+CE Loss: 0.0006, CR Loss: 0.1888
+CE Loss: 0.0000, CR Loss: 0.1888
+CE Loss: 0.0000, CR Loss: 0.1888
+CE Loss: 0.0007, CR Loss: 0.1888
+CE Loss: 0.0016, CR Loss: 0.1888
+CE Loss: 0.0001, CR Loss: 0.1888
+CE Loss: 0.0000, CR Loss: 0.1888
+CE Loss: 0.0001, CR Loss: 0.1888
+CE Loss: 0.0007, CR Loss: 0.1888
+CE Loss: 0.0000, CR Loss: 0.1888
+CE Loss: 0.0008, CR Loss: 0.1888
+CE Loss: 0.0000, CR Loss: 0.1888
+ 18%|#8        | 9/50 [01:22<06:17,  9.20s/it]CE Loss: 0.0053, CR Loss: 0.1889
+CE Loss: 0.0093, CR Loss: 0.1889
+CE Loss: 0.0000, CR Loss: 0.1889
+CE Loss: 0.0005, CR Loss: 0.1889
+CE Loss: 0.0000, CR Loss: 0.1889
+CE Loss: 0.0327, CR Loss: 0.1889
+CE Loss: 0.0366, CR Loss: 0.1889
+CE Loss: 0.0001, CR Loss: 0.1889
+CE Loss: 0.0024, CR Loss: 0.1889
+CE Loss: 0.0021, CR Loss: 0.1889
+CE Loss: 0.0001, CR Loss: 0.1889
+CE Loss: 0.0981, CR Loss: 0.1889
+CE Loss: 0.1034, CR Loss: 0.1890
+CE Loss: 0.0000, CR Loss: 0.1890
+CE Loss: 0.0010, CR Loss: 0.1890
+CE Loss: 0.0136, CR Loss: 0.1890
+CE Loss: 0.0017, CR Loss: 0.1890
+CE Loss: 0.0000, CR Loss: 0.1890
+CE Loss: 0.0036, CR Loss: 0.1891
+CE Loss: 0.0000, CR Loss: 0.1891
+CE Loss: 0.0000, CR Loss: 0.1891
+CE Loss: 0.0000, CR Loss: 0.1891
+CE Loss: 0.0000, CR Loss: 0.1891
+CE Loss: 0.6226, CR Loss: 0.1891
+CE Loss: 0.0000, CR Loss: 0.1891
+CE Loss: 0.0000, CR Loss: 0.1892
+CE Loss: 0.0000, CR Loss: 0.1892
+CE Loss: 0.0016, CR Loss: 0.1892
+CE Loss: 0.0000, CR Loss: 0.1892
+CE Loss: 0.3763, CR Loss: 0.1892
+CE Loss: 0.0000, CR Loss: 0.1892
+CE Loss: 0.0058, CR Loss: 0.1893
+CE Loss: 0.0000, CR Loss: 0.1893
+CE Loss: 0.0012, CR Loss: 0.1893
+CE Loss: 0.2282, CR Loss: 0.1893
+CE Loss: 0.0061, CR Loss: 0.1893
+CE Loss: 0.0004, CR Loss: 0.1893
+CE Loss: 0.0635, CR Loss: 0.1893
+CE Loss: 0.0000, CR Loss: 0.1893
+CE Loss: 0.3382, CR Loss: 0.1893
+CE Loss: 0.0048, CR Loss: 0.1893
+CE Loss: 0.2874, CR Loss: 0.1893
+CE Loss: 0.0525, CR Loss: 0.1893
+CE Loss: 0.0000, CR Loss: 0.1893
+CE Loss: 0.0000, CR Loss: 0.1893
+CE Loss: 0.1376, CR Loss: 0.1893
+CE Loss: 0.0048, CR Loss: 0.1893
+CE Loss: 0.0000, CR Loss: 0.1893
+CE Loss: 0.0057, CR Loss: 0.1893
+CE Loss: 0.0000, CR Loss: 0.1893
+
+
+-------------------------------
+Train Evaluation (Epoch 10/50)
+-------------------------------
+
+Accuracy        = 0.9850
+F1-Score        = 0.9850
+Precision       = 0.9854
+Recall          = 0.9850
+Average Loss    = -0.1402
+
+
+
+
+Evaluating the model on clean test dataset ...
+
+
+Evaluating the model ...
+Batch 1/4
+CE Loss: 0.0986, CR Loss: 0.1893
+Batch 2/4
+CE Loss: 0.3886, CR Loss: 0.1893
+Batch 3/4
+CE Loss: 0.5167, CR Loss: 0.1893
+Batch 4/4
+CE Loss: 0.0122, CR Loss: 0.1893
+
+
+Time & Date = 11:51 AM , 05_Jan_2025  GST
+
+Total Time => 0 Hours : 0 Minutes : 1 Seconds
+
+
+
+
+-------------------------------
+Test Evaluation (Clean)
+-------------------------------
+
+Accuracy        = 0.9450
+F1-Score        = 0.9448
+Precision       = 0.9517
+Recall          = 0.9450
+Average Loss    = 0.0647
+
+
+
+
+Evaluating the model on poisoned test dataset ...
+
+
+Evaluating the model ...
+Batch 1/4
+CE Loss: 52.2319, CR Loss: 0.1893
+Batch 2/4
+CE Loss: 50.9154, CR Loss: 0.1893
+Batch 3/4
+CE Loss: 48.1918, CR Loss: 0.1893
+Batch 4/4
+CE Loss: 50.9484, CR Loss: 0.1893
+
+
+Time & Date = 11:51 AM , 05_Jan_2025  GST
+
+Total Time => 0 Hours : 0 Minutes : 1 Seconds
+
+
+
+
+-------------------------------
+Test Evaluation (Backdoor)
+-------------------------------
+
+Accuracy        = 0.0026
+F1-Score        = 0.0001
+Precision       = 0.0200
+Recall          = 0.9801
+Average Loss    = 50.3826
+
+
+ 20%|##        | 10/50 [01:34<06:44, 10.11s/it]CE Loss: 0.0000, CR Loss: 0.1893
+CE Loss: 0.0000, CR Loss: 0.1893
+CE Loss: 0.0002, CR Loss: 0.1893
+CE Loss: 0.0020, CR Loss: 0.1893
+CE Loss: 0.0000, CR Loss: 0.1893
+CE Loss: 0.0155, CR Loss: 0.1893
+CE Loss: 0.0000, CR Loss: 0.1893
+CE Loss: 0.0275, CR Loss: 0.1893
+CE Loss: 0.0033, CR Loss: 0.1893
+CE Loss: 0.0000, CR Loss: 0.1893
+CE Loss: 0.0000, CR Loss: 0.1893
+CE Loss: 0.0058, CR Loss: 0.1893
+CE Loss: 0.0000, CR Loss: 0.1894
+CE Loss: 0.0005, CR Loss: 0.1894
+CE Loss: 0.0000, CR Loss: 0.1894
+CE Loss: 0.0000, CR Loss: 0.1894
+CE Loss: 0.0000, CR Loss: 0.1894
+CE Loss: 0.1149, CR Loss: 0.1894
+CE Loss: 0.0208, CR Loss: 0.1894
+CE Loss: 0.0020, CR Loss: 0.1894
+CE Loss: 0.0343, CR Loss: 0.1894
+CE Loss: 0.0000, CR Loss: 0.1894
+CE Loss: 0.5742, CR Loss: 0.1894
+CE Loss: 0.0000, CR Loss: 0.1894
+CE Loss: 0.0000, CR Loss: 0.1894
+CE Loss: 0.0000, CR Loss: 0.1894
+CE Loss: 0.0565, CR Loss: 0.1895
+CE Loss: 0.0232, CR Loss: 0.1895
+CE Loss: 0.0092, CR Loss: 0.1895
+CE Loss: 0.0002, CR Loss: 0.1895
+CE Loss: 0.0011, CR Loss: 0.1895
+CE Loss: 0.0042, CR Loss: 0.1895
+CE Loss: 0.0354, CR Loss: 0.1895
+CE Loss: 0.0000, CR Loss: 0.1895
+CE Loss: 0.0000, CR Loss: 0.1895
+CE Loss: 0.2006, CR Loss: 0.1895
+CE Loss: 0.0000, CR Loss: 0.1895
+CE Loss: 0.0002, CR Loss: 0.1896
+CE Loss: 0.0017, CR Loss: 0.1896
+CE Loss: 0.0000, CR Loss: 0.1896
+CE Loss: 0.0000, CR Loss: 0.1896
+CE Loss: 0.0000, CR Loss: 0.1896
+CE Loss: 0.0000, CR Loss: 0.1896
+CE Loss: 0.0000, CR Loss: 0.1896
+CE Loss: 0.0000, CR Loss: 0.1896
+CE Loss: 0.0000, CR Loss: 0.1896
+CE Loss: 0.0001, CR Loss: 0.1896
+CE Loss: 0.0112, CR Loss: 0.1896
+CE Loss: 0.0017, CR Loss: 0.1896
+CE Loss: 0.0623, CR Loss: 0.1896
+ 22%|##2       | 11/50 [01:44<06:22,  9.82s/it]CE Loss: 0.0001, CR Loss: 0.1896
+CE Loss: 0.1487, CR Loss: 0.1896
+CE Loss: 0.0000, CR Loss: 0.1896
+CE Loss: 0.0004, CR Loss: 0.1896
+CE Loss: 0.0309, CR Loss: 0.1896
+CE Loss: 0.0005, CR Loss: 0.1896
+CE Loss: 0.0042, CR Loss: 0.1896
+CE Loss: 0.0004, CR Loss: 0.1896
+CE Loss: 0.0249, CR Loss: 0.1896
+CE Loss: 0.6033, CR Loss: 0.1896
+CE Loss: 0.0052, CR Loss: 0.1896
+CE Loss: 0.0000, CR Loss: 0.1896
+CE Loss: 0.0137, CR Loss: 0.1896
+CE Loss: 0.0000, CR Loss: 0.1896
+CE Loss: 0.0000, CR Loss: 0.1896
+CE Loss: 0.0000, CR Loss: 0.1896
+CE Loss: 0.0000, CR Loss: 0.1896
+CE Loss: 0.0000, CR Loss: 0.1896
+CE Loss: 0.0000, CR Loss: 0.1896
+CE Loss: 0.0228, CR Loss: 0.1896
+CE Loss: 0.0010, CR Loss: 0.1896
+CE Loss: 0.0052, CR Loss: 0.1896
+CE Loss: 0.0084, CR Loss: 0.1896
+CE Loss: 0.0000, CR Loss: 0.1896
+CE Loss: 0.6452, CR Loss: 0.1896
+CE Loss: 0.0000, CR Loss: 0.1896
+CE Loss: 0.0004, CR Loss: 0.1896
+CE Loss: 0.0001, CR Loss: 0.1896
+CE Loss: 0.3966, CR Loss: 0.1896
+CE Loss: 0.0007, CR Loss: 0.1896
+CE Loss: 0.0000, CR Loss: 0.1896
+CE Loss: 0.1269, CR Loss: 0.1896
+CE Loss: 0.0008, CR Loss: 0.1896
+CE Loss: 0.0001, CR Loss: 0.1896
+CE Loss: 0.0000, CR Loss: 0.1896
+CE Loss: 0.0157, CR Loss: 0.1896
+CE Loss: 0.0002, CR Loss: 0.1897
+CE Loss: 0.0000, CR Loss: 0.1897
+CE Loss: 0.0000, CR Loss: 0.1897
+CE Loss: 0.0007, CR Loss: 0.1897
+CE Loss: 0.1023, CR Loss: 0.1897
+CE Loss: 0.0001, CR Loss: 0.1897
+CE Loss: 0.0081, CR Loss: 0.1897
+CE Loss: 0.0440, CR Loss: 0.1897
+CE Loss: 0.0000, CR Loss: 0.1897
+CE Loss: 0.0003, CR Loss: 0.1897
+CE Loss: 0.0010, CR Loss: 0.1897
+CE Loss: 0.0004, CR Loss: 0.1897
+CE Loss: 0.0000, CR Loss: 0.1897
+CE Loss: 0.0000, CR Loss: 0.1898
+ 24%|##4       | 12/50 [01:53<06:07,  9.68s/it]CE Loss: 0.0000, CR Loss: 0.1898
+CE Loss: 0.0002, CR Loss: 0.1898
+CE Loss: 0.0000, CR Loss: 0.1898
+CE Loss: 0.0043, CR Loss: 0.1898
+CE Loss: 0.0000, CR Loss: 0.1898
+CE Loss: 0.0158, CR Loss: 0.1898
+CE Loss: 0.0000, CR Loss: 0.1898
+CE Loss: 0.0002, CR Loss: 0.1898
+CE Loss: 0.0505, CR Loss: 0.1898
+CE Loss: 0.0016, CR Loss: 0.1898
+CE Loss: 0.0000, CR Loss: 0.1898
+CE Loss: 0.0000, CR Loss: 0.1898
+CE Loss: 0.0074, CR Loss: 0.1898
+CE Loss: 0.0022, CR Loss: 0.1898
+CE Loss: 0.1058, CR Loss: 0.1898
+CE Loss: 0.0000, CR Loss: 0.1899
+CE Loss: 0.0001, CR Loss: 0.1899
+CE Loss: 0.0216, CR Loss: 0.1899
+CE Loss: 0.0001, CR Loss: 0.1899
+CE Loss: 0.0003, CR Loss: 0.1899
+CE Loss: 0.0007, CR Loss: 0.1899
+CE Loss: 0.0002, CR Loss: 0.1899
+CE Loss: 0.0058, CR Loss: 0.1899
+CE Loss: 0.0011, CR Loss: 0.1899
+CE Loss: 0.0640, CR Loss: 0.1900
+CE Loss: 0.0000, CR Loss: 0.1900
+CE Loss: 0.0301, CR Loss: 0.1900
+CE Loss: 0.0176, CR Loss: 0.1900
+CE Loss: 0.0001, CR Loss: 0.1900
+CE Loss: 0.0410, CR Loss: 0.1900
+CE Loss: 0.0001, CR Loss: 0.1900
+CE Loss: 0.0070, CR Loss: 0.1900
+CE Loss: 0.0024, CR Loss: 0.1900
+CE Loss: 0.0001, CR Loss: 0.1900
+CE Loss: 0.0006, CR Loss: 0.1900
+CE Loss: 0.0000, CR Loss: 0.1900
+CE Loss: 0.0013, CR Loss: 0.1901
+CE Loss: 0.0000, CR Loss: 0.1901
+CE Loss: 0.0001, CR Loss: 0.1901
+CE Loss: 0.0000, CR Loss: 0.1901
+CE Loss: 0.0000, CR Loss: 0.1901
+CE Loss: 0.0000, CR Loss: 0.1901
+CE Loss: 0.0003, CR Loss: 0.1901
+CE Loss: 0.0000, CR Loss: 0.1901
+CE Loss: 0.5637, CR Loss: 0.1901
+CE Loss: 0.0000, CR Loss: 0.1901
+CE Loss: 0.0000, CR Loss: 0.1901
+CE Loss: 0.0000, CR Loss: 0.1902
+CE Loss: 0.0010, CR Loss: 0.1902
+CE Loss: 0.3677, CR Loss: 0.1902
+ 26%|##6       | 13/50 [02:02<05:52,  9.52s/it]CE Loss: 0.0132, CR Loss: 0.1902
+CE Loss: 0.0003, CR Loss: 0.1902
+CE Loss: 0.0000, CR Loss: 0.1902
+CE Loss: 0.0002, CR Loss: 0.1902
+CE Loss: 0.0033, CR Loss: 0.1902
+CE Loss: 0.0000, CR Loss: 0.1902
+CE Loss: 0.0267, CR Loss: 0.1902
+CE Loss: 0.0008, CR Loss: 0.1902
+CE Loss: 0.0000, CR Loss: 0.1902
+CE Loss: 0.4983, CR Loss: 0.1903
+CE Loss: 0.0000, CR Loss: 0.1903
+CE Loss: 0.0011, CR Loss: 0.1903
+CE Loss: 0.0000, CR Loss: 0.1903
+CE Loss: 0.0000, CR Loss: 0.1903
+CE Loss: 0.0000, CR Loss: 0.1903
+CE Loss: 0.0000, CR Loss: 0.1903
+CE Loss: 0.0000, CR Loss: 0.1903
+CE Loss: 0.0001, CR Loss: 0.1904
+CE Loss: 0.0009, CR Loss: 0.1904
+CE Loss: 0.0450, CR Loss: 0.1904
+CE Loss: 0.0000, CR Loss: 0.1904
+CE Loss: 0.0005, CR Loss: 0.1904
+CE Loss: 0.2621, CR Loss: 0.1904
+CE Loss: 0.0000, CR Loss: 0.1904
+CE Loss: 0.0764, CR Loss: 0.1904
+CE Loss: 0.0000, CR Loss: 0.1904
+CE Loss: 0.0000, CR Loss: 0.1904
+CE Loss: 0.0000, CR Loss: 0.1904
+CE Loss: 0.0408, CR Loss: 0.1904
+CE Loss: 0.0006, CR Loss: 0.1904
+CE Loss: 0.0207, CR Loss: 0.1904
+CE Loss: 0.0000, CR Loss: 0.1904
+CE Loss: 0.0011, CR Loss: 0.1904
+CE Loss: 0.0000, CR Loss: 0.1904
+CE Loss: 0.0012, CR Loss: 0.1904
+CE Loss: 0.0191, CR Loss: 0.1904
+CE Loss: 0.0726, CR Loss: 0.1904
+CE Loss: 0.0005, CR Loss: 0.1904
+CE Loss: 0.0718, CR Loss: 0.1904
+CE Loss: 0.0000, CR Loss: 0.1905
+CE Loss: 0.0000, CR Loss: 0.1905
+CE Loss: 0.0000, CR Loss: 0.1905
+CE Loss: 0.0000, CR Loss: 0.1905
+CE Loss: 0.0003, CR Loss: 0.1905
+CE Loss: 0.1367, CR Loss: 0.1905
+CE Loss: 0.0023, CR Loss: 0.1905
+CE Loss: 0.0000, CR Loss: 0.1905
+CE Loss: 0.0000, CR Loss: 0.1905
+CE Loss: 0.0000, CR Loss: 0.1906
+CE Loss: 0.0000, CR Loss: 0.1906
+ 28%|##8       | 14/50 [02:11<05:38,  9.41s/it]CE Loss: 0.0000, CR Loss: 0.1906
+CE Loss: 0.0000, CR Loss: 0.1906
+CE Loss: 0.0000, CR Loss: 0.1906
+CE Loss: 0.1094, CR Loss: 0.1906
+CE Loss: 0.0000, CR Loss: 0.1906
+CE Loss: 0.0000, CR Loss: 0.1906
+CE Loss: 0.0000, CR Loss: 0.1906
+CE Loss: 0.0000, CR Loss: 0.1906
+CE Loss: 0.0002, CR Loss: 0.1906
+CE Loss: 0.0000, CR Loss: 0.1906
+CE Loss: 0.0000, CR Loss: 0.1906
+CE Loss: 0.0022, CR Loss: 0.1907
+CE Loss: 0.0000, CR Loss: 0.1907
+CE Loss: 0.0008, CR Loss: 0.1907
+CE Loss: 0.1590, CR Loss: 0.1907
+CE Loss: 0.0000, CR Loss: 0.1907
+CE Loss: 0.0000, CR Loss: 0.1907
+CE Loss: 0.1460, CR Loss: 0.1907
+CE Loss: 0.0000, CR Loss: 0.1907
+CE Loss: 0.0044, CR Loss: 0.1907
+CE Loss: 0.0008, CR Loss: 0.1907
+CE Loss: 0.0000, CR Loss: 0.1907
+CE Loss: 0.0000, CR Loss: 0.1907
+CE Loss: 0.0198, CR Loss: 0.1907
+CE Loss: 0.0024, CR Loss: 0.1907
+CE Loss: 0.0000, CR Loss: 0.1907
+CE Loss: 0.0679, CR Loss: 0.1907
+CE Loss: 0.0000, CR Loss: 0.1907
+CE Loss: 0.0000, CR Loss: 0.1908
+CE Loss: 0.3971, CR Loss: 0.1908
+CE Loss: 0.0011, CR Loss: 0.1908
+CE Loss: 0.0032, CR Loss: 0.1908
+CE Loss: 0.0000, CR Loss: 0.1908
+CE Loss: 0.0114, CR Loss: 0.1908
+CE Loss: 0.0006, CR Loss: 0.1908
+CE Loss: 0.0893, CR Loss: 0.1908
+CE Loss: 0.0949, CR Loss: 0.1909
+CE Loss: 0.0000, CR Loss: 0.1909
+CE Loss: 0.0009, CR Loss: 0.1909
+CE Loss: 0.0000, CR Loss: 0.1909
+CE Loss: 0.0011, CR Loss: 0.1909
+CE Loss: 0.0002, CR Loss: 0.1909
+CE Loss: 0.0000, CR Loss: 0.1909
+CE Loss: 0.1802, CR Loss: 0.1910
+CE Loss: 0.0000, CR Loss: 0.1910
+CE Loss: 0.0003, CR Loss: 0.1910
+CE Loss: 0.0003, CR Loss: 0.1910
+CE Loss: 0.1859, CR Loss: 0.1910
+CE Loss: 0.0000, CR Loss: 0.1910
+CE Loss: 0.0028, CR Loss: 0.1910
+
+
+-------------------------------
+Train Evaluation (Epoch 15/50)
+-------------------------------
+
+Accuracy        = 0.9888
+F1-Score        = 0.9887
+Precision       = 0.9890
+Recall          = 0.9888
+Average Loss    = -0.1611
+
+
+ 30%|###       | 15/50 [02:21<05:27,  9.36s/it]CE Loss: 0.1709, CR Loss: 0.1910
+CE Loss: 0.0300, CR Loss: 0.1910
+CE Loss: 0.0000, CR Loss: 0.1910
+CE Loss: 0.3683, CR Loss: 0.1910
+CE Loss: 0.0000, CR Loss: 0.1910
+CE Loss: 0.0009, CR Loss: 0.1910
+CE Loss: 0.0000, CR Loss: 0.1910
+CE Loss: 0.0075, CR Loss: 0.1910
+CE Loss: 0.0163, CR Loss: 0.1910
+CE Loss: 0.1493, CR Loss: 0.1910
+CE Loss: 0.0424, CR Loss: 0.1910
+CE Loss: 0.0000, CR Loss: 0.1910
+CE Loss: 0.0000, CR Loss: 0.1910
+CE Loss: 0.0000, CR Loss: 0.1910
+CE Loss: 0.0001, CR Loss: 0.1910
+CE Loss: 0.4084, CR Loss: 0.1910
+CE Loss: 0.0000, CR Loss: 0.1910
+CE Loss: 0.0000, CR Loss: 0.1910
+CE Loss: 0.0000, CR Loss: 0.1910
+CE Loss: 0.0002, CR Loss: 0.1910
+CE Loss: 0.0002, CR Loss: 0.1910
+CE Loss: 0.0078, CR Loss: 0.1910
+CE Loss: 0.1063, CR Loss: 0.1910
+CE Loss: 0.0000, CR Loss: 0.1911
+CE Loss: 0.0000, CR Loss: 0.1911
+CE Loss: 0.0000, CR Loss: 0.1911
+CE Loss: 0.0017, CR Loss: 0.1911
+CE Loss: 0.0000, CR Loss: 0.1911
+CE Loss: 0.2368, CR Loss: 0.1911
+CE Loss: 0.0000, CR Loss: 0.1911
+CE Loss: 0.0003, CR Loss: 0.1911
+CE Loss: 0.0015, CR Loss: 0.1911
+CE Loss: 0.0000, CR Loss: 0.1911
+CE Loss: 0.0000, CR Loss: 0.1911
+CE Loss: 0.0001, CR Loss: 0.1911
+CE Loss: 0.0065, CR Loss: 0.1911
+CE Loss: 0.3631, CR Loss: 0.1912
+CE Loss: 0.0317, CR Loss: 0.1911
+CE Loss: 0.0000, CR Loss: 0.1911
+CE Loss: 0.0000, CR Loss: 0.1911
+CE Loss: 0.0680, CR Loss: 0.1911
+CE Loss: 0.0000, CR Loss: 0.1911
+CE Loss: 0.2834, CR Loss: 0.1911
+CE Loss: 0.0004, CR Loss: 0.1911
+CE Loss: 0.0012, CR Loss: 0.1911
+CE Loss: 0.0000, CR Loss: 0.1911
+CE Loss: 0.4080, CR Loss: 0.1911
+CE Loss: 0.0439, CR Loss: 0.1911
+CE Loss: 0.0000, CR Loss: 0.1911
+CE Loss: 0.2424, CR Loss: 0.1911
+ 32%|###2      | 16/50 [02:30<05:16,  9.32s/it]CE Loss: 0.5797, CR Loss: 0.1911
+CE Loss: 0.0000, CR Loss: 0.1911
+CE Loss: 0.0001, CR Loss: 0.1911
+CE Loss: 0.0000, CR Loss: 0.1911
+CE Loss: 0.0006, CR Loss: 0.1911
+CE Loss: 0.0034, CR Loss: 0.1911
+CE Loss: 0.0008, CR Loss: 0.1911
+CE Loss: 0.0000, CR Loss: 0.1911
+CE Loss: 0.0088, CR Loss: 0.1911
+CE Loss: 0.0001, CR Loss: 0.1911
+CE Loss: 0.0000, CR Loss: 0.1911
+CE Loss: 0.0000, CR Loss: 0.1911
+CE Loss: 0.0000, CR Loss: 0.1911
+CE Loss: 0.0000, CR Loss: 0.1911
+CE Loss: 0.0000, CR Loss: 0.1911
+CE Loss: 0.0000, CR Loss: 0.1911
+CE Loss: 0.0000, CR Loss: 0.1911
+CE Loss: 0.0000, CR Loss: 0.1911
+CE Loss: 0.0006, CR Loss: 0.1911
+CE Loss: 0.0000, CR Loss: 0.1911
+CE Loss: 0.3640, CR Loss: 0.1912
+CE Loss: 0.0015, CR Loss: 0.1912
+CE Loss: 0.0011, CR Loss: 0.1912
+CE Loss: 0.0000, CR Loss: 0.1912
+CE Loss: 0.0000, CR Loss: 0.1912
+CE Loss: 0.0000, CR Loss: 0.1912
+CE Loss: 0.0035, CR Loss: 0.1912
+CE Loss: 0.0007, CR Loss: 0.1912
+CE Loss: 0.0001, CR Loss: 0.1912
+CE Loss: 0.0000, CR Loss: 0.1912
+CE Loss: 0.0000, CR Loss: 0.1912
+CE Loss: 0.0003, CR Loss: 0.1912
+CE Loss: 0.0003, CR Loss: 0.1912
+CE Loss: 0.0000, CR Loss: 0.1912
+CE Loss: 0.0000, CR Loss: 0.1912
+CE Loss: 0.0002, CR Loss: 0.1913
+CE Loss: 0.1145, CR Loss: 0.1913
+CE Loss: 0.0000, CR Loss: 0.1913
+CE Loss: 0.0008, CR Loss: 0.1913
+CE Loss: 0.2886, CR Loss: 0.1913
+CE Loss: 0.0000, CR Loss: 0.1913
+CE Loss: 0.0000, CR Loss: 0.1913
+CE Loss: 0.0000, CR Loss: 0.1913
+CE Loss: 0.0000, CR Loss: 0.1913
+CE Loss: 0.0000, CR Loss: 0.1913
+CE Loss: 0.0001, CR Loss: 0.1913
+CE Loss: 0.0000, CR Loss: 0.1913
+CE Loss: 0.0006, CR Loss: 0.1913
+CE Loss: 0.0000, CR Loss: 0.1913
+CE Loss: 0.0000, CR Loss: 0.1913
+ 34%|###4      | 17/50 [02:39<05:06,  9.28s/it]CE Loss: 0.0000, CR Loss: 0.1913
+CE Loss: 0.1931, CR Loss: 0.1913
+CE Loss: 0.0000, CR Loss: 0.1913
+CE Loss: 0.0000, CR Loss: 0.1913
+CE Loss: 0.0000, CR Loss: 0.1913
+CE Loss: 0.0006, CR Loss: 0.1913
+CE Loss: 0.0000, CR Loss: 0.1914
+CE Loss: 0.0003, CR Loss: 0.1914
+CE Loss: 0.0023, CR Loss: 0.1914
+CE Loss: 0.0001, CR Loss: 0.1914
+CE Loss: 0.0000, CR Loss: 0.1914
+CE Loss: 0.0000, CR Loss: 0.1914
+CE Loss: 0.0000, CR Loss: 0.1914
+CE Loss: 0.0000, CR Loss: 0.1914
+CE Loss: 0.0010, CR Loss: 0.1914
+CE Loss: 0.0000, CR Loss: 0.1914
+CE Loss: 0.0000, CR Loss: 0.1914
+CE Loss: 0.0000, CR Loss: 0.1914
+CE Loss: 0.0000, CR Loss: 0.1914
+CE Loss: 0.0003, CR Loss: 0.1915
+CE Loss: 0.0147, CR Loss: 0.1915
+CE Loss: 0.0051, CR Loss: 0.1915
+CE Loss: 0.0002, CR Loss: 0.1915
+CE Loss: 0.0000, CR Loss: 0.1915
+CE Loss: 0.0005, CR Loss: 0.1915
+CE Loss: 0.0010, CR Loss: 0.1915
+CE Loss: 0.0040, CR Loss: 0.1915
+CE Loss: 0.0000, CR Loss: 0.1915
+CE Loss: 0.0000, CR Loss: 0.1915
+CE Loss: 0.0310, CR Loss: 0.1915
+CE Loss: 0.0000, CR Loss: 0.1915
+CE Loss: 0.0000, CR Loss: 0.1915
+CE Loss: 0.0769, CR Loss: 0.1916
+CE Loss: 0.0000, CR Loss: 0.1916
+CE Loss: 0.0000, CR Loss: 0.1916
+CE Loss: 0.0000, CR Loss: 0.1916
+CE Loss: 0.0010, CR Loss: 0.1916
+CE Loss: 0.0023, CR Loss: 0.1916
+CE Loss: 0.2236, CR Loss: 0.1916
+CE Loss: 0.0000, CR Loss: 0.1916
+CE Loss: 0.0113, CR Loss: 0.1916
+CE Loss: 0.0004, CR Loss: 0.1916
+CE Loss: 0.0496, CR Loss: 0.1916
+CE Loss: 0.0003, CR Loss: 0.1917
+CE Loss: 0.0062, CR Loss: 0.1917
+CE Loss: 0.0001, CR Loss: 0.1917
+CE Loss: 0.0008, CR Loss: 0.1917
+CE Loss: 0.0001, CR Loss: 0.1917
+CE Loss: 0.0000, CR Loss: 0.1917
+CE Loss: 0.0022, CR Loss: 0.1917
+ 36%|###6      | 18/50 [02:48<04:56,  9.25s/it]CE Loss: 0.0000, CR Loss: 0.1917
+CE Loss: 0.0001, CR Loss: 0.1918
+CE Loss: 0.0000, CR Loss: 0.1918
+CE Loss: 0.7510, CR Loss: 0.1918
+CE Loss: 0.0000, CR Loss: 0.1918
+CE Loss: 0.0000, CR Loss: 0.1918
+CE Loss: 0.0001, CR Loss: 0.1918
+CE Loss: 0.0000, CR Loss: 0.1918
+CE Loss: 0.0005, CR Loss: 0.1918
+CE Loss: 0.0004, CR Loss: 0.1918
+CE Loss: 0.0000, CR Loss: 0.1918
+CE Loss: 0.0002, CR Loss: 0.1918
+CE Loss: 0.0000, CR Loss: 0.1918
+CE Loss: 0.0167, CR Loss: 0.1918
+CE Loss: 0.0028, CR Loss: 0.1918
+CE Loss: 0.0000, CR Loss: 0.1919
+CE Loss: 0.0000, CR Loss: 0.1919
+CE Loss: 0.0000, CR Loss: 0.1919
+CE Loss: 0.0043, CR Loss: 0.1919
+CE Loss: 0.0003, CR Loss: 0.1919
+CE Loss: 0.0001, CR Loss: 0.1919
+CE Loss: 0.0000, CR Loss: 0.1919
+CE Loss: 0.0000, CR Loss: 0.1919
+CE Loss: 0.0000, CR Loss: 0.1919
+CE Loss: 0.0000, CR Loss: 0.1919
+CE Loss: 0.0056, CR Loss: 0.1919
+CE Loss: 0.0028, CR Loss: 0.1919
+CE Loss: 0.0061, CR Loss: 0.1919
+CE Loss: 0.0000, CR Loss: 0.1920
+CE Loss: 0.0000, CR Loss: 0.1920
+CE Loss: 0.0000, CR Loss: 0.1920
+CE Loss: 0.0000, CR Loss: 0.1920
+CE Loss: 0.0000, CR Loss: 0.1920
+CE Loss: 0.0000, CR Loss: 0.1920
+CE Loss: 0.0010, CR Loss: 0.1920
+CE Loss: 0.0000, CR Loss: 0.1920
+CE Loss: 0.0006, CR Loss: 0.1920
+CE Loss: 0.0001, CR Loss: 0.1920
+CE Loss: 0.0096, CR Loss: 0.1920
+CE Loss: 0.0287, CR Loss: 0.1920
+CE Loss: 0.0000, CR Loss: 0.1920
+CE Loss: 0.0000, CR Loss: 0.1921
+CE Loss: 0.0003, CR Loss: 0.1921
+CE Loss: 0.0000, CR Loss: 0.1921
+CE Loss: 0.0000, CR Loss: 0.1921
+CE Loss: 0.0001, CR Loss: 0.1921
+CE Loss: 0.0055, CR Loss: 0.1921
+CE Loss: 0.0489, CR Loss: 0.1921
+CE Loss: 0.0031, CR Loss: 0.1921
+CE Loss: 0.4877, CR Loss: 0.1921
+ 38%|###8      | 19/50 [02:57<04:46,  9.23s/it]CE Loss: 0.0000, CR Loss: 0.1921
+CE Loss: 0.0000, CR Loss: 0.1921
+CE Loss: 0.3588, CR Loss: 0.1921
+CE Loss: 0.0000, CR Loss: 0.1921
+CE Loss: 0.0000, CR Loss: 0.1921
+CE Loss: 0.0000, CR Loss: 0.1921
+CE Loss: 0.0011, CR Loss: 0.1921
+CE Loss: 0.0001, CR Loss: 0.1921
+CE Loss: 0.0001, CR Loss: 0.1921
+CE Loss: 0.0000, CR Loss: 0.1921
+CE Loss: 0.0000, CR Loss: 0.1922
+CE Loss: 0.0060, CR Loss: 0.1922
+CE Loss: 0.0000, CR Loss: 0.1922
+CE Loss: 0.0000, CR Loss: 0.1922
+CE Loss: 0.0001, CR Loss: 0.1922
+CE Loss: 0.0000, CR Loss: 0.1922
+CE Loss: 0.0002, CR Loss: 0.1922
+CE Loss: 0.0006, CR Loss: 0.1922
+CE Loss: 0.0007, CR Loss: 0.1922
+CE Loss: 0.0013, CR Loss: 0.1922
+CE Loss: 0.0000, CR Loss: 0.1922
+CE Loss: 0.0008, CR Loss: 0.1922
+CE Loss: 0.0082, CR Loss: 0.1922
+CE Loss: 0.5466, CR Loss: 0.1923
+CE Loss: 0.0002, CR Loss: 0.1923
+CE Loss: 0.0027, CR Loss: 0.1923
+CE Loss: 0.0004, CR Loss: 0.1923
+CE Loss: 0.3561, CR Loss: 0.1923
+CE Loss: 0.1464, CR Loss: 0.1923
+CE Loss: 0.2916, CR Loss: 0.1923
+CE Loss: 0.1143, CR Loss: 0.1923
+CE Loss: 0.0001, CR Loss: 0.1923
+CE Loss: 0.0013, CR Loss: 0.1923
+CE Loss: 0.0000, CR Loss: 0.1923
+CE Loss: 0.0153, CR Loss: 0.1924
+CE Loss: 0.0000, CR Loss: 0.1924
+CE Loss: 0.0015, CR Loss: 0.1924
+CE Loss: 0.0000, CR Loss: 0.1924
+CE Loss: 0.0000, CR Loss: 0.1924
+CE Loss: 0.0143, CR Loss: 0.1924
+CE Loss: 0.0002, CR Loss: 0.1924
+CE Loss: 0.0020, CR Loss: 0.1924
+CE Loss: 0.0002, CR Loss: 0.1924
+CE Loss: 0.0574, CR Loss: 0.1925
+CE Loss: 0.0000, CR Loss: 0.1925
+CE Loss: 0.0152, CR Loss: 0.1925
+CE Loss: 0.0001, CR Loss: 0.1925
+CE Loss: 0.0082, CR Loss: 0.1925
+CE Loss: 0.0000, CR Loss: 0.1925
+CE Loss: 0.0000, CR Loss: 0.1925
+
+
+-------------------------------
+Train Evaluation (Epoch 20/50)
+-------------------------------
+
+Accuracy        = 0.9912
+F1-Score        = 0.9912
+Precision       = 0.9915
+Recall          = 0.9912
+Average Loss    = -0.1532
+
+
+
+
+Evaluating the model on clean test dataset ...
+
+
+Evaluating the model ...
+Batch 1/4
+CE Loss: 0.0583, CR Loss: 0.1925
+Batch 2/4
+CE Loss: 0.2296, CR Loss: 0.1925
+Batch 3/4
+CE Loss: 0.5336, CR Loss: 0.1925
+Batch 4/4
+CE Loss: 0.0011, CR Loss: 0.1925
+
+
+Time & Date = 11:53 AM , 05_Jan_2025  GST
+
+Total Time => 0 Hours : 0 Minutes : 1 Seconds
+
+
+
+
+-------------------------------
+Test Evaluation (Clean)
+-------------------------------
+
+Accuracy        = 0.9600
+F1-Score        = 0.9596
+Precision       = 0.9634
+Recall          = 0.9600
+Average Loss    = 0.0132
+
+
+
+
+Evaluating the model on poisoned test dataset ...
+
+
+Evaluating the model ...
+Batch 1/4
+CE Loss: 55.8183, CR Loss: 0.1925
+Batch 2/4
+CE Loss: 54.1563, CR Loss: 0.1925
+Batch 3/4
+CE Loss: 51.7374, CR Loss: 0.1925
+Batch 4/4
+CE Loss: 53.5389, CR Loss: 0.1925
+
+
+Time & Date = 11:53 AM , 05_Jan_2025  GST
+
+Total Time => 0 Hours : 0 Minutes : 1 Seconds
+
+
+
+
+-------------------------------
+Test Evaluation (Backdoor)
+-------------------------------
+
+Accuracy        = 0.0000
+F1-Score        = 0.0000
+Precision       = 0.0200
+Recall          = 0.9800
+Average Loss    = 53.6203
+
+
+ 40%|####      | 20/50 [03:09<05:03, 10.11s/it]CE Loss: 0.0000, CR Loss: 0.1925
+CE Loss: 0.0000, CR Loss: 0.1925
+CE Loss: 0.0000, CR Loss: 0.1925
+CE Loss: 0.0004, CR Loss: 0.1925
+CE Loss: 0.0025, CR Loss: 0.1925
+CE Loss: 0.0001, CR Loss: 0.1925
+CE Loss: 0.0000, CR Loss: 0.1925
+CE Loss: 0.0005, CR Loss: 0.1925
+CE Loss: 0.0143, CR Loss: 0.1925
+CE Loss: 0.0000, CR Loss: 0.1925
+CE Loss: 0.0869, CR Loss: 0.1925
+CE Loss: 0.0001, CR Loss: 0.1925
+CE Loss: 0.0000, CR Loss: 0.1925
+CE Loss: 0.0000, CR Loss: 0.1925
+CE Loss: 0.0274, CR Loss: 0.1925
+CE Loss: 0.0000, CR Loss: 0.1925
+CE Loss: 0.0000, CR Loss: 0.1926
+CE Loss: 0.0002, CR Loss: 0.1926
+CE Loss: 0.0170, CR Loss: 0.1926
+CE Loss: 0.0118, CR Loss: 0.1926
+CE Loss: 0.0009, CR Loss: 0.1926
+CE Loss: 0.0000, CR Loss: 0.1926
+CE Loss: 0.0000, CR Loss: 0.1926
+CE Loss: 0.0000, CR Loss: 0.1926
+CE Loss: 0.0001, CR Loss: 0.1926
+CE Loss: 0.0981, CR Loss: 0.1926
+CE Loss: 0.0001, CR Loss: 0.1926
+CE Loss: 0.0001, CR Loss: 0.1926
+CE Loss: 0.0030, CR Loss: 0.1926
+CE Loss: 0.0000, CR Loss: 0.1927
+CE Loss: 0.0000, CR Loss: 0.1927
+CE Loss: 0.0000, CR Loss: 0.1927
+CE Loss: 0.3989, CR Loss: 0.1927
+CE Loss: 0.0000, CR Loss: 0.1927
+CE Loss: 0.0000, CR Loss: 0.1927
+CE Loss: 0.1108, CR Loss: 0.1927
+CE Loss: 0.0000, CR Loss: 0.1927
+CE Loss: 0.0000, CR Loss: 0.1927
+CE Loss: 0.0000, CR Loss: 0.1927
+CE Loss: 0.0019, CR Loss: 0.1927
+CE Loss: 0.0000, CR Loss: 0.1927
+CE Loss: 0.0003, CR Loss: 0.1927
+CE Loss: 0.0000, CR Loss: 0.1927
+CE Loss: 0.0002, CR Loss: 0.1927
+CE Loss: 0.0006, CR Loss: 0.1928
+CE Loss: 0.0000, CR Loss: 0.1928
+CE Loss: 0.0000, CR Loss: 0.1928
+CE Loss: 0.0068, CR Loss: 0.1928
+CE Loss: 0.0016, CR Loss: 0.1928
+CE Loss: 0.0000, CR Loss: 0.1928
+ 42%|####2     | 21/50 [03:19<04:46,  9.87s/it]CE Loss: 0.0002, CR Loss: 0.1928
+CE Loss: 0.0000, CR Loss: 0.1928
+CE Loss: 0.8902, CR Loss: 0.1928
+CE Loss: 0.0000, CR Loss: 0.1928
+CE Loss: 0.0511, CR Loss: 0.1928
+CE Loss: 0.0000, CR Loss: 0.1928
+CE Loss: 0.0000, CR Loss: 0.1929
+CE Loss: 0.0002, CR Loss: 0.1929
+CE Loss: 0.0000, CR Loss: 0.1929
+CE Loss: 0.0000, CR Loss: 0.1929
+CE Loss: 0.0000, CR Loss: 0.1929
+CE Loss: 0.0002, CR Loss: 0.1929
+CE Loss: 0.1154, CR Loss: 0.1929
+CE Loss: 0.0000, CR Loss: 0.1929
+CE Loss: 0.0000, CR Loss: 0.1929
+CE Loss: 0.0000, CR Loss: 0.1929
+CE Loss: 0.0021, CR Loss: 0.1930
+CE Loss: 0.0000, CR Loss: 0.1930
+CE Loss: 0.1025, CR Loss: 0.1930
+CE Loss: 0.0000, CR Loss: 0.1930
+CE Loss: 0.0008, CR Loss: 0.1930
+CE Loss: 0.0000, CR Loss: 0.1930
+CE Loss: 0.0002, CR Loss: 0.1930
+CE Loss: 0.0034, CR Loss: 0.1930
+CE Loss: 0.0000, CR Loss: 0.1930
+CE Loss: 0.0000, CR Loss: 0.1930
+CE Loss: 0.0008, CR Loss: 0.1930
+CE Loss: 0.0006, CR Loss: 0.1930
+CE Loss: 0.0001, CR Loss: 0.1930
+CE Loss: 0.0000, CR Loss: 0.1931
+CE Loss: 0.2523, CR Loss: 0.1931
+CE Loss: 0.0000, CR Loss: 0.1931
+CE Loss: 0.0001, CR Loss: 0.1931
+CE Loss: 0.2316, CR Loss: 0.1931
+CE Loss: 0.0000, CR Loss: 0.1931
+CE Loss: 0.0000, CR Loss: 0.1931
+CE Loss: 0.0376, CR Loss: 0.1931
+CE Loss: 0.0071, CR Loss: 0.1931
+CE Loss: 0.0000, CR Loss: 0.1931
+CE Loss: 0.0000, CR Loss: 0.1931
+CE Loss: 0.0000, CR Loss: 0.1931
+CE Loss: 0.3321, CR Loss: 0.1931
+CE Loss: 0.0942, CR Loss: 0.1931
+CE Loss: 0.0021, CR Loss: 0.1930
+CE Loss: 0.0000, CR Loss: 0.1930
+CE Loss: 0.0015, CR Loss: 0.1930
+CE Loss: 0.0000, CR Loss: 0.1930
+CE Loss: 0.1518, CR Loss: 0.1930
+CE Loss: 0.0075, CR Loss: 0.1930
+CE Loss: 0.0044, CR Loss: 0.1930
+ 44%|####4     | 22/50 [03:28<04:30,  9.66s/it]CE Loss: 0.0000, CR Loss: 0.1930
+CE Loss: 0.0000, CR Loss: 0.1930
+CE Loss: 0.2397, CR Loss: 0.1930
+CE Loss: 0.1940, CR Loss: 0.1930
+CE Loss: 0.0000, CR Loss: 0.1930
+CE Loss: 0.0000, CR Loss: 0.1930
+CE Loss: 0.0001, CR Loss: 0.1930
+CE Loss: 0.0111, CR Loss: 0.1930
+CE Loss: 0.0700, CR Loss: 0.1930
+CE Loss: 0.0000, CR Loss: 0.1930
+CE Loss: 0.0436, CR Loss: 0.1930
+CE Loss: 0.0014, CR Loss: 0.1930
+CE Loss: 0.0000, CR Loss: 0.1930
+CE Loss: 0.0000, CR Loss: 0.1930
+CE Loss: 0.0003, CR Loss: 0.1930
+CE Loss: 0.0000, CR Loss: 0.1931
+CE Loss: 0.0007, CR Loss: 0.1931
+CE Loss: 0.0000, CR Loss: 0.1931
+CE Loss: 0.0001, CR Loss: 0.1931
+CE Loss: 0.0001, CR Loss: 0.1931
+CE Loss: 0.0093, CR Loss: 0.1931
+CE Loss: 0.0000, CR Loss: 0.1931
+CE Loss: 0.0000, CR Loss: 0.1931
+CE Loss: 0.0015, CR Loss: 0.1931
+CE Loss: 0.0016, CR Loss: 0.1931
+CE Loss: 0.0000, CR Loss: 0.1931
+CE Loss: 0.1040, CR Loss: 0.1931
+CE Loss: 0.0000, CR Loss: 0.1931
+CE Loss: 0.2770, CR Loss: 0.1932
+CE Loss: 0.0000, CR Loss: 0.1932
+CE Loss: 0.0001, CR Loss: 0.1932
+CE Loss: 0.0038, CR Loss: 0.1932
+CE Loss: 0.0009, CR Loss: 0.1932
+CE Loss: 0.0030, CR Loss: 0.1932
+CE Loss: 0.0173, CR Loss: 0.1932
+CE Loss: 0.0419, CR Loss: 0.1932
+CE Loss: 0.0000, CR Loss: 0.1932
+CE Loss: 0.0000, CR Loss: 0.1932
+CE Loss: 0.0007, CR Loss: 0.1932
+CE Loss: 0.0000, CR Loss: 0.1932
+CE Loss: 0.0031, CR Loss: 0.1932
+CE Loss: 0.0000, CR Loss: 0.1932
+CE Loss: 0.0000, CR Loss: 0.1932
+CE Loss: 0.0000, CR Loss: 0.1932
+CE Loss: 0.0000, CR Loss: 0.1933
+CE Loss: 0.0027, CR Loss: 0.1933
+CE Loss: 0.0010, CR Loss: 0.1933
+CE Loss: 0.3710, CR Loss: 0.1933
+CE Loss: 0.0230, CR Loss: 0.1933
+CE Loss: 0.0000, CR Loss: 0.1933
+ 46%|####6     | 23/50 [03:37<04:16,  9.50s/it]CE Loss: 0.0002, CR Loss: 0.1933
+CE Loss: 0.0000, CR Loss: 0.1933
+CE Loss: 0.0000, CR Loss: 0.1933
+CE Loss: 0.0005, CR Loss: 0.1933
+CE Loss: 0.0000, CR Loss: 0.1933
+CE Loss: 0.0000, CR Loss: 0.1933
+CE Loss: 0.0000, CR Loss: 0.1933
+CE Loss: 0.0000, CR Loss: 0.1933
+CE Loss: 0.0639, CR Loss: 0.1933
+CE Loss: 0.0003, CR Loss: 0.1934
+CE Loss: 0.0000, CR Loss: 0.1934
+CE Loss: 0.0047, CR Loss: 0.1934
+CE Loss: 0.0527, CR Loss: 0.1934
+CE Loss: 0.0000, CR Loss: 0.1934
+CE Loss: 0.0037, CR Loss: 0.1934
+CE Loss: 0.0000, CR Loss: 0.1934
+CE Loss: 0.0000, CR Loss: 0.1934
+CE Loss: 0.0009, CR Loss: 0.1934
+CE Loss: 0.0093, CR Loss: 0.1934
+CE Loss: 0.0000, CR Loss: 0.1934
+CE Loss: 0.0571, CR Loss: 0.1934
+CE Loss: 0.0001, CR Loss: 0.1934
+CE Loss: 0.8834, CR Loss: 0.1935
+CE Loss: 0.0053, CR Loss: 0.1935
+CE Loss: 0.0005, CR Loss: 0.1935
+CE Loss: 0.0010, CR Loss: 0.1935
+CE Loss: 0.0000, CR Loss: 0.1935
+CE Loss: 0.0000, CR Loss: 0.1935
+CE Loss: 0.0000, CR Loss: 0.1935
+CE Loss: 0.1395, CR Loss: 0.1935
+CE Loss: 0.0302, CR Loss: 0.1935
+CE Loss: 0.0000, CR Loss: 0.1935
+CE Loss: 0.0000, CR Loss: 0.1935
+CE Loss: 0.0000, CR Loss: 0.1935
+CE Loss: 0.0000, CR Loss: 0.1935
+CE Loss: 0.0000, CR Loss: 0.1936
+CE Loss: 0.0002, CR Loss: 0.1936
+CE Loss: 0.0000, CR Loss: 0.1936
+CE Loss: 0.0000, CR Loss: 0.1936
+CE Loss: 0.0051, CR Loss: 0.1936
+CE Loss: 0.0000, CR Loss: 0.1936
+CE Loss: 0.0000, CR Loss: 0.1936
+CE Loss: 0.0000, CR Loss: 0.1936
+CE Loss: 0.0000, CR Loss: 0.1936
+CE Loss: 0.0000, CR Loss: 0.1936
+CE Loss: 0.0001, CR Loss: 0.1937
+CE Loss: 0.0000, CR Loss: 0.1937
+CE Loss: 0.0000, CR Loss: 0.1937
+CE Loss: 0.0006, CR Loss: 0.1937
+CE Loss: 0.1148, CR Loss: 0.1937
+ 48%|####8     | 24/50 [03:46<04:04,  9.40s/it]CE Loss: 0.0000, CR Loss: 0.1937
+CE Loss: 0.0000, CR Loss: 0.1937
+CE Loss: 0.0000, CR Loss: 0.1937
+CE Loss: 0.0000, CR Loss: 0.1937
+CE Loss: 0.0000, CR Loss: 0.1937
+CE Loss: 0.0077, CR Loss: 0.1937
+CE Loss: 0.0000, CR Loss: 0.1937
+CE Loss: 0.0002, CR Loss: 0.1938
+CE Loss: 0.0916, CR Loss: 0.1938
+CE Loss: 0.0000, CR Loss: 0.1938
+CE Loss: 0.0109, CR Loss: 0.1938
+CE Loss: 0.0000, CR Loss: 0.1938
+CE Loss: 0.0000, CR Loss: 0.1938
+CE Loss: 0.0000, CR Loss: 0.1938
+CE Loss: 0.0000, CR Loss: 0.1938
+CE Loss: 0.0001, CR Loss: 0.1938
+CE Loss: 0.0099, CR Loss: 0.1938
+CE Loss: 0.0000, CR Loss: 0.1938
+CE Loss: 0.0002, CR Loss: 0.1938
+CE Loss: 0.0000, CR Loss: 0.1939
+CE Loss: 0.0001, CR Loss: 0.1939
+CE Loss: 0.0000, CR Loss: 0.1939
+CE Loss: 0.0018, CR Loss: 0.1939
+CE Loss: 0.0000, CR Loss: 0.1939
+CE Loss: 0.0000, CR Loss: 0.1939
+CE Loss: 0.0009, CR Loss: 0.1939
+CE Loss: 0.0000, CR Loss: 0.1939
+CE Loss: 0.1098, CR Loss: 0.1939
+CE Loss: 0.0001, CR Loss: 0.1939
+CE Loss: 0.0001, CR Loss: 0.1939
+CE Loss: 0.0304, CR Loss: 0.1939
+CE Loss: 0.0000, CR Loss: 0.1939
+CE Loss: 0.0000, CR Loss: 0.1939
+CE Loss: 0.0000, CR Loss: 0.1939
+CE Loss: 0.0035, CR Loss: 0.1939
+CE Loss: 0.0000, CR Loss: 0.1939
+CE Loss: 0.0030, CR Loss: 0.1940
+CE Loss: 0.0044, CR Loss: 0.1940
+CE Loss: 0.0000, CR Loss: 0.1940
+CE Loss: 0.0365, CR Loss: 0.1940
+CE Loss: 0.0000, CR Loss: 0.1940
+CE Loss: 0.0001, CR Loss: 0.1940
+CE Loss: 0.0001, CR Loss: 0.1940
+CE Loss: 0.0001, CR Loss: 0.1940
+CE Loss: 0.0000, CR Loss: 0.1940
+CE Loss: 0.0000, CR Loss: 0.1940
+CE Loss: 0.0076, CR Loss: 0.1940
+CE Loss: 0.0000, CR Loss: 0.1940
+CE Loss: 0.0000, CR Loss: 0.1940
+CE Loss: 0.0000, CR Loss: 0.1940
+
+
+-------------------------------
+Train Evaluation (Epoch 25/50)
+-------------------------------
+
+Accuracy        = 0.9975
+F1-Score        = 0.9975
+Precision       = 0.9976
+Recall          = 0.9975
+Average Loss    = -0.1875
+
+
+ 50%|#####     | 25/50 [03:55<03:52,  9.31s/it]CE Loss: 0.0000, CR Loss: 0.1940
+CE Loss: 0.0001, CR Loss: 0.1940
+CE Loss: 0.0005, CR Loss: 0.1941
+CE Loss: 0.0000, CR Loss: 0.1941
+CE Loss: 0.0000, CR Loss: 0.1941
+CE Loss: 0.0000, CR Loss: 0.1941
+CE Loss: 0.0000, CR Loss: 0.1941
+CE Loss: 0.0605, CR Loss: 0.1941
+CE Loss: 0.0000, CR Loss: 0.1941
+CE Loss: 0.0000, CR Loss: 0.1941
+CE Loss: 0.0007, CR Loss: 0.1941
+CE Loss: 0.0001, CR Loss: 0.1941
+CE Loss: 0.0000, CR Loss: 0.1941
+CE Loss: 0.4898, CR Loss: 0.1941
+CE Loss: 0.0027, CR Loss: 0.1941
+CE Loss: 0.0002, CR Loss: 0.1941
+CE Loss: 0.0002, CR Loss: 0.1941
+CE Loss: 0.0008, CR Loss: 0.1941
+CE Loss: 0.0000, CR Loss: 0.1941
+CE Loss: 0.0000, CR Loss: 0.1941
+CE Loss: 0.0000, CR Loss: 0.1942
+CE Loss: 0.0000, CR Loss: 0.1942
+CE Loss: 0.0000, CR Loss: 0.1942
+CE Loss: 0.0001, CR Loss: 0.1942
+CE Loss: 0.0000, CR Loss: 0.1942
+CE Loss: 0.0000, CR Loss: 0.1942
+CE Loss: 0.0000, CR Loss: 0.1942
+CE Loss: 0.0000, CR Loss: 0.1942
+CE Loss: 0.7884, CR Loss: 0.1942
+CE Loss: 0.0001, CR Loss: 0.1942
+CE Loss: 0.1176, CR Loss: 0.1943
+CE Loss: 0.0000, CR Loss: 0.1943
+CE Loss: 0.0000, CR Loss: 0.1943
+CE Loss: 0.0000, CR Loss: 0.1943
+CE Loss: 0.0000, CR Loss: 0.1943
+CE Loss: 0.0007, CR Loss: 0.1943
+CE Loss: 0.0024, CR Loss: 0.1943
+CE Loss: 0.0050, CR Loss: 0.1943
+CE Loss: 0.0479, CR Loss: 0.1943
+CE Loss: 0.0324, CR Loss: 0.1943
+CE Loss: 0.0000, CR Loss: 0.1943
+CE Loss: 0.0000, CR Loss: 0.1943
+CE Loss: 0.0001, CR Loss: 0.1943
+CE Loss: 0.0029, CR Loss: 0.1944
+CE Loss: 0.0000, CR Loss: 0.1944
+CE Loss: 0.0000, CR Loss: 0.1944
+CE Loss: 0.0000, CR Loss: 0.1944
+CE Loss: 0.0000, CR Loss: 0.1944
+CE Loss: 0.0000, CR Loss: 0.1944
+CE Loss: 0.3759, CR Loss: 0.1944
+ 52%|#####2    | 26/50 [04:05<03:42,  9.29s/it]CE Loss: 0.0429, CR Loss: 0.1944
+CE Loss: 0.0000, CR Loss: 0.1944
+CE Loss: 0.0397, CR Loss: 0.1944
+CE Loss: 0.0000, CR Loss: 0.1944
+CE Loss: 0.0000, CR Loss: 0.1944
+CE Loss: 0.0001, CR Loss: 0.1944
+CE Loss: 0.0002, CR Loss: 0.1944
+CE Loss: 0.0008, CR Loss: 0.1944
+CE Loss: 0.0001, CR Loss: 0.1944
+CE Loss: 0.1204, CR Loss: 0.1944
+CE Loss: 0.0000, CR Loss: 0.1944
+CE Loss: 0.0001, CR Loss: 0.1944
+CE Loss: 0.0000, CR Loss: 0.1944
+CE Loss: 0.0015, CR Loss: 0.1944
+CE Loss: 0.0000, CR Loss: 0.1944
+CE Loss: 0.0000, CR Loss: 0.1944
+CE Loss: 0.0297, CR Loss: 0.1944
+CE Loss: 0.0044, CR Loss: 0.1944
+CE Loss: 0.0000, CR Loss: 0.1944
+CE Loss: 0.0000, CR Loss: 0.1944
+CE Loss: 0.0000, CR Loss: 0.1944
+CE Loss: 0.0000, CR Loss: 0.1945
+CE Loss: 0.0000, CR Loss: 0.1945
+CE Loss: 0.0002, CR Loss: 0.1945
+CE Loss: 0.0004, CR Loss: 0.1945
+CE Loss: 0.0008, CR Loss: 0.1945
+CE Loss: 0.0274, CR Loss: 0.1945
+CE Loss: 0.0000, CR Loss: 0.1945
+CE Loss: 0.0001, CR Loss: 0.1945
+CE Loss: 0.0000, CR Loss: 0.1945
+CE Loss: 0.0001, CR Loss: 0.1945
+CE Loss: 0.0072, CR Loss: 0.1945
+CE Loss: 0.0000, CR Loss: 0.1945
+CE Loss: 0.0000, CR Loss: 0.1945
+CE Loss: 0.0000, CR Loss: 0.1945
+CE Loss: 0.0000, CR Loss: 0.1945
+CE Loss: 0.0064, CR Loss: 0.1945
+CE Loss: 0.0001, CR Loss: 0.1945
+CE Loss: 0.0000, CR Loss: 0.1945
+CE Loss: 0.0206, CR Loss: 0.1945
+CE Loss: 0.0006, CR Loss: 0.1946
+CE Loss: 0.0000, CR Loss: 0.1946
+CE Loss: 0.0003, CR Loss: 0.1946
+CE Loss: 0.0000, CR Loss: 0.1946
+CE Loss: 0.0000, CR Loss: 0.1946
+CE Loss: 0.0000, CR Loss: 0.1946
+CE Loss: 0.0000, CR Loss: 0.1946
+CE Loss: 0.0000, CR Loss: 0.1946
+CE Loss: 0.0001, CR Loss: 0.1946
+CE Loss: 0.0006, CR Loss: 0.1946
+ 54%|#####4    | 27/50 [04:14<03:32,  9.23s/it]CE Loss: 0.0003, CR Loss: 0.1946
+CE Loss: 0.0000, CR Loss: 0.1946
+CE Loss: 0.0000, CR Loss: 0.1946
+CE Loss: 0.0004, CR Loss: 0.1946
+CE Loss: 0.0053, CR Loss: 0.1947
+CE Loss: 0.0000, CR Loss: 0.1947
+CE Loss: 0.0122, CR Loss: 0.1947
+CE Loss: 0.0000, CR Loss: 0.1947
+CE Loss: 0.0000, CR Loss: 0.1947
+CE Loss: 0.0000, CR Loss: 0.1947
+CE Loss: 0.0004, CR Loss: 0.1947
+CE Loss: 0.0000, CR Loss: 0.1947
+CE Loss: 0.0000, CR Loss: 0.1947
+CE Loss: 0.0000, CR Loss: 0.1947
+CE Loss: 0.0000, CR Loss: 0.1947
+CE Loss: 0.0006, CR Loss: 0.1947
+CE Loss: 0.0003, CR Loss: 0.1947
+CE Loss: 0.0068, CR Loss: 0.1948
+CE Loss: 0.3971, CR Loss: 0.1948
+CE Loss: 0.0000, CR Loss: 0.1948
+CE Loss: 0.0000, CR Loss: 0.1948
+CE Loss: 0.0000, CR Loss: 0.1948
+CE Loss: 0.0000, CR Loss: 0.1948
+CE Loss: 0.0000, CR Loss: 0.1948
+CE Loss: 0.0000, CR Loss: 0.1948
+CE Loss: 0.0000, CR Loss: 0.1948
+CE Loss: 0.0001, CR Loss: 0.1948
+CE Loss: 0.0002, CR Loss: 0.1948
+CE Loss: 0.0000, CR Loss: 0.1948
+CE Loss: 0.0001, CR Loss: 0.1948
+CE Loss: 0.0001, CR Loss: 0.1948
+CE Loss: 0.0001, CR Loss: 0.1948
+CE Loss: 0.0013, CR Loss: 0.1949
+CE Loss: 0.0003, CR Loss: 0.1949
+CE Loss: 0.0000, CR Loss: 0.1949
+CE Loss: 0.0001, CR Loss: 0.1949
+CE Loss: 0.0000, CR Loss: 0.1949
+CE Loss: 0.0000, CR Loss: 0.1949
+CE Loss: 0.0000, CR Loss: 0.1949
+CE Loss: 0.3199, CR Loss: 0.1949
+CE Loss: 0.0000, CR Loss: 0.1949
+CE Loss: 0.0002, CR Loss: 0.1949
+CE Loss: 0.0004, CR Loss: 0.1949
+CE Loss: 0.0000, CR Loss: 0.1949
+CE Loss: 0.0001, CR Loss: 0.1949
+CE Loss: 0.0028, CR Loss: 0.1949
+CE Loss: 0.0001, CR Loss: 0.1950
+CE Loss: 0.0000, CR Loss: 0.1950
+CE Loss: 0.0000, CR Loss: 0.1950
+CE Loss: 0.0266, CR Loss: 0.1950
+ 56%|#####6    | 28/50 [04:23<03:22,  9.18s/it]CE Loss: 0.0000, CR Loss: 0.1950
+CE Loss: 0.0073, CR Loss: 0.1950
+CE Loss: 0.0107, CR Loss: 0.1950
+CE Loss: 0.0003, CR Loss: 0.1950
+CE Loss: 0.0000, CR Loss: 0.1950
+CE Loss: 0.0000, CR Loss: 0.1950
+CE Loss: 0.0000, CR Loss: 0.1950
+CE Loss: 0.0000, CR Loss: 0.1950
+CE Loss: 0.0074, CR Loss: 0.1950
+CE Loss: 0.0000, CR Loss: 0.1950
+CE Loss: 0.0023, CR Loss: 0.1951
+CE Loss: 0.0000, CR Loss: 0.1951
+CE Loss: 0.0001, CR Loss: 0.1951
+CE Loss: 0.0005, CR Loss: 0.1951
+CE Loss: 0.0004, CR Loss: 0.1951
+CE Loss: 0.0000, CR Loss: 0.1951
+CE Loss: 0.0000, CR Loss: 0.1951
+CE Loss: 0.0002, CR Loss: 0.1951
+CE Loss: 0.0000, CR Loss: 0.1951
+CE Loss: 0.0000, CR Loss: 0.1951
+CE Loss: 0.2536, CR Loss: 0.1951
+CE Loss: 0.0138, CR Loss: 0.1951
+CE Loss: 0.0000, CR Loss: 0.1951
+CE Loss: 0.0001, CR Loss: 0.1951
+CE Loss: 0.0000, CR Loss: 0.1952
+CE Loss: 0.0000, CR Loss: 0.1952
+CE Loss: 0.0000, CR Loss: 0.1952
+CE Loss: 0.0000, CR Loss: 0.1952
+CE Loss: 0.0000, CR Loss: 0.1952
+CE Loss: 0.0070, CR Loss: 0.1952
+CE Loss: 0.0000, CR Loss: 0.1952
+CE Loss: 0.0000, CR Loss: 0.1952
+CE Loss: 0.0000, CR Loss: 0.1952
+CE Loss: 0.0094, CR Loss: 0.1952
+CE Loss: 0.0000, CR Loss: 0.1952
+CE Loss: 0.0000, CR Loss: 0.1952
+CE Loss: 0.0001, CR Loss: 0.1953
+CE Loss: 0.0002, CR Loss: 0.1953
+CE Loss: 0.0000, CR Loss: 0.1953
+CE Loss: 0.0010, CR Loss: 0.1953
+CE Loss: 0.0004, CR Loss: 0.1953
+CE Loss: 0.0000, CR Loss: 0.1953
+CE Loss: 0.0000, CR Loss: 0.1953
+CE Loss: 0.0036, CR Loss: 0.1953
+CE Loss: 0.0419, CR Loss: 0.1953
+CE Loss: 0.0036, CR Loss: 0.1953
+CE Loss: 0.0000, CR Loss: 0.1953
+CE Loss: 0.0026, CR Loss: 0.1953
+CE Loss: 0.0009, CR Loss: 0.1953
+CE Loss: 0.0007, CR Loss: 0.1953
+ 58%|#####8    | 29/50 [04:32<03:12,  9.17s/it]CE Loss: 0.0009, CR Loss: 0.1953
+CE Loss: 0.0000, CR Loss: 0.1953
+CE Loss: 0.0000, CR Loss: 0.1953
+CE Loss: 0.0047, CR Loss: 0.1953
+CE Loss: 0.0000, CR Loss: 0.1953
+CE Loss: 0.0000, CR Loss: 0.1953
+CE Loss: 0.0000, CR Loss: 0.1953
+CE Loss: 0.0000, CR Loss: 0.1953
+CE Loss: 0.0004, CR Loss: 0.1954
+CE Loss: 0.0879, CR Loss: 0.1954
+CE Loss: 0.0000, CR Loss: 0.1954
+CE Loss: 0.0000, CR Loss: 0.1954
+CE Loss: 0.0001, CR Loss: 0.1954
+CE Loss: 0.0003, CR Loss: 0.1954
+CE Loss: 0.0014, CR Loss: 0.1954
+CE Loss: 0.0148, CR Loss: 0.1954
+CE Loss: 0.2393, CR Loss: 0.1954
+CE Loss: 0.2623, CR Loss: 0.1955
+CE Loss: 0.2101, CR Loss: 0.1955
+CE Loss: 0.0387, CR Loss: 0.1955
+CE Loss: 0.0043, CR Loss: 0.1955
+CE Loss: 0.0013, CR Loss: 0.1955
+CE Loss: 0.0037, CR Loss: 0.1956
+CE Loss: 0.0000, CR Loss: 0.1956
+CE Loss: 0.0000, CR Loss: 0.1956
+CE Loss: 0.0000, CR Loss: 0.1956
+CE Loss: 0.0000, CR Loss: 0.1957
+CE Loss: 0.0000, CR Loss: 0.1957
+CE Loss: 0.0331, CR Loss: 0.1957
+CE Loss: 0.0004, CR Loss: 0.1957
+CE Loss: 0.0001, CR Loss: 0.1957
+CE Loss: 0.0000, CR Loss: 0.1957
+CE Loss: 0.0056, CR Loss: 0.1957
+CE Loss: 0.0002, CR Loss: 0.1958
+CE Loss: 0.0001, CR Loss: 0.1958
+CE Loss: 0.0000, CR Loss: 0.1958
+CE Loss: 0.0000, CR Loss: 0.1958
+CE Loss: 0.0000, CR Loss: 0.1958
+CE Loss: 0.0327, CR Loss: 0.1958
+CE Loss: 0.0000, CR Loss: 0.1958
+CE Loss: 0.0000, CR Loss: 0.1958
+CE Loss: 0.0006, CR Loss: 0.1958
+CE Loss: 0.0017, CR Loss: 0.1959
+CE Loss: 0.0000, CR Loss: 0.1959
+CE Loss: 0.0009, CR Loss: 0.1959
+CE Loss: 0.0000, CR Loss: 0.1959
+CE Loss: 0.0002, CR Loss: 0.1959
+CE Loss: 0.0000, CR Loss: 0.1959
+CE Loss: 0.0000, CR Loss: 0.1959
+CE Loss: 0.0001, CR Loss: 0.1959
+
+
+-------------------------------
+Train Evaluation (Epoch 30/50)
+-------------------------------
+
+Accuracy        = 0.9950
+F1-Score        = 0.9950
+Precision       = 0.9953
+Recall          = 0.9950
+Average Loss    = -0.1767
+
+
+
+
+Evaluating the model on clean test dataset ...
+
+
+Evaluating the model ...
+Batch 1/4
+CE Loss: 0.0371, CR Loss: 0.1959
+Batch 2/4
+CE Loss: 0.2898, CR Loss: 0.1959
+Batch 3/4
+CE Loss: 0.5382, CR Loss: 0.1959
+Batch 4/4
+CE Loss: 0.0566, CR Loss: 0.1959
+
+
+Time & Date = 11:55 AM , 05_Jan_2025  GST
+
+Total Time => 0 Hours : 0 Minutes : 1 Seconds
+
+
+
+
+-------------------------------
+Test Evaluation (Clean)
+-------------------------------
+
+Accuracy        = 0.9600
+F1-Score        = 0.9594
+Precision       = 0.9634
+Recall          = 0.9600
+Average Loss    = 0.0345
+
+
+
+
+Evaluating the model on poisoned test dataset ...
+
+
+Evaluating the model ...
+Batch 1/4
+CE Loss: 55.6768, CR Loss: 0.1959
+Batch 2/4
+CE Loss: 54.2842, CR Loss: 0.1959
+Batch 3/4
+CE Loss: 51.4964, CR Loss: 0.1959
+Batch 4/4
+CE Loss: 53.8034, CR Loss: 0.1959
+
+
+Time & Date = 11:55 AM , 05_Jan_2025  GST
+
+Total Time => 0 Hours : 0 Minutes : 1 Seconds
+
+
+
+
+-------------------------------
+Test Evaluation (Backdoor)
+-------------------------------
+
+Accuracy        = 0.0000
+F1-Score        = 0.0000
+Precision       = 0.0200
+Recall          = 0.9800
+Average Loss    = 53.6193
+
+
+ 60%|######    | 30/50 [04:44<03:20, 10.04s/it]CE Loss: 0.0000, CR Loss: 0.1959
+CE Loss: 0.0139, CR Loss: 0.1959
+CE Loss: 0.0020, CR Loss: 0.1959
+CE Loss: 0.0002, CR Loss: 0.1960
+CE Loss: 0.0000, CR Loss: 0.1960
+CE Loss: 0.0037, CR Loss: 0.1960
+CE Loss: 0.0002, CR Loss: 0.1960
+CE Loss: 0.0431, CR Loss: 0.1960
+CE Loss: 0.0001, CR Loss: 0.1960
+CE Loss: 0.0000, CR Loss: 0.1960
+CE Loss: 0.0141, CR Loss: 0.1960
+CE Loss: 0.0001, CR Loss: 0.1960
+CE Loss: 0.0000, CR Loss: 0.1960
+CE Loss: 0.0696, CR Loss: 0.1960
+CE Loss: 0.0000, CR Loss: 0.1961
+CE Loss: 0.0001, CR Loss: 0.1961
+CE Loss: 0.0006, CR Loss: 0.1961
+CE Loss: 0.0000, CR Loss: 0.1961
+CE Loss: 0.0000, CR Loss: 0.1961
+CE Loss: 0.0004, CR Loss: 0.1961
+CE Loss: 0.0001, CR Loss: 0.1961
+CE Loss: 0.0009, CR Loss: 0.1961
+CE Loss: 0.0000, CR Loss: 0.1961
+CE Loss: 0.0018, CR Loss: 0.1961
+CE Loss: 0.0000, CR Loss: 0.1961
+CE Loss: 0.1250, CR Loss: 0.1961
+CE Loss: 0.0000, CR Loss: 0.1961
+CE Loss: 0.0002, CR Loss: 0.1961
+CE Loss: 0.0000, CR Loss: 0.1961
+CE Loss: 0.0000, CR Loss: 0.1961
+CE Loss: 0.0000, CR Loss: 0.1961
+CE Loss: 0.0000, CR Loss: 0.1961
+CE Loss: 0.0000, CR Loss: 0.1961
+CE Loss: 0.0079, CR Loss: 0.1962
+CE Loss: 0.0000, CR Loss: 0.1962
+CE Loss: 0.0260, CR Loss: 0.1962
+CE Loss: 0.0012, CR Loss: 0.1962
+CE Loss: 0.0000, CR Loss: 0.1962
+CE Loss: 0.0000, CR Loss: 0.1962
+CE Loss: 0.0000, CR Loss: 0.1962
+CE Loss: 0.0000, CR Loss: 0.1962
+CE Loss: 0.0000, CR Loss: 0.1962
+CE Loss: 0.0000, CR Loss: 0.1962
+CE Loss: 0.0000, CR Loss: 0.1962
+CE Loss: 0.0000, CR Loss: 0.1962
+CE Loss: 0.3117, CR Loss: 0.1962
+CE Loss: 0.0000, CR Loss: 0.1962
+CE Loss: 0.0076, CR Loss: 0.1962
+CE Loss: 0.0000, CR Loss: 0.1962
+CE Loss: 0.0224, CR Loss: 0.1962
+ 62%|######2   | 31/50 [04:53<03:06,  9.79s/it]CE Loss: 0.0000, CR Loss: 0.1962
+CE Loss: 0.0001, CR Loss: 0.1963
+CE Loss: 0.0000, CR Loss: 0.1963
+CE Loss: 0.0061, CR Loss: 0.1963
+CE Loss: 0.0000, CR Loss: 0.1963
+CE Loss: 0.0107, CR Loss: 0.1963
+CE Loss: 0.1219, CR Loss: 0.1963
+CE Loss: 0.0001, CR Loss: 0.1963
+CE Loss: 0.0000, CR Loss: 0.1963
+CE Loss: 0.0279, CR Loss: 0.1963
+CE Loss: 0.0000, CR Loss: 0.1963
+CE Loss: 0.0506, CR Loss: 0.1963
+CE Loss: 0.0020, CR Loss: 0.1963
+CE Loss: 0.0000, CR Loss: 0.1963
+CE Loss: 0.0061, CR Loss: 0.1963
+CE Loss: 0.0000, CR Loss: 0.1963
+CE Loss: 0.0017, CR Loss: 0.1963
+CE Loss: 0.0000, CR Loss: 0.1963
+CE Loss: 0.0000, CR Loss: 0.1963
+CE Loss: 0.0000, CR Loss: 0.1963
+CE Loss: 0.0000, CR Loss: 0.1963
+CE Loss: 0.0000, CR Loss: 0.1963
+CE Loss: 0.0001, CR Loss: 0.1963
+CE Loss: 0.0000, CR Loss: 0.1963
+CE Loss: 0.0000, CR Loss: 0.1963
+CE Loss: 0.0000, CR Loss: 0.1964
+CE Loss: 0.1048, CR Loss: 0.1964
+CE Loss: 0.0000, CR Loss: 0.1964
+CE Loss: 0.0018, CR Loss: 0.1964
+CE Loss: 0.0000, CR Loss: 0.1964
+CE Loss: 0.0000, CR Loss: 0.1964
+CE Loss: 0.0000, CR Loss: 0.1964
+CE Loss: 0.0020, CR Loss: 0.1964
+CE Loss: 0.0022, CR Loss: 0.1964
+CE Loss: 0.0001, CR Loss: 0.1964
+CE Loss: 0.0000, CR Loss: 0.1964
+CE Loss: 0.0008, CR Loss: 0.1964
+CE Loss: 0.0000, CR Loss: 0.1964
+CE Loss: 0.0000, CR Loss: 0.1964
+CE Loss: 0.0000, CR Loss: 0.1965
+CE Loss: 0.1905, CR Loss: 0.1965
+CE Loss: 0.0002, CR Loss: 0.1965
+CE Loss: 0.0000, CR Loss: 0.1965
+CE Loss: 0.2559, CR Loss: 0.1965
+CE Loss: 0.0034, CR Loss: 0.1965
+CE Loss: 0.0000, CR Loss: 0.1965
+CE Loss: 0.0000, CR Loss: 0.1965
+CE Loss: 0.1031, CR Loss: 0.1965
+CE Loss: 0.0018, CR Loss: 0.1965
+CE Loss: 0.0050, CR Loss: 0.1965
+ 64%|######4   | 32/50 [05:02<02:53,  9.62s/it]CE Loss: 0.0000, CR Loss: 0.1965
+CE Loss: 0.0002, CR Loss: 0.1965
+CE Loss: 0.0000, CR Loss: 0.1965
+CE Loss: 0.0000, CR Loss: 0.1965
+CE Loss: 0.0000, CR Loss: 0.1965
+CE Loss: 0.0007, CR Loss: 0.1965
+CE Loss: 0.0002, CR Loss: 0.1965
+CE Loss: 0.0354, CR Loss: 0.1965
+CE Loss: 0.0000, CR Loss: 0.1965
+CE Loss: 0.0001, CR Loss: 0.1965
+CE Loss: 0.0000, CR Loss: 0.1965
+CE Loss: 0.0001, CR Loss: 0.1965
+CE Loss: 0.0028, CR Loss: 0.1965
+CE Loss: 0.0000, CR Loss: 0.1965
+CE Loss: 0.0001, CR Loss: 0.1965
+CE Loss: 0.0000, CR Loss: 0.1965
+CE Loss: 0.0000, CR Loss: 0.1965
+CE Loss: 0.0005, CR Loss: 0.1965
+CE Loss: 0.0000, CR Loss: 0.1966
+CE Loss: 0.0000, CR Loss: 0.1966
+CE Loss: 0.2930, CR Loss: 0.1966
+CE Loss: 0.0001, CR Loss: 0.1966
+CE Loss: 0.0003, CR Loss: 0.1966
+CE Loss: 0.0004, CR Loss: 0.1966
+CE Loss: 0.0001, CR Loss: 0.1966
+CE Loss: 0.0018, CR Loss: 0.1966
+CE Loss: 0.0000, CR Loss: 0.1966
+CE Loss: 0.0000, CR Loss: 0.1966
+CE Loss: 0.0000, CR Loss: 0.1966
+CE Loss: 0.0001, CR Loss: 0.1966
+CE Loss: 0.0059, CR Loss: 0.1966
+CE Loss: 0.0000, CR Loss: 0.1966
+CE Loss: 0.0188, CR Loss: 0.1966
+CE Loss: 0.0000, CR Loss: 0.1966
+CE Loss: 0.0005, CR Loss: 0.1966
+CE Loss: 0.1249, CR Loss: 0.1966
+CE Loss: 0.0004, CR Loss: 0.1967
+CE Loss: 0.0008, CR Loss: 0.1967
+CE Loss: 0.0034, CR Loss: 0.1967
+CE Loss: 0.0001, CR Loss: 0.1967
+CE Loss: 0.0000, CR Loss: 0.1967
+CE Loss: 0.0005, CR Loss: 0.1967
+CE Loss: 0.0000, CR Loss: 0.1967
+CE Loss: 0.1434, CR Loss: 0.1967
+CE Loss: 0.0000, CR Loss: 0.1967
+CE Loss: 0.0000, CR Loss: 0.1967
+CE Loss: 0.0002, CR Loss: 0.1967
+CE Loss: 0.0000, CR Loss: 0.1968
+CE Loss: 0.0000, CR Loss: 0.1968
+CE Loss: 0.0000, CR Loss: 0.1968
+ 66%|######6   | 33/50 [05:12<02:41,  9.47s/it]CE Loss: 0.0055, CR Loss: 0.1968
+CE Loss: 0.0073, CR Loss: 0.1968
+CE Loss: 0.0000, CR Loss: 0.1968
+CE Loss: 0.0000, CR Loss: 0.1968
+CE Loss: 0.0000, CR Loss: 0.1968
+CE Loss: 0.0001, CR Loss: 0.1968
+CE Loss: 0.0000, CR Loss: 0.1968
+CE Loss: 0.0003, CR Loss: 0.1968
+CE Loss: 0.0000, CR Loss: 0.1968
+CE Loss: 0.0000, CR Loss: 0.1969
+CE Loss: 0.0000, CR Loss: 0.1969
+CE Loss: 0.0932, CR Loss: 0.1969
+CE Loss: 0.0000, CR Loss: 0.1969
+CE Loss: 0.0000, CR Loss: 0.1969
+CE Loss: 0.0000, CR Loss: 0.1969
+CE Loss: 0.0001, CR Loss: 0.1969
+CE Loss: 0.0000, CR Loss: 0.1969
+CE Loss: 0.0000, CR Loss: 0.1969
+CE Loss: 0.0000, CR Loss: 0.1969
+CE Loss: 0.0000, CR Loss: 0.1969
+CE Loss: 0.0000, CR Loss: 0.1969
+CE Loss: 0.0001, CR Loss: 0.1969
+CE Loss: 0.0002, CR Loss: 0.1969
+CE Loss: 0.0002, CR Loss: 0.1969
+CE Loss: 0.0000, CR Loss: 0.1969
+CE Loss: 0.0000, CR Loss: 0.1969
+CE Loss: 0.0009, CR Loss: 0.1969
+CE Loss: 0.0000, CR Loss: 0.1970
+CE Loss: 0.0919, CR Loss: 0.1970
+CE Loss: 0.0010, CR Loss: 0.1970
+CE Loss: 0.0000, CR Loss: 0.1970
+CE Loss: 0.0000, CR Loss: 0.1970
+CE Loss: 0.0005, CR Loss: 0.1970
+CE Loss: 0.0017, CR Loss: 0.1970
+CE Loss: 0.0027, CR Loss: 0.1970
+CE Loss: 0.0000, CR Loss: 0.1970
+CE Loss: 0.0046, CR Loss: 0.1971
+CE Loss: 0.0000, CR Loss: 0.1971
+CE Loss: 0.0000, CR Loss: 0.1971
+CE Loss: 0.0000, CR Loss: 0.1971
+CE Loss: 0.0003, CR Loss: 0.1971
+CE Loss: 0.0000, CR Loss: 0.1971
+CE Loss: 0.0000, CR Loss: 0.1971
+CE Loss: 0.0000, CR Loss: 0.1971
+CE Loss: 0.0000, CR Loss: 0.1971
+CE Loss: 0.0001, CR Loss: 0.1971
+CE Loss: 0.0000, CR Loss: 0.1971
+CE Loss: 0.0000, CR Loss: 0.1972
+CE Loss: 0.0000, CR Loss: 0.1972
+CE Loss: 0.0000, CR Loss: 0.1972
+ 68%|######8   | 34/50 [05:21<02:29,  9.37s/it]CE Loss: 0.0015, CR Loss: 0.1972
+CE Loss: 0.0000, CR Loss: 0.1972
+CE Loss: 0.0000, CR Loss: 0.1972
+CE Loss: 0.0000, CR Loss: 0.1972
+CE Loss: 0.0000, CR Loss: 0.1972
+CE Loss: 0.0029, CR Loss: 0.1972
+CE Loss: 0.0000, CR Loss: 0.1972
+CE Loss: 0.0000, CR Loss: 0.1972
+CE Loss: 0.0158, CR Loss: 0.1972
+CE Loss: 0.0002, CR Loss: 0.1973
+CE Loss: 0.0000, CR Loss: 0.1973
+CE Loss: 0.0000, CR Loss: 0.1973
+CE Loss: 0.0002, CR Loss: 0.1973
+CE Loss: 0.0000, CR Loss: 0.1973
+CE Loss: 0.0000, CR Loss: 0.1973
+CE Loss: 0.0000, CR Loss: 0.1973
+CE Loss: 0.0000, CR Loss: 0.1973
+CE Loss: 0.0001, CR Loss: 0.1973
+CE Loss: 0.0000, CR Loss: 0.1973
+CE Loss: 0.0000, CR Loss: 0.1973
+CE Loss: 0.0000, CR Loss: 0.1973
+CE Loss: 0.0000, CR Loss: 0.1974
+CE Loss: 0.0000, CR Loss: 0.1974
+CE Loss: 0.0000, CR Loss: 0.1974
+CE Loss: 0.0000, CR Loss: 0.1974
+CE Loss: 0.0000, CR Loss: 0.1974
+CE Loss: 0.0000, CR Loss: 0.1974
+CE Loss: 0.1784, CR Loss: 0.1974
+CE Loss: 0.0000, CR Loss: 0.1974
+CE Loss: 0.0000, CR Loss: 0.1974
+CE Loss: 0.0008, CR Loss: 0.1974
+CE Loss: 0.0000, CR Loss: 0.1974
+CE Loss: 0.0001, CR Loss: 0.1974
+CE Loss: 0.0000, CR Loss: 0.1975
+CE Loss: 0.0000, CR Loss: 0.1975
+CE Loss: 0.1462, CR Loss: 0.1975
+CE Loss: 0.2249, CR Loss: 0.1975
+CE Loss: 0.0000, CR Loss: 0.1975
+CE Loss: 0.0008, CR Loss: 0.1975
+CE Loss: 0.5257, CR Loss: 0.1975
+CE Loss: 0.0017, CR Loss: 0.1975
+CE Loss: 0.0113, CR Loss: 0.1975
+CE Loss: 0.0057, CR Loss: 0.1975
+CE Loss: 0.0000, CR Loss: 0.1975
+CE Loss: 0.0024, CR Loss: 0.1975
+CE Loss: 0.0001, CR Loss: 0.1975
+CE Loss: 0.0000, CR Loss: 0.1975
+CE Loss: 0.0000, CR Loss: 0.1975
+CE Loss: 0.0002, CR Loss: 0.1975
+CE Loss: 0.0000, CR Loss: 0.1975
+
+
+-------------------------------
+Train Evaluation (Epoch 35/50)
+-------------------------------
+
+Accuracy        = 0.9950
+F1-Score        = 0.9950
+Precision       = 0.9954
+Recall          = 0.9950
+Average Loss    = -0.1750
+
+
+ 70%|#######   | 35/50 [05:30<02:19,  9.29s/it]CE Loss: 0.0053, CR Loss: 0.1975
+CE Loss: 0.0061, CR Loss: 0.1975
+CE Loss: 0.0000, CR Loss: 0.1975
+CE Loss: 0.0000, CR Loss: 0.1975
+CE Loss: 0.0000, CR Loss: 0.1975
+CE Loss: 0.0000, CR Loss: 0.1975
+CE Loss: 0.0000, CR Loss: 0.1975
+CE Loss: 0.0205, CR Loss: 0.1975
+CE Loss: 0.0000, CR Loss: 0.1975
+CE Loss: 0.0006, CR Loss: 0.1975
+CE Loss: 0.0002, CR Loss: 0.1975
+CE Loss: 0.0001, CR Loss: 0.1976
+CE Loss: 0.0082, CR Loss: 0.1976
+CE Loss: 0.0001, CR Loss: 0.1976
+CE Loss: 0.0000, CR Loss: 0.1976
+CE Loss: 0.0010, CR Loss: 0.1976
+CE Loss: 0.0001, CR Loss: 0.1976
+CE Loss: 0.0003, CR Loss: 0.1976
+CE Loss: 0.0000, CR Loss: 0.1976
+CE Loss: 0.0000, CR Loss: 0.1976
+CE Loss: 0.0000, CR Loss: 0.1976
+CE Loss: 0.0206, CR Loss: 0.1976
+CE Loss: 0.2009, CR Loss: 0.1976
+CE Loss: 0.0000, CR Loss: 0.1976
+CE Loss: 0.0000, CR Loss: 0.1976
+CE Loss: 0.0002, CR Loss: 0.1977
+CE Loss: 0.0000, CR Loss: 0.1977
+CE Loss: 0.0002, CR Loss: 0.1977
+CE Loss: 0.0194, CR Loss: 0.1977
+CE Loss: 0.0000, CR Loss: 0.1977
+CE Loss: 0.2221, CR Loss: 0.1977
+CE Loss: 0.0001, CR Loss: 0.1977
+CE Loss: 0.0001, CR Loss: 0.1977
+CE Loss: 0.0001, CR Loss: 0.1977
+CE Loss: 0.0002, CR Loss: 0.1977
+CE Loss: 0.0000, CR Loss: 0.1977
+CE Loss: 0.0046, CR Loss: 0.1978
+CE Loss: 0.0000, CR Loss: 0.1978
+CE Loss: 0.0000, CR Loss: 0.1978
+CE Loss: 0.0004, CR Loss: 0.1978
+CE Loss: 0.0000, CR Loss: 0.1978
+CE Loss: 0.0007, CR Loss: 0.1978
+CE Loss: 0.0000, CR Loss: 0.1978
+CE Loss: 0.0000, CR Loss: 0.1978
+CE Loss: 0.0000, CR Loss: 0.1978
+CE Loss: 0.0001, CR Loss: 0.1978
+CE Loss: 0.0000, CR Loss: 0.1979
+CE Loss: 0.0002, CR Loss: 0.1979
+CE Loss: 0.0000, CR Loss: 0.1979
+CE Loss: 0.0016, CR Loss: 0.1979
+ 72%|#######2  | 36/50 [05:39<02:09,  9.26s/it]CE Loss: 0.0000, CR Loss: 0.1979
+CE Loss: 0.0040, CR Loss: 0.1979
+CE Loss: 0.0000, CR Loss: 0.1979
+CE Loss: 0.0000, CR Loss: 0.1979
+CE Loss: 0.0000, CR Loss: 0.1979
+CE Loss: 0.0000, CR Loss: 0.1979
+CE Loss: 0.0002, CR Loss: 0.1979
+CE Loss: 0.0000, CR Loss: 0.1979
+CE Loss: 0.0001, CR Loss: 0.1980
+CE Loss: 0.0066, CR Loss: 0.1980
+CE Loss: 0.0000, CR Loss: 0.1980
+CE Loss: 0.0000, CR Loss: 0.1980
+CE Loss: 0.0000, CR Loss: 0.1980
+CE Loss: 0.0009, CR Loss: 0.1980
+CE Loss: 0.0000, CR Loss: 0.1980
+CE Loss: 0.0000, CR Loss: 0.1980
+CE Loss: 0.0002, CR Loss: 0.1980
+CE Loss: 0.0000, CR Loss: 0.1980
+CE Loss: 0.0000, CR Loss: 0.1980
+CE Loss: 0.4618, CR Loss: 0.1980
+CE Loss: 0.0000, CR Loss: 0.1981
+CE Loss: 0.0000, CR Loss: 0.1981
+CE Loss: 0.0310, CR Loss: 0.1981
+CE Loss: 0.0001, CR Loss: 0.1981
+CE Loss: 0.0002, CR Loss: 0.1981
+CE Loss: 0.0000, CR Loss: 0.1981
+CE Loss: 0.0274, CR Loss: 0.1981
+CE Loss: 0.0181, CR Loss: 0.1981
+CE Loss: 0.0005, CR Loss: 0.1981
+CE Loss: 0.0000, CR Loss: 0.1981
+CE Loss: 0.0000, CR Loss: 0.1981
+CE Loss: 0.0000, CR Loss: 0.1981
+CE Loss: 0.0000, CR Loss: 0.1982
+CE Loss: 0.0000, CR Loss: 0.1982
+CE Loss: 0.0019, CR Loss: 0.1982
+CE Loss: 0.0000, CR Loss: 0.1982
+CE Loss: 0.0000, CR Loss: 0.1982
+CE Loss: 0.0001, CR Loss: 0.1982
+CE Loss: 0.0009, CR Loss: 0.1982
+CE Loss: 0.0001, CR Loss: 0.1982
+CE Loss: 0.0000, CR Loss: 0.1982
+CE Loss: 0.0000, CR Loss: 0.1982
+CE Loss: 0.0002, CR Loss: 0.1982
+CE Loss: 0.0000, CR Loss: 0.1982
+CE Loss: 0.0001, CR Loss: 0.1983
+CE Loss: 0.0015, CR Loss: 0.1983
+CE Loss: 0.0000, CR Loss: 0.1983
+CE Loss: 0.0000, CR Loss: 0.1983
+CE Loss: 0.0000, CR Loss: 0.1983
+CE Loss: 0.0004, CR Loss: 0.1983
+ 74%|#######4  | 37/50 [05:48<02:00,  9.24s/it]CE Loss: 0.0000, CR Loss: 0.1983
+CE Loss: 0.0153, CR Loss: 0.1983
+CE Loss: 0.0002, CR Loss: 0.1983
+CE Loss: 0.0000, CR Loss: 0.1983
+CE Loss: 0.0000, CR Loss: 0.1983
+CE Loss: 0.0000, CR Loss: 0.1983
+CE Loss: 0.0021, CR Loss: 0.1984
+CE Loss: 0.0000, CR Loss: 0.1984
+CE Loss: 0.0001, CR Loss: 0.1984
+CE Loss: 0.0000, CR Loss: 0.1984
+CE Loss: 0.0000, CR Loss: 0.1984
+CE Loss: 0.0001, CR Loss: 0.1984
+CE Loss: 0.0002, CR Loss: 0.1984
+CE Loss: 0.0000, CR Loss: 0.1984
+CE Loss: 0.0000, CR Loss: 0.1984
+CE Loss: 0.0002, CR Loss: 0.1984
+CE Loss: 0.0016, CR Loss: 0.1984
+CE Loss: 0.0000, CR Loss: 0.1984
+CE Loss: 0.0000, CR Loss: 0.1984
+CE Loss: 0.0000, CR Loss: 0.1985
+CE Loss: 0.0000, CR Loss: 0.1985
+CE Loss: 0.0008, CR Loss: 0.1985
+CE Loss: 0.0000, CR Loss: 0.1985
+CE Loss: 0.0004, CR Loss: 0.1985
+CE Loss: 0.0022, CR Loss: 0.1985
+CE Loss: 0.0001, CR Loss: 0.1985
+CE Loss: 0.0000, CR Loss: 0.1985
+CE Loss: 0.0000, CR Loss: 0.1985
+CE Loss: 0.0000, CR Loss: 0.1985
+CE Loss: 0.0002, CR Loss: 0.1985
+CE Loss: 0.0000, CR Loss: 0.1985
+CE Loss: 0.0043, CR Loss: 0.1985
+CE Loss: 0.0000, CR Loss: 0.1986
+CE Loss: 0.0052, CR Loss: 0.1986
+CE Loss: 0.0000, CR Loss: 0.1986
+CE Loss: 0.0004, CR Loss: 0.1986
+CE Loss: 0.0000, CR Loss: 0.1986
+CE Loss: 0.0000, CR Loss: 0.1986
+CE Loss: 0.0023, CR Loss: 0.1986
+CE Loss: 0.0000, CR Loss: 0.1986
+CE Loss: 0.0004, CR Loss: 0.1986
+CE Loss: 0.0004, CR Loss: 0.1986
+CE Loss: 0.0000, CR Loss: 0.1986
+CE Loss: 0.0003, CR Loss: 0.1986
+CE Loss: 0.0000, CR Loss: 0.1986
+CE Loss: 0.0001, CR Loss: 0.1986
+CE Loss: 0.0001, CR Loss: 0.1987
+CE Loss: 0.0001, CR Loss: 0.1987
+CE Loss: 0.0000, CR Loss: 0.1987
+CE Loss: 0.0019, CR Loss: 0.1987
+ 76%|#######6  | 38/50 [05:57<01:50,  9.21s/it]CE Loss: 0.0001, CR Loss: 0.1987
+CE Loss: 0.0000, CR Loss: 0.1987
+CE Loss: 0.0000, CR Loss: 0.1987
+CE Loss: 0.0000, CR Loss: 0.1987
+CE Loss: 0.0007, CR Loss: 0.1987
+CE Loss: 0.0007, CR Loss: 0.1987
+CE Loss: 0.0000, CR Loss: 0.1987
+CE Loss: 0.0000, CR Loss: 0.1987
+CE Loss: 0.0006, CR Loss: 0.1987
+CE Loss: 0.0004, CR Loss: 0.1988
+CE Loss: 0.0002, CR Loss: 0.1988
+CE Loss: 0.0001, CR Loss: 0.1988
+CE Loss: 0.0001, CR Loss: 0.1988
+CE Loss: 0.0000, CR Loss: 0.1988
+CE Loss: 0.0000, CR Loss: 0.1988
+CE Loss: 0.0008, CR Loss: 0.1988
+CE Loss: 0.0009, CR Loss: 0.1988
+CE Loss: 0.0001, CR Loss: 0.1988
+CE Loss: 0.0000, CR Loss: 0.1988
+CE Loss: 0.0000, CR Loss: 0.1988
+CE Loss: 0.0092, CR Loss: 0.1988
+CE Loss: 0.0000, CR Loss: 0.1988
+CE Loss: 0.0000, CR Loss: 0.1989
+CE Loss: 0.0004, CR Loss: 0.1989
+CE Loss: 0.0011, CR Loss: 0.1989
+CE Loss: 0.0000, CR Loss: 0.1989
+CE Loss: 0.0000, CR Loss: 0.1989
+CE Loss: 0.0001, CR Loss: 0.1989
+CE Loss: 0.0098, CR Loss: 0.1989
+CE Loss: 0.0000, CR Loss: 0.1989
+CE Loss: 0.0333, CR Loss: 0.1989
+CE Loss: 0.0005, CR Loss: 0.1989
+CE Loss: 0.0000, CR Loss: 0.1989
+CE Loss: 0.0098, CR Loss: 0.1989
+CE Loss: 0.0002, CR Loss: 0.1989
+CE Loss: 0.0000, CR Loss: 0.1990
+CE Loss: 0.0009, CR Loss: 0.1990
+CE Loss: 0.0000, CR Loss: 0.1990
+CE Loss: 0.0000, CR Loss: 0.1990
+CE Loss: 0.0000, CR Loss: 0.1990
+CE Loss: 0.0000, CR Loss: 0.1990
+CE Loss: 1.1790, CR Loss: 0.1990
+CE Loss: 0.1837, CR Loss: 0.1990
+CE Loss: 0.0001, CR Loss: 0.1990
+CE Loss: 0.0001, CR Loss: 0.1990
+CE Loss: 0.0000, CR Loss: 0.1990
+CE Loss: 0.0000, CR Loss: 0.1990
+CE Loss: 0.0000, CR Loss: 0.1990
+CE Loss: 0.0000, CR Loss: 0.1990
+CE Loss: 0.0001, CR Loss: 0.1990
+ 78%|#######8  | 39/50 [06:06<01:41,  9.20s/it]CE Loss: 0.0000, CR Loss: 0.1990
+CE Loss: 0.0000, CR Loss: 0.1990
+CE Loss: 0.0000, CR Loss: 0.1990
+CE Loss: 0.0000, CR Loss: 0.1990
+CE Loss: 0.0000, CR Loss: 0.1990
+CE Loss: 0.0001, CR Loss: 0.1990
+CE Loss: 0.0089, CR Loss: 0.1990
+CE Loss: 0.0001, CR Loss: 0.1990
+CE Loss: 0.0000, CR Loss: 0.1990
+CE Loss: 0.0004, CR Loss: 0.1990
+CE Loss: 0.0012, CR Loss: 0.1991
+CE Loss: 0.0004, CR Loss: 0.1991
+CE Loss: 0.0000, CR Loss: 0.1991
+CE Loss: 0.0000, CR Loss: 0.1991
+CE Loss: 0.0172, CR Loss: 0.1991
+CE Loss: 0.0068, CR Loss: 0.1991
+CE Loss: 0.0003, CR Loss: 0.1991
+CE Loss: 0.0000, CR Loss: 0.1991
+CE Loss: 0.0000, CR Loss: 0.1991
+CE Loss: 0.1027, CR Loss: 0.1991
+CE Loss: 0.0001, CR Loss: 0.1991
+CE Loss: 0.0000, CR Loss: 0.1991
+CE Loss: 0.0009, CR Loss: 0.1991
+CE Loss: 0.0000, CR Loss: 0.1991
+CE Loss: 0.0880, CR Loss: 0.1991
+CE Loss: 0.0000, CR Loss: 0.1992
+CE Loss: 0.0000, CR Loss: 0.1992
+CE Loss: 0.0023, CR Loss: 0.1992
+CE Loss: 0.0000, CR Loss: 0.1992
+CE Loss: 0.0093, CR Loss: 0.1992
+CE Loss: 0.0000, CR Loss: 0.1992
+CE Loss: 0.0000, CR Loss: 0.1992
+CE Loss: 0.0011, CR Loss: 0.1992
+CE Loss: 0.0000, CR Loss: 0.1992
+CE Loss: 0.0000, CR Loss: 0.1992
+CE Loss: 0.0002, CR Loss: 0.1992
+CE Loss: 0.0037, CR Loss: 0.1992
+CE Loss: 0.0000, CR Loss: 0.1992
+CE Loss: 0.0001, CR Loss: 0.1992
+CE Loss: 0.0005, CR Loss: 0.1993
+CE Loss: 0.0000, CR Loss: 0.1993
+CE Loss: 0.0000, CR Loss: 0.1993
+CE Loss: 0.0000, CR Loss: 0.1993
+CE Loss: 0.0000, CR Loss: 0.1993
+CE Loss: 0.0001, CR Loss: 0.1993
+CE Loss: 0.0001, CR Loss: 0.1993
+CE Loss: 0.0007, CR Loss: 0.1993
+CE Loss: 0.0000, CR Loss: 0.1993
+CE Loss: 0.0001, CR Loss: 0.1993
+CE Loss: 0.0002, CR Loss: 0.1993
+
+
+-------------------------------
+Train Evaluation (Epoch 40/50)
+-------------------------------
+
+Accuracy        = 0.9975
+F1-Score        = 0.9975
+Precision       = 0.9976
+Recall          = 0.9975
+Average Loss    = -0.1942
+
+
+
+
+Evaluating the model on clean test dataset ...
+
+
+Evaluating the model ...
+Batch 1/4
+CE Loss: 0.0338, CR Loss: 0.1993
+Batch 2/4
+CE Loss: 0.3034, CR Loss: 0.1993
+Batch 3/4
+CE Loss: 0.5177, CR Loss: 0.1993
+Batch 4/4
+CE Loss: 0.0329, CR Loss: 0.1993
+
+
+Time & Date = 11:56 AM , 05_Jan_2025  GST
+
+Total Time => 0 Hours : 0 Minutes : 1 Seconds
+
+
+
+
+-------------------------------
+Test Evaluation (Clean)
+-------------------------------
+
+Accuracy        = 0.9625
+F1-Score        = 0.9626
+Precision       = 0.9665
+Recall          = 0.9625
+Average Loss    = 0.0226
+
+
+
+
+Evaluating the model on poisoned test dataset ...
+
+
+Evaluating the model ...
+Batch 1/4
+CE Loss: 54.6164, CR Loss: 0.1993
+Batch 2/4
+CE Loss: 53.4401, CR Loss: 0.1993
+Batch 3/4
+CE Loss: 50.5317, CR Loss: 0.1993
+Batch 4/4
+CE Loss: 53.1076, CR Loss: 0.1993
+
+
+Time & Date = 11:56 AM , 05_Jan_2025  GST
+
+Total Time => 0 Hours : 0 Minutes : 1 Seconds
+
+
+
+
+-------------------------------
+Test Evaluation (Backdoor)
+-------------------------------
+
+Accuracy        = 0.0000
+F1-Score        = 0.0000
+Precision       = 0.0200
+Recall          = 0.9800
+Average Loss    = 52.7246
+
+
+ 80%|########  | 40/50 [06:18<01:39,  9.99s/it]CE Loss: 0.0000, CR Loss: 0.1993
+CE Loss: 0.0000, CR Loss: 0.1993
+CE Loss: 0.0006, CR Loss: 0.1994
+CE Loss: 0.0000, CR Loss: 0.1994
+CE Loss: 0.0041, CR Loss: 0.1994
+CE Loss: 0.0000, CR Loss: 0.1994
+CE Loss: 0.0001, CR Loss: 0.1994
+CE Loss: 0.0000, CR Loss: 0.1994
+CE Loss: 0.0000, CR Loss: 0.1994
+CE Loss: 0.0000, CR Loss: 0.1994
+CE Loss: 0.0000, CR Loss: 0.1994
+CE Loss: 0.0001, CR Loss: 0.1994
+CE Loss: 0.0002, CR Loss: 0.1994
+CE Loss: 0.0000, CR Loss: 0.1994
+CE Loss: 0.0000, CR Loss: 0.1994
+CE Loss: 0.0001, CR Loss: 0.1995
+CE Loss: 0.0065, CR Loss: 0.1995
+CE Loss: 0.0000, CR Loss: 0.1995
+CE Loss: 0.0014, CR Loss: 0.1995
+CE Loss: 0.0000, CR Loss: 0.1995
+CE Loss: 0.0536, CR Loss: 0.1995
+CE Loss: 0.0000, CR Loss: 0.1995
+CE Loss: 0.0008, CR Loss: 0.1995
+CE Loss: 0.0000, CR Loss: 0.1995
+CE Loss: 0.0000, CR Loss: 0.1995
+CE Loss: 0.0000, CR Loss: 0.1995
+CE Loss: 0.0025, CR Loss: 0.1995
+CE Loss: 0.0000, CR Loss: 0.1995
+CE Loss: 0.0000, CR Loss: 0.1995
+CE Loss: 0.0000, CR Loss: 0.1995
+CE Loss: 0.0411, CR Loss: 0.1995
+CE Loss: 0.0000, CR Loss: 0.1995
+CE Loss: 0.1966, CR Loss: 0.1995
+CE Loss: 0.0456, CR Loss: 0.1995
+CE Loss: 0.0000, CR Loss: 0.1995
+CE Loss: 0.0000, CR Loss: 0.1995
+CE Loss: 0.0001, CR Loss: 0.1996
+CE Loss: 0.0000, CR Loss: 0.1996
+CE Loss: 0.0000, CR Loss: 0.1996
+CE Loss: 0.0000, CR Loss: 0.1996
+CE Loss: 0.0000, CR Loss: 0.1996
+CE Loss: 0.0549, CR Loss: 0.1996
+CE Loss: 0.0000, CR Loss: 0.1996
+CE Loss: 0.0001, CR Loss: 0.1996
+CE Loss: 0.0000, CR Loss: 0.1996
+CE Loss: 0.0019, CR Loss: 0.1996
+CE Loss: 0.0084, CR Loss: 0.1996
+CE Loss: 0.0000, CR Loss: 0.1996
+CE Loss: 0.0027, CR Loss: 0.1996
+CE Loss: 0.0152, CR Loss: 0.1996
+ 82%|########2 | 41/50 [06:28<01:27,  9.77s/it]CE Loss: 0.0000, CR Loss: 0.1996
+CE Loss: 0.0000, CR Loss: 0.1996
+CE Loss: 0.0027, CR Loss: 0.1996
+CE Loss: 0.0000, CR Loss: 0.1996
+CE Loss: 0.0020, CR Loss: 0.1996
+CE Loss: 0.0081, CR Loss: 0.1997
+CE Loss: 0.0000, CR Loss: 0.1997
+CE Loss: 0.0761, CR Loss: 0.1997
+CE Loss: 0.0000, CR Loss: 0.1997
+CE Loss: 0.0010, CR Loss: 0.1997
+CE Loss: 0.0000, CR Loss: 0.1997
+CE Loss: 0.0000, CR Loss: 0.1997
+CE Loss: 0.0000, CR Loss: 0.1997
+CE Loss: 0.0001, CR Loss: 0.1997
+CE Loss: 0.0024, CR Loss: 0.1997
+CE Loss: 0.0348, CR Loss: 0.1997
+CE Loss: 0.0005, CR Loss: 0.1997
+CE Loss: 0.0197, CR Loss: 0.1997
+CE Loss: 0.0000, CR Loss: 0.1997
+CE Loss: 0.0000, CR Loss: 0.1997
+CE Loss: 0.0000, CR Loss: 0.1997
+CE Loss: 0.0000, CR Loss: 0.1997
+CE Loss: 0.0000, CR Loss: 0.1997
+CE Loss: 0.0000, CR Loss: 0.1997
+CE Loss: 0.0000, CR Loss: 0.1997
+CE Loss: 0.0026, CR Loss: 0.1997
+CE Loss: 0.0000, CR Loss: 0.1997
+CE Loss: 0.0007, CR Loss: 0.1997
+CE Loss: 0.0020, CR Loss: 0.1998
+CE Loss: 0.0001, CR Loss: 0.1998
+CE Loss: 0.0000, CR Loss: 0.1998
+CE Loss: 0.0000, CR Loss: 0.1998
+CE Loss: 0.0008, CR Loss: 0.1998
+CE Loss: 0.0253, CR Loss: 0.1998
+CE Loss: 0.0000, CR Loss: 0.1998
+CE Loss: 0.0000, CR Loss: 0.1998
+CE Loss: 0.0000, CR Loss: 0.1998
+CE Loss: 0.0000, CR Loss: 0.1998
+CE Loss: 0.0001, CR Loss: 0.1998
+CE Loss: 0.0001, CR Loss: 0.1998
+CE Loss: 0.0001, CR Loss: 0.1999
+CE Loss: 0.0003, CR Loss: 0.1999
+CE Loss: 0.0000, CR Loss: 0.1999
+CE Loss: 0.0001, CR Loss: 0.1999
+CE Loss: 0.0000, CR Loss: 0.1999
+CE Loss: 0.0019, CR Loss: 0.1999
+CE Loss: 0.0001, CR Loss: 0.1999
+CE Loss: 0.0030, CR Loss: 0.1999
+CE Loss: 0.0000, CR Loss: 0.1999
+CE Loss: 0.0000, CR Loss: 0.1999
+ 84%|########4 | 42/50 [06:37<01:16,  9.59s/it]CE Loss: 0.0001, CR Loss: 0.1999
+CE Loss: 0.0043, CR Loss: 0.1999
+CE Loss: 0.0009, CR Loss: 0.2000
+CE Loss: 0.0138, CR Loss: 0.2000
+CE Loss: 0.0001, CR Loss: 0.2000
+CE Loss: 0.0000, CR Loss: 0.2000
+CE Loss: 0.0000, CR Loss: 0.2000
+CE Loss: 0.0000, CR Loss: 0.2000
+CE Loss: 0.0000, CR Loss: 0.2000
+CE Loss: 0.0009, CR Loss: 0.2000
+CE Loss: 0.0000, CR Loss: 0.2000
+CE Loss: 0.0054, CR Loss: 0.2000
+CE Loss: 0.0000, CR Loss: 0.2000
+CE Loss: 0.0000, CR Loss: 0.2001
+CE Loss: 0.0000, CR Loss: 0.2001
+CE Loss: 0.2446, CR Loss: 0.2001
+CE Loss: 0.0011, CR Loss: 0.2001
+CE Loss: 0.0009, CR Loss: 0.2001
+CE Loss: 0.0000, CR Loss: 0.2001
+CE Loss: 0.0027, CR Loss: 0.2001
+CE Loss: 0.0000, CR Loss: 0.2001
+CE Loss: 0.0000, CR Loss: 0.2001
+CE Loss: 0.0000, CR Loss: 0.2001
+CE Loss: 0.0001, CR Loss: 0.2001
+CE Loss: 0.0000, CR Loss: 0.2001
+CE Loss: 0.0000, CR Loss: 0.2001
+CE Loss: 0.0004, CR Loss: 0.2002
+CE Loss: 0.0000, CR Loss: 0.2002
+CE Loss: 0.0033, CR Loss: 0.2002
+CE Loss: 0.0005, CR Loss: 0.2002
+CE Loss: 0.0033, CR Loss: 0.2002
+CE Loss: 0.0000, CR Loss: 0.2002
+CE Loss: 0.0001, CR Loss: 0.2002
+CE Loss: 0.3640, CR Loss: 0.2002
+CE Loss: 0.0000, CR Loss: 0.2002
+CE Loss: 0.0000, CR Loss: 0.2002
+CE Loss: 0.0235, CR Loss: 0.2002
+CE Loss: 0.0000, CR Loss: 0.2002
+CE Loss: 0.6208, CR Loss: 0.2002
+CE Loss: 0.0000, CR Loss: 0.2003
+CE Loss: 0.0000, CR Loss: 0.2003
+CE Loss: 0.0000, CR Loss: 0.2003
+CE Loss: 0.0001, CR Loss: 0.2003
+CE Loss: 0.0000, CR Loss: 0.2003
+CE Loss: 0.0000, CR Loss: 0.2003
+CE Loss: 0.0000, CR Loss: 0.2003
+CE Loss: 0.0000, CR Loss: 0.2003
+CE Loss: 0.0000, CR Loss: 0.2003
+CE Loss: 0.0512, CR Loss: 0.2003
+CE Loss: 0.0002, CR Loss: 0.2003
+ 86%|########6 | 43/50 [06:46<01:06,  9.47s/it]CE Loss: 0.0000, CR Loss: 0.2003
+CE Loss: 0.0000, CR Loss: 0.2003
+CE Loss: 0.0019, CR Loss: 0.2003
+CE Loss: 0.0000, CR Loss: 0.2004
+CE Loss: 0.0000, CR Loss: 0.2004
+CE Loss: 0.0000, CR Loss: 0.2004
+CE Loss: 0.0000, CR Loss: 0.2004
+CE Loss: 0.0015, CR Loss: 0.2004
+CE Loss: 0.0000, CR Loss: 0.2004
+CE Loss: 0.0000, CR Loss: 0.2004
+CE Loss: 0.0000, CR Loss: 0.2004
+CE Loss: 0.0004, CR Loss: 0.2004
+CE Loss: 0.2996, CR Loss: 0.2004
+CE Loss: 0.0005, CR Loss: 0.2004
+CE Loss: 0.0094, CR Loss: 0.2004
+CE Loss: 0.0001, CR Loss: 0.2004
+CE Loss: 0.0183, CR Loss: 0.2004
+CE Loss: 0.0006, CR Loss: 0.2005
+CE Loss: 0.0000, CR Loss: 0.2005
+CE Loss: 0.0000, CR Loss: 0.2005
+CE Loss: 0.1485, CR Loss: 0.2005
+CE Loss: 0.0050, CR Loss: 0.2005
+CE Loss: 0.0000, CR Loss: 0.2005
+CE Loss: 0.0000, CR Loss: 0.2005
+CE Loss: 0.0211, CR Loss: 0.2005
+CE Loss: 0.0000, CR Loss: 0.2005
+CE Loss: 0.0001, CR Loss: 0.2005
+CE Loss: 0.0000, CR Loss: 0.2005
+CE Loss: 0.0002, CR Loss: 0.2005
+CE Loss: 0.0000, CR Loss: 0.2005
+CE Loss: 0.0009, CR Loss: 0.2005
+CE Loss: 0.0001, CR Loss: 0.2005
+CE Loss: 0.0000, CR Loss: 0.2005
+CE Loss: 0.0001, CR Loss: 0.2005
+CE Loss: 0.0008, CR Loss: 0.2005
+CE Loss: 0.0435, CR Loss: 0.2005
+CE Loss: 0.0000, CR Loss: 0.2005
+CE Loss: 0.0000, CR Loss: 0.2005
+CE Loss: 0.0000, CR Loss: 0.2005
+CE Loss: 0.0000, CR Loss: 0.2005
+CE Loss: 0.0000, CR Loss: 0.2006
+CE Loss: 0.0000, CR Loss: 0.2006
+CE Loss: 0.0000, CR Loss: 0.2006
+CE Loss: 0.0002, CR Loss: 0.2006
+CE Loss: 0.0081, CR Loss: 0.2006
+CE Loss: 0.0129, CR Loss: 0.2006
+CE Loss: 0.0001, CR Loss: 0.2006
+CE Loss: 0.0000, CR Loss: 0.2006
+CE Loss: 0.0000, CR Loss: 0.2006
+CE Loss: 0.0001, CR Loss: 0.2006
+ 88%|########8 | 44/50 [06:55<00:56,  9.37s/it]CE Loss: 0.0000, CR Loss: 0.2006
+CE Loss: 0.0000, CR Loss: 0.2006
+CE Loss: 0.0000, CR Loss: 0.2006
+CE Loss: 0.0006, CR Loss: 0.2006
+CE Loss: 0.0019, CR Loss: 0.2006
+CE Loss: 0.0012, CR Loss: 0.2007
+CE Loss: 0.0000, CR Loss: 0.2007
+CE Loss: 0.0000, CR Loss: 0.2007
+CE Loss: 0.0000, CR Loss: 0.2007
+CE Loss: 0.0197, CR Loss: 0.2007
+CE Loss: 0.0114, CR Loss: 0.2007
+CE Loss: 0.0000, CR Loss: 0.2007
+CE Loss: 0.0001, CR Loss: 0.2007
+CE Loss: 0.0164, CR Loss: 0.2007
+CE Loss: 0.0000, CR Loss: 0.2007
+CE Loss: 0.0001, CR Loss: 0.2007
+CE Loss: 0.0000, CR Loss: 0.2008
+CE Loss: 0.0000, CR Loss: 0.2008
+CE Loss: 0.0000, CR Loss: 0.2008
+CE Loss: 0.0002, CR Loss: 0.2008
+CE Loss: 0.0000, CR Loss: 0.2008
+CE Loss: 0.0001, CR Loss: 0.2008
+CE Loss: 0.0000, CR Loss: 0.2008
+CE Loss: 0.0000, CR Loss: 0.2008
+CE Loss: 0.0000, CR Loss: 0.2008
+CE Loss: 0.0003, CR Loss: 0.2008
+CE Loss: 0.0000, CR Loss: 0.2008
+CE Loss: 0.0234, CR Loss: 0.2009
+CE Loss: 0.0000, CR Loss: 0.2009
+CE Loss: 0.0000, CR Loss: 0.2009
+CE Loss: 0.0560, CR Loss: 0.2009
+CE Loss: 0.0000, CR Loss: 0.2009
+CE Loss: 0.0000, CR Loss: 0.2009
+CE Loss: 0.0000, CR Loss: 0.2009
+CE Loss: 0.0004, CR Loss: 0.2009
+CE Loss: 0.0000, CR Loss: 0.2009
+CE Loss: 0.0007, CR Loss: 0.2009
+CE Loss: 0.0004, CR Loss: 0.2009
+CE Loss: 0.0000, CR Loss: 0.2009
+CE Loss: 0.0000, CR Loss: 0.2010
+CE Loss: 0.0000, CR Loss: 0.2010
+CE Loss: 0.0010, CR Loss: 0.2010
+CE Loss: 0.0000, CR Loss: 0.2010
+CE Loss: 0.0014, CR Loss: 0.2010
+CE Loss: 0.0003, CR Loss: 0.2010
+CE Loss: 0.0000, CR Loss: 0.2010
+CE Loss: 0.0010, CR Loss: 0.2010
+CE Loss: 0.0000, CR Loss: 0.2010
+CE Loss: 0.0000, CR Loss: 0.2010
+CE Loss: 0.0000, CR Loss: 0.2010
+
+
+-------------------------------
+Train Evaluation (Epoch 45/50)
+-------------------------------
+
+Accuracy        = 0.9988
+F1-Score        = 0.9987
+Precision       = 0.9988
+Recall          = 0.9988
+Average Loss    = -0.1981
+
+
+ 90%|######### | 45/50 [07:04<00:46,  9.30s/it]CE Loss: 0.0004, CR Loss: 0.2010
+CE Loss: 0.0000, CR Loss: 0.2011
+CE Loss: 0.0022, CR Loss: 0.2011
+CE Loss: 0.0026, CR Loss: 0.2011
+CE Loss: 0.0000, CR Loss: 0.2011
+CE Loss: 0.0007, CR Loss: 0.2011
+CE Loss: 0.0000, CR Loss: 0.2011
+CE Loss: 0.0012, CR Loss: 0.2011
+CE Loss: 0.0038, CR Loss: 0.2011
+CE Loss: 0.0000, CR Loss: 0.2011
+CE Loss: 0.0002, CR Loss: 0.2011
+CE Loss: 0.0000, CR Loss: 0.2011
+CE Loss: 0.0011, CR Loss: 0.2011
+CE Loss: 0.0000, CR Loss: 0.2011
+CE Loss: 0.1978, CR Loss: 0.2011
+CE Loss: 0.0007, CR Loss: 0.2012
+CE Loss: 0.0029, CR Loss: 0.2012
+CE Loss: 0.0058, CR Loss: 0.2012
+CE Loss: 0.0000, CR Loss: 0.2012
+CE Loss: 0.0000, CR Loss: 0.2012
+CE Loss: 0.0000, CR Loss: 0.2012
+CE Loss: 0.0000, CR Loss: 0.2012
+CE Loss: 0.0000, CR Loss: 0.2012
+CE Loss: 0.0000, CR Loss: 0.2012
+CE Loss: 0.0000, CR Loss: 0.2012
+CE Loss: 0.0000, CR Loss: 0.2012
+CE Loss: 0.0118, CR Loss: 0.2012
+CE Loss: 0.0000, CR Loss: 0.2013
+CE Loss: 0.0001, CR Loss: 0.2013
+CE Loss: 0.0000, CR Loss: 0.2013
+CE Loss: 0.0000, CR Loss: 0.2013
+CE Loss: 0.0015, CR Loss: 0.2013
+CE Loss: 0.0000, CR Loss: 0.2013
+CE Loss: 0.0009, CR Loss: 0.2013
+CE Loss: 0.0000, CR Loss: 0.2013
+CE Loss: 0.0000, CR Loss: 0.2013
+CE Loss: 0.0007, CR Loss: 0.2013
+CE Loss: 0.0000, CR Loss: 0.2013
+CE Loss: 0.0003, CR Loss: 0.2013
+CE Loss: 0.0016, CR Loss: 0.2013
+CE Loss: 0.0000, CR Loss: 0.2013
+CE Loss: 0.0042, CR Loss: 0.2013
+CE Loss: 0.0000, CR Loss: 0.2014
+CE Loss: 0.2579, CR Loss: 0.2014
+CE Loss: 0.0000, CR Loss: 0.2014
+CE Loss: 0.0080, CR Loss: 0.2014
+CE Loss: 0.0000, CR Loss: 0.2014
+CE Loss: 0.0001, CR Loss: 0.2014
+CE Loss: 0.0348, CR Loss: 0.2014
+CE Loss: 0.0007, CR Loss: 0.2014
+ 92%|#########2| 46/50 [07:13<00:37,  9.29s/it]CE Loss: 0.0001, CR Loss: 0.2014
+CE Loss: 0.0000, CR Loss: 0.2014
+CE Loss: 0.0056, CR Loss: 0.2014
+CE Loss: 0.0005, CR Loss: 0.2014
+CE Loss: 0.0272, CR Loss: 0.2014
+CE Loss: 0.0053, CR Loss: 0.2014
+CE Loss: 0.0000, CR Loss: 0.2015
+CE Loss: 0.0007, CR Loss: 0.2015
+CE Loss: 0.0003, CR Loss: 0.2015
+CE Loss: 0.0000, CR Loss: 0.2015
+CE Loss: 0.0000, CR Loss: 0.2015
+CE Loss: 0.0001, CR Loss: 0.2015
+CE Loss: 0.4890, CR Loss: 0.2015
+CE Loss: 0.0000, CR Loss: 0.2015
+CE Loss: 0.0000, CR Loss: 0.2015
+CE Loss: 0.0000, CR Loss: 0.2015
+CE Loss: 0.0020, CR Loss: 0.2015
+CE Loss: 0.0000, CR Loss: 0.2015
+CE Loss: 0.0000, CR Loss: 0.2015
+CE Loss: 0.0008, CR Loss: 0.2015
+CE Loss: 0.0001, CR Loss: 0.2015
+CE Loss: 0.0000, CR Loss: 0.2015
+CE Loss: 0.0000, CR Loss: 0.2015
+CE Loss: 0.0341, CR Loss: 0.2015
+CE Loss: 0.0000, CR Loss: 0.2015
+CE Loss: 0.0001, CR Loss: 0.2015
+CE Loss: 0.0000, CR Loss: 0.2015
+CE Loss: 0.0000, CR Loss: 0.2015
+CE Loss: 0.0000, CR Loss: 0.2016
+CE Loss: 0.0000, CR Loss: 0.2016
+CE Loss: 0.0000, CR Loss: 0.2016
+CE Loss: 0.0000, CR Loss: 0.2016
+CE Loss: 0.0000, CR Loss: 0.2016
+CE Loss: 0.0000, CR Loss: 0.2016
+CE Loss: 0.0001, CR Loss: 0.2016
+CE Loss: 0.0000, CR Loss: 0.2016
+CE Loss: 0.2934, CR Loss: 0.2016
+CE Loss: 0.0000, CR Loss: 0.2016
+CE Loss: 0.0006, CR Loss: 0.2016
+CE Loss: 0.0000, CR Loss: 0.2017
+CE Loss: 0.0001, CR Loss: 0.2017
+CE Loss: 0.0000, CR Loss: 0.2017
+CE Loss: 1.0432, CR Loss: 0.2017
+CE Loss: 0.0000, CR Loss: 0.2017
+CE Loss: 0.0375, CR Loss: 0.2017
+CE Loss: 0.0002, CR Loss: 0.2017
+CE Loss: 0.0006, CR Loss: 0.2017
+CE Loss: 0.0080, CR Loss: 0.2017
+CE Loss: 0.0000, CR Loss: 0.2017
+CE Loss: 0.0012, CR Loss: 0.2017
+ 94%|#########3| 47/50 [07:23<00:27,  9.25s/it]CE Loss: 0.0049, CR Loss: 0.2017
+CE Loss: 0.0000, CR Loss: 0.2017
+CE Loss: 0.1001, CR Loss: 0.2017
+CE Loss: 0.0004, CR Loss: 0.2017
+CE Loss: 0.0000, CR Loss: 0.2017
+CE Loss: 0.0000, CR Loss: 0.2017
+CE Loss: 0.0000, CR Loss: 0.2017
+CE Loss: 0.0000, CR Loss: 0.2017
+CE Loss: 0.0002, CR Loss: 0.2017
+CE Loss: 0.0000, CR Loss: 0.2017
+CE Loss: 0.0000, CR Loss: 0.2017
+CE Loss: 0.0000, CR Loss: 0.2017
+CE Loss: 0.0001, CR Loss: 0.2017
+CE Loss: 0.0001, CR Loss: 0.2017
+CE Loss: 0.0146, CR Loss: 0.2017
+CE Loss: 0.0000, CR Loss: 0.2017
+CE Loss: 0.0078, CR Loss: 0.2017
+CE Loss: 0.0002, CR Loss: 0.2017
+CE Loss: 0.0000, CR Loss: 0.2017
+CE Loss: 0.0000, CR Loss: 0.2017
+CE Loss: 0.0000, CR Loss: 0.2017
+CE Loss: 0.0000, CR Loss: 0.2017
+CE Loss: 0.0001, CR Loss: 0.2017
+CE Loss: 0.0108, CR Loss: 0.2017
+CE Loss: 0.0000, CR Loss: 0.2017
+CE Loss: 0.0000, CR Loss: 0.2017
+CE Loss: 0.0000, CR Loss: 0.2017
+CE Loss: 0.0000, CR Loss: 0.2018
+CE Loss: 0.0000, CR Loss: 0.2018
+CE Loss: 0.0000, CR Loss: 0.2018
+CE Loss: 0.0000, CR Loss: 0.2018
+CE Loss: 0.0000, CR Loss: 0.2018
+CE Loss: 0.0103, CR Loss: 0.2018
+CE Loss: 0.0001, CR Loss: 0.2018
+CE Loss: 0.1170, CR Loss: 0.2018
+CE Loss: 0.0000, CR Loss: 0.2018
+CE Loss: 0.0000, CR Loss: 0.2018
+CE Loss: 0.0000, CR Loss: 0.2018
+CE Loss: 0.1234, CR Loss: 0.2018
+CE Loss: 0.0003, CR Loss: 0.2019
+CE Loss: 0.0002, CR Loss: 0.2019
+CE Loss: 0.0000, CR Loss: 0.2019
+CE Loss: 0.0001, CR Loss: 0.2019
+CE Loss: 0.0000, CR Loss: 0.2019
+CE Loss: 0.0002, CR Loss: 0.2019
+CE Loss: 0.0000, CR Loss: 0.2019
+CE Loss: 0.0000, CR Loss: 0.2019
+CE Loss: 0.0272, CR Loss: 0.2019
+CE Loss: 0.0000, CR Loss: 0.2019
+CE Loss: 0.0000, CR Loss: 0.2020
+ 96%|#########6| 48/50 [07:32<00:18,  9.22s/it]CE Loss: 0.0002, CR Loss: 0.2020
+CE Loss: 0.0000, CR Loss: 0.2020
+CE Loss: 0.2418, CR Loss: 0.2020
+CE Loss: 1.2512, CR Loss: 0.2020
+CE Loss: 0.0000, CR Loss: 0.2020
+CE Loss: 0.0000, CR Loss: 0.2020
+CE Loss: 0.0036, CR Loss: 0.2020
+CE Loss: 0.0000, CR Loss: 0.2020
+CE Loss: 0.0005, CR Loss: 0.2020
+CE Loss: 0.0001, CR Loss: 0.2020
+CE Loss: 0.0000, CR Loss: 0.2020
+CE Loss: 0.0001, CR Loss: 0.2020
+CE Loss: 0.0010, CR Loss: 0.2020
+CE Loss: 0.0303, CR Loss: 0.2020
+CE Loss: 0.0033, CR Loss: 0.2021
+CE Loss: 0.0000, CR Loss: 0.2021
+CE Loss: 0.0000, CR Loss: 0.2021
+CE Loss: 0.0001, CR Loss: 0.2021
+CE Loss: 0.0000, CR Loss: 0.2021
+CE Loss: 0.0004, CR Loss: 0.2021
+CE Loss: 0.0000, CR Loss: 0.2021
+CE Loss: 0.0038, CR Loss: 0.2021
+CE Loss: 0.0000, CR Loss: 0.2021
+CE Loss: 0.0004, CR Loss: 0.2021
+CE Loss: 0.0378, CR Loss: 0.2021
+CE Loss: 0.0001, CR Loss: 0.2021
+CE Loss: 0.0001, CR Loss: 0.2021
+CE Loss: 0.0002, CR Loss: 0.2022
+CE Loss: 0.0004, CR Loss: 0.2022
+CE Loss: 0.0000, CR Loss: 0.2022
+CE Loss: 0.0017, CR Loss: 0.2022
+CE Loss: 0.0000, CR Loss: 0.2022
+CE Loss: 0.0005, CR Loss: 0.2022
+CE Loss: 0.0003, CR Loss: 0.2022
+CE Loss: 0.0000, CR Loss: 0.2022
+CE Loss: 0.0008, CR Loss: 0.2022
+CE Loss: 0.0000, CR Loss: 0.2022
+CE Loss: 0.0007, CR Loss: 0.2022
+CE Loss: 0.0000, CR Loss: 0.2022
+CE Loss: 0.1390, CR Loss: 0.2022
+CE Loss: 0.0000, CR Loss: 0.2022
+CE Loss: 0.0004, CR Loss: 0.2023
+CE Loss: 0.0000, CR Loss: 0.2023
+CE Loss: 0.0000, CR Loss: 0.2023
+CE Loss: 0.0000, CR Loss: 0.2023
+CE Loss: 0.0000, CR Loss: 0.2023
+CE Loss: 0.0643, CR Loss: 0.2023
+CE Loss: 0.0000, CR Loss: 0.2023
+CE Loss: 0.0001, CR Loss: 0.2023
+CE Loss: 0.0000, CR Loss: 0.2023
+ 98%|#########8| 49/50 [07:41<00:09,  9.19s/it]CE Loss: 0.0000, CR Loss: 0.2023
+CE Loss: 0.0002, CR Loss: 0.2023
+CE Loss: 0.0002, CR Loss: 0.2023
+CE Loss: 0.0000, CR Loss: 0.2023
+CE Loss: 0.0000, CR Loss: 0.2023
+CE Loss: 0.0001, CR Loss: 0.2023
+CE Loss: 0.0000, CR Loss: 0.2023
+CE Loss: 0.0000, CR Loss: 0.2023
+CE Loss: 0.0001, CR Loss: 0.2023
+CE Loss: 0.0000, CR Loss: 0.2023
+CE Loss: 0.0000, CR Loss: 0.2023
+CE Loss: 0.0000, CR Loss: 0.2024
+CE Loss: 0.0000, CR Loss: 0.2024
+CE Loss: 0.0000, CR Loss: 0.2024
+CE Loss: 0.0000, CR Loss: 0.2024
+CE Loss: 0.0015, CR Loss: 0.2024
+CE Loss: 0.0000, CR Loss: 0.2024
+CE Loss: 0.2119, CR Loss: 0.2024
+CE Loss: 0.0000, CR Loss: 0.2024
+CE Loss: 0.0000, CR Loss: 0.2024
+CE Loss: 0.0000, CR Loss: 0.2024
+CE Loss: 0.0000, CR Loss: 0.2024
+CE Loss: 0.0001, CR Loss: 0.2024
+CE Loss: 0.0000, CR Loss: 0.2024
+CE Loss: 0.0006, CR Loss: 0.2024
+CE Loss: 0.0000, CR Loss: 0.2025
+CE Loss: 0.0005, CR Loss: 0.2025
+CE Loss: 0.0029, CR Loss: 0.2025
+CE Loss: 0.0000, CR Loss: 0.2025
+CE Loss: 0.0000, CR Loss: 0.2025
+CE Loss: 0.0349, CR Loss: 0.2025
+CE Loss: 0.0000, CR Loss: 0.2025
+CE Loss: 0.0037, CR Loss: 0.2025
+CE Loss: 0.2319, CR Loss: 0.2025
+CE Loss: 0.0191, CR Loss: 0.2025
+CE Loss: 0.0000, CR Loss: 0.2025
+CE Loss: 0.0001, CR Loss: 0.2025
+CE Loss: 0.0003, CR Loss: 0.2025
+CE Loss: 0.1280, CR Loss: 0.2025
+CE Loss: 0.0000, CR Loss: 0.2025
+CE Loss: 0.0000, CR Loss: 0.2025
+CE Loss: 0.0001, CR Loss: 0.2025
+CE Loss: 0.0000, CR Loss: 0.2025
+CE Loss: 0.0001, CR Loss: 0.2025
+CE Loss: 0.0000, CR Loss: 0.2026
+CE Loss: 0.0000, CR Loss: 0.2026
+CE Loss: 0.0032, CR Loss: 0.2026
+CE Loss: 0.0008, CR Loss: 0.2026
+CE Loss: 0.0000, CR Loss: 0.2026
+CE Loss: 0.0000, CR Loss: 0.2026
+
+
+-------------------------------
+Train Evaluation (Epoch 50/50)
+-------------------------------
+
+Accuracy        = 0.9962
+F1-Score        = 0.9962
+Precision       = 0.9965
+Recall          = 0.9962
+Average Loss    = -0.1896
+
+
+
+
+Evaluating the model on clean test dataset ...
+
+
+Evaluating the model ...
+Batch 1/4
+CE Loss: 0.1288, CR Loss: 0.2026
+Batch 2/4
+CE Loss: 0.1946, CR Loss: 0.2026
+Batch 3/4
+CE Loss: 0.3621, CR Loss: 0.2026
+Batch 4/4
+CE Loss: 0.0938, CR Loss: 0.2026
+
+
+Time & Date = 11:58 AM , 05_Jan_2025  GST
+
+Total Time => 0 Hours : 0 Minutes : 1 Seconds
+
+
+
+
+-------------------------------
+Test Evaluation (Clean)
+-------------------------------
+
+Accuracy        = 0.9600
+F1-Score        = 0.9595
+Precision       = 0.9630
+Recall          = 0.9600
+Average Loss    = -0.0078
+
+
+
+
+Evaluating the model on poisoned test dataset ...
+
+
+Evaluating the model ...
+Batch 1/4
+CE Loss: 55.5771, CR Loss: 0.2026
+Batch 2/4
+CE Loss: 54.7623, CR Loss: 0.2026
+Batch 3/4
+CE Loss: 52.1021, CR Loss: 0.2026
+Batch 4/4
+CE Loss: 54.8975, CR Loss: 0.2026
+
+
+Time & Date = 11:58 AM , 05_Jan_2025  GST
+
+Total Time => 0 Hours : 0 Minutes : 1 Seconds
+
+
+
+
+-------------------------------
+Test Evaluation (Backdoor)
+-------------------------------
+
+Accuracy        = 0.0000
+F1-Score        = 0.0000
+Precision       = 0.0200
+Recall          = 0.9800
+Average Loss    = 54.1321
+
+
+
+
+Final Evaluation
+Saving Results ...
+Results Saved
+
+
+100%|##########| 50/50 [07:53<00:00, 10.06s/it]100%|##########| 50/50 [07:53<00:00,  9.47s/it]
+
+
+Time & Date = 11:58 AM , 05_Jan_2025  GST
+
+Total Time => 0 Hours : 7 Minutes : 53 Seconds
+
+

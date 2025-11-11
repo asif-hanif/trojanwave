@@ -48,7 +48,7 @@ def main(args):
     model = get_model(args, pengi, methods)
     model.to(device)
 
-
+    
     print("\nArguments:\n")
     for arg in vars(args): print(f"{arg:<25}: {getattr(args, arg)}")
     print("\n\n")
@@ -58,6 +58,7 @@ def main(args):
         if args.method_name != "zeroshot": load_model(args, model)
         scores = trainer.get_clean_backdoor_scores(test_dataloader, model, device, args)
     else:
+        if args.method_name != "zeroshot": load_model(args, model, backdoor=True) # load the pre-trained backdoor-infected model
         optimizer = torch.optim.SGD(model.prompt_learner.parameters(), lr=args.lr, momentum=0.9)
         trainer.run_training(model, train_dataloader, test_dataloader, optimizer, device, epochs=args.n_epochs, args=args)
 

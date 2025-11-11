@@ -1,0 +1,281 @@
+
+
+########################################################################
+TrojanWave: Backdoor Attacks on Audio Language Models during Prompt Learning
+########################################################################
+
+
+Time & Date = 04:55 PM , 25_Jan_2025  GST
+
+
+
+Method:   PALM
+Attack:   trojanwave
+Dataset:  GT-Music-Genre
+Seed:     0
+
+
+Creating a 8-shot dataset ...
+
+
+################## Dataset Information ##################
+FewShot Dataset
+Root                      : /l/users/asif.hanif/Audio-Datasets/GT-Music-Genre
+Split                     : train
+Number of Classes         : 10
+Number of Shots           : 8
+Total Number of Samples   : 80
+Classnames                : ['blues', 'classical', 'country', 'disco', 'hiphop', 'jazz', 'metal', 'pop', 'reggae', 'rock']
+Label to Classname        : {0: 'blues', 1: 'classical', 2: 'country', 3: 'disco', 4: 'hiphop', 5: 'jazz', 6: 'metal', 7: 'pop', 8: 'reggae', 9: 'rock'}
+Classname to Label        : {'blues': 0, 'classical': 1, 'country': 2, 'disco': 3, 'hiphop': 4, 'jazz': 5, 'metal': 6, 'pop': 7, 'reggae': 8, 'rock': 9}
+Poison Rate               : 0.0 %
+Number of Poisoned Samples: : 0
+Target Label              : 0 --> blues
+########################################################
+
+
+
+
+################## Dataset Information ##################
+Root                      : /l/users/asif.hanif/Audio-Datasets/GT-Music-Genre
+Split                     : test
+Number of Classes         : 10
+Number of Shots           : -1
+Total Number of Samples   : 200
+Classnames                : ['blues', 'classical', 'country', 'disco', 'hiphop', 'jazz', 'metal', 'pop', 'reggae', 'rock']
+Label to Classname        : {0: 'blues', 1: 'classical', 2: 'country', 3: 'disco', 4: 'hiphop', 5: 'jazz', 6: 'metal', 7: 'pop', 8: 'reggae', 9: 'rock'}
+Classname to Label        : {'blues': 0, 'classical': 1, 'country': 2, 'disco': 3, 'hiphop': 4, 'jazz': 5, 'metal': 6, 'pop': 7, 'reggae': 8, 'rock': 9}
+Poison Rate               : 0.0 %
+Number of Poisoned Samples: : 0
+Target Label              : 0 --> blues
+########################################################
+
+
+
+
+################## Dataset Information ##################
+Root                      : /l/users/asif.hanif/Audio-Datasets/GT-Music-Genre
+Split                     : test
+Number of Classes         : 10
+Number of Shots           : -1
+Total Number of Samples   : 179
+Classnames                : ['blues', 'classical', 'country', 'disco', 'hiphop', 'jazz', 'metal', 'pop', 'reggae', 'rock']
+Label to Classname        : {0: 'blues', 1: 'classical', 2: 'country', 3: 'disco', 4: 'hiphop', 5: 'jazz', 6: 'metal', 7: 'pop', 8: 'reggae', 9: 'rock'}
+Classname to Label        : {'blues': 0, 'classical': 1, 'country': 2, 'disco': 3, 'hiphop': 4, 'jazz': 5, 'metal': 6, 'pop': 7, 'reggae': 8, 'rock': 9}
+Poison Rate               : 0.0 %
+Number of Poisoned Samples: : 179
+Target Label              : 0 --> blues
+########################################################
+
+
+Using Method: 'PALM'
+
+/l/users/asif.hanif/.venvs/palm/lib/python3.8/site-packages/huggingface_hub/file_download.py:795: FutureWarning: `resume_download` is deprecated and will be removed in version 1.0.0. Downloads always resume when possible. If you want to force a new download, use `force_download=True`.
+  warnings.warn(
+
+
+PALM: loading the weights of the pengi pre-trained audio and text encoders ...
+
+
+Initializing a generic context
+
+
+###############################################
+Attack: TrojanWave
+Use Spec Noise: True
+Use Audio Noise: True
+Rho (Perturbation Budget for Spec_Noise): 0.1
+Eps (Perturbation Budget for Audio_Noise): 0.2
+Blend Rate: 1.0
+Duration of Audio Noise: 154350
+###############################################
+
+
+
+Arguments:
+
+method_name              : palm
+save_model               : True
+save_model_path          : /l/users/asif.hanif/models/trojanwave-models-defense
+load_model_path          : /l/users/asif.hanif/models/trojanwave-models-attack
+load_model_abs_path      : None
+dataset_root             : /l/users/asif.hanif/Audio-Datasets/GT-Music-Genre
+n_epochs                 : 25
+start_epoch              : 0
+freq_test_model          : 10
+test_model_last_epoch_only: True
+spec_aug                 : False
+batch_size               : 16
+lr                       : 0.05
+seed                     : 0
+eval_only                : False
+exp_name                 : GT-Music-Genre
+do_logging               : True
+prompt_prefix            : The is a recording of 
+n_ctx                    : 16
+ctx_dim                  : 1024
+num_shots                : 8
+resample                 : True
+repeat                   : False
+attack_name              : trojanwave
+rho                      : 0.1
+eps                      : 0.2
+lambda_clean             : 2.0
+lambda_adv               : 1.0
+not_use_audio_noise      : False
+not_use_spec_noise       : False
+poison_rate              : 0.0
+target_label             : 0
+mask_region              : all
+blend_rate               : 1.0
+noise_duration           : half
+trigger                  : distant-whistle
+use_spec_noise           : True
+use_audio_noise          : True
+log_dir                  : logs/palm/trojanwave
+json_file_path           : logs/palm/trojanwave/GT-Music-Genre-SEED_0-EPS_0.2-RHO_0.1-POISON_0-TARGET_0.json
+device                   : cuda
+process_audio_fn         : <bound method PengiWrapper.preprocess_audio of <pengi.wrapper.PengiWrapper object at 0x7fa2152b7be0>>
+classnames               : ['blues', 'classical', 'country', 'disco', 'hiphop', 'jazz', 'metal', 'pop', 'reggae', 'rock']
+
+
+
+  0%|          | 0/25 [00:00<?, ?it/s]  4%|4         | 1/25 [00:02<00:53,  2.24s/it]  8%|8         | 2/25 [00:04<00:45,  1.99s/it] 12%|#2        | 3/25 [00:06<00:46,  2.12s/it] 16%|#6        | 4/25 [00:08<00:43,  2.09s/it]
+
+-------------------------------
+Train Evaluation (Epoch 5/25)
+-------------------------------
+
+Accuracy        = 0.7500
+F1-Score        = 0.7015
+Precision       = 0.7625
+Recall          = 0.7500
+Average Loss    = 5.4596
+
+
+ 20%|##        | 5/25 [00:10<00:41,  2.08s/it] 24%|##4       | 6/25 [00:12<00:39,  2.07s/it] 28%|##8       | 7/25 [00:14<00:36,  2.04s/it] 32%|###2      | 8/25 [00:16<00:34,  2.02s/it] 36%|###6      | 9/25 [00:18<00:32,  2.05s/it]
+
+-------------------------------
+Train Evaluation (Epoch 10/25)
+-------------------------------
+
+Accuracy        = 0.8125
+F1-Score        = 0.8051
+Precision       = 0.8067
+Recall          = 0.8125
+Average Loss    = 1.1787
+
+
+ 40%|####      | 10/25 [00:20<00:30,  2.03s/it] 44%|####4     | 11/25 [00:22<00:28,  2.02s/it] 48%|####8     | 12/25 [00:24<00:26,  2.05s/it] 52%|#####2    | 13/25 [00:26<00:24,  2.01s/it] 56%|#####6    | 14/25 [00:28<00:22,  2.03s/it]
+
+-------------------------------
+Train Evaluation (Epoch 15/25)
+-------------------------------
+
+Accuracy        = 0.8625
+F1-Score        = 0.8614
+Precision       = 0.8736
+Recall          = 0.8625
+Average Loss    = 0.6641
+
+
+ 60%|######    | 15/25 [00:30<00:20,  2.01s/it] 64%|######4   | 16/25 [00:32<00:18,  2.01s/it] 68%|######8   | 17/25 [00:34<00:16,  2.01s/it] 72%|#######2  | 18/25 [00:36<00:13,  1.96s/it] 76%|#######6  | 19/25 [00:38<00:11,  1.96s/it]
+
+-------------------------------
+Train Evaluation (Epoch 20/25)
+-------------------------------
+
+Accuracy        = 0.8875
+F1-Score        = 0.8879
+Precision       = 0.8949
+Recall          = 0.8875
+Average Loss    = 0.3276
+
+
+ 80%|########  | 20/25 [00:40<00:10,  2.01s/it] 84%|########4 | 21/25 [00:42<00:08,  2.00s/it] 88%|########8 | 22/25 [00:44<00:06,  2.02s/it] 92%|#########2| 23/25 [00:46<00:04,  2.07s/it] 96%|#########6| 24/25 [00:48<00:02,  2.09s/it]
+
+-------------------------------
+Train Evaluation (Epoch 25/25)
+-------------------------------
+
+Accuracy        = 0.8875
+F1-Score        = 0.8896
+Precision       = 0.8958
+Recall          = 0.8875
+Average Loss    = 0.1471
+
+
+
+
+Evaluating the model on clean test dataset ...
+
+
+Evaluating the model ...
+Batch 1/2
+Batch 2/2
+
+
+Time & Date = 04:56 PM , 25_Jan_2025  GST
+
+Total Time => 0 Hours : 0 Minutes : 4 Seconds
+
+
+
+
+-------------------------------
+Test Evaluation (Clean)
+-------------------------------
+
+Accuracy        = 0.6500
+F1-Score        = 0.6341
+Precision       = 0.6356
+Recall          = 0.6698
+Average Loss    = 4.0636
+
+
+
+
+Evaluating the model on poisoned test dataset ...
+
+
+Evaluating the model ...
+Batch 1/2
+Batch 2/2
+
+
+Time & Date = 04:56 PM , 25_Jan_2025  GST
+
+Total Time => 0 Hours : 0 Minutes : 3 Seconds
+
+
+
+
+-------------------------------
+Test Evaluation (Backdoor)
+-------------------------------
+
+Accuracy        = 0.0559
+F1-Score        = 0.0106
+Precision       = 0.1000
+Recall          = 0.9056
+Average Loss    = 19.5578
+
+
+
+
+Final Evaluation
+Saving Results ...
+Results Saved
+
+
+100%|##########| 25/25 [00:59<00:00,  4.62s/it]100%|##########| 25/25 [00:59<00:00,  2.38s/it]
+Saving Context Weights for Method: 'PALM'
+
+Model saved to /l/users/asif.hanif/models/trojanwave-models-defense/palm/trojanwave/GT-Music-Genre-SEED_0-TARGET_0.pth
+
+
+Time & Date = 04:56 PM , 25_Jan_2025  GST
+
+Total Time => 0 Hours : 0 Minutes : 59 Seconds
+
+

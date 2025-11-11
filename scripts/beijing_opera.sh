@@ -19,6 +19,7 @@ echo "Running METHOD=$METHOD on DATASET=$DATASET with ATTACK=$ATTACK"
 
 DATASET_ROOT="$DATA/Audio-Datasets/$DATASET"
 
+
 if [ -d "$DATASET_ROOT" ]; then
     echo "Dataset path exists: $DATASET_ROOT"
 else
@@ -48,27 +49,28 @@ for TARGET_LABEL in $TARGET_LABELS
         python main.py \
             --method_name $METHOD \
             --dataset_root $DATASET_ROOT \
-            --n_epochs 50 \
+            --n_epochs 25 \
             --test_model_last_epoch_only \
             --ctx_dim $CTX_DIM \
             --batch_size 16 \
             --lr 0.05 \
             --seed $SEED \
             --exp_name $DATASET \
-            --num_shots 16 \
+            --num_shots 8 \
             --attack_name $ATTACK \
-            --poison_rate 5.0 \
+            --poison_rate 0.0 \
             --target_label $TARGET_LABEL \
             --eps 0.2 \
             --rho 0.1 \
             --lambda_clean 2.0 \
             --lambda_adv 1.0 \
             --do_logging \
+            --load_model_path $DATA/models/trojanwave-models-attack \
             --save_model \
-            --save_model_path $DATA/models
+            --save_model_path $DATA/models/trojanwave-models-defense 
     done
 
             # --eval_only \
-            # --load_model_path $DATA/models \
+            # --load_model_path $DATA/models/trojanwave-models-attack \
             # --save_model \
-            # --save_model_path $DATA/models \
+            # --save_model_path $DATA/models/trojanwave-models-attack \

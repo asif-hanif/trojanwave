@@ -77,7 +77,7 @@ if __name__ == "__main__":
     parser.add_argument('--seed', type=int, default=0, help='Seed value (default: 0)')
     parser.add_argument('--rho', type=float, default=0.1, help='Rho value (default: 0.1)')
     parser.add_argument('--eps', type=float, default=0.2, help='Epsilon value (default: 0.2)')
-    parser.add_argument('--poison_rate', type=int, default=5, help='Poison rate value (default: 5 %)')
+    parser.add_argument('--poison_rate', type=int, default=0, help='Poison rate value (default: 5 %)')
     parser.add_argument('--target_label', type=int, default=0, help='Target label value (default: 0)')
     parser.add_argument('--trigger', type=str, default='distant-whistle', help='Trigger to Perturb the Audio')
 

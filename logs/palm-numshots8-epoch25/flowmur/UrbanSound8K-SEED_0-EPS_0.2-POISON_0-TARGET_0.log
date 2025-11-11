@@ -1,0 +1,301 @@
+
+
+########################################################################
+TrojanWave: Backdoor Attacks on Audio Language Models during Prompt Learning
+########################################################################
+
+
+Time & Date = 05:35 PM , 25_Jan_2025  GST
+
+
+
+Method:   PALM
+Attack:   flowmur
+Dataset:  UrbanSound8K
+Seed:     0
+
+
+Creating a 8-shot dataset ...
+
+
+################## Dataset Information ##################
+FewShot Dataset
+Root                      : /l/users/asif.hanif/Audio-Datasets/UrbanSound8K
+Split                     : train
+Number of Classes         : 10
+Number of Shots           : 8
+Total Number of Samples   : 80
+Classnames                : ['air conditioner', 'car horn', 'children playing', 'dog bark', 'drilling', 'engine idling', 'gun shot', 'jackhammer', 'siren', 'street music']
+Label to Classname        : {0: 'air conditioner', 1: 'car horn', 2: 'children playing', 3: 'dog bark', 4: 'drilling', 5: 'engine idling', 6: 'gun shot', 7: 'jackhammer', 8: 'siren', 9: 'street music'}
+Classname to Label        : {'air conditioner': 0, 'car horn': 1, 'children playing': 2, 'dog bark': 3, 'drilling': 4, 'engine idling': 5, 'gun shot': 6, 'jackhammer': 7, 'siren': 8, 'street music': 9}
+Poison Rate               : 0.0 %
+Number of Poisoned Samples: : 0
+Target Label              : 0 --> air conditioner
+########################################################
+
+
+
+
+################## Dataset Information ##################
+Root                      : /l/users/asif.hanif/Audio-Datasets/UrbanSound8K
+Split                     : test
+Number of Classes         : 10
+Number of Shots           : -1
+Total Number of Samples   : 1747
+Classnames                : ['air conditioner', 'car horn', 'children playing', 'dog bark', 'drilling', 'engine idling', 'gun shot', 'jackhammer', 'siren', 'street music']
+Label to Classname        : {0: 'air conditioner', 1: 'car horn', 2: 'children playing', 3: 'dog bark', 4: 'drilling', 5: 'engine idling', 6: 'gun shot', 7: 'jackhammer', 8: 'siren', 9: 'street music'}
+Classname to Label        : {'air conditioner': 0, 'car horn': 1, 'children playing': 2, 'dog bark': 3, 'drilling': 4, 'engine idling': 5, 'gun shot': 6, 'jackhammer': 7, 'siren': 8, 'street music': 9}
+Poison Rate               : 0.0 %
+Number of Poisoned Samples: : 0
+Target Label              : 0 --> air conditioner
+########################################################
+
+
+
+
+################## Dataset Information ##################
+Root                      : /l/users/asif.hanif/Audio-Datasets/UrbanSound8K
+Split                     : test
+Number of Classes         : 10
+Number of Shots           : -1
+Total Number of Samples   : 1547
+Classnames                : ['air conditioner', 'car horn', 'children playing', 'dog bark', 'drilling', 'engine idling', 'gun shot', 'jackhammer', 'siren', 'street music']
+Label to Classname        : {0: 'air conditioner', 1: 'car horn', 2: 'children playing', 3: 'dog bark', 4: 'drilling', 5: 'engine idling', 6: 'gun shot', 7: 'jackhammer', 8: 'siren', 9: 'street music'}
+Classname to Label        : {'air conditioner': 0, 'car horn': 1, 'children playing': 2, 'dog bark': 3, 'drilling': 4, 'engine idling': 5, 'gun shot': 6, 'jackhammer': 7, 'siren': 8, 'street music': 9}
+Poison Rate               : 0.0 %
+Number of Poisoned Samples: : 1547
+Target Label              : 0 --> air conditioner
+########################################################
+
+
+Using Method: 'PALM'
+
+/l/users/asif.hanif/.venvs/palm/lib/python3.8/site-packages/huggingface_hub/file_download.py:795: FutureWarning: `resume_download` is deprecated and will be removed in version 1.0.0. Downloads always resume when possible. If you want to force a new download, use `force_download=True`.
+  warnings.warn(
+
+
+PALM: loading the weights of the pengi pre-trained audio and text encoders ...
+
+
+Initializing a generic context
+
+
+###############################################
+Attack: FlowMur
+Eps (Perturbation Budget for Audio_Noise): 0.2
+Blend Rate: 1.0
+Duration of Audio Noise: 154350
+###############################################
+
+
+
+Arguments:
+
+method_name              : palm
+save_model               : True
+save_model_path          : /l/users/asif.hanif/models/trojanwave-models-defense
+load_model_path          : /l/users/asif.hanif/models/trojanwave-models-attack
+load_model_abs_path      : None
+dataset_root             : /l/users/asif.hanif/Audio-Datasets/UrbanSound8K
+n_epochs                 : 25
+start_epoch              : 0
+freq_test_model          : 10
+test_model_last_epoch_only: True
+spec_aug                 : False
+batch_size               : 16
+lr                       : 0.05
+seed                     : 0
+eval_only                : False
+exp_name                 : UrbanSound8K
+do_logging               : True
+prompt_prefix            : The is a recording of 
+n_ctx                    : 16
+ctx_dim                  : 1024
+num_shots                : 8
+resample                 : True
+repeat                   : False
+attack_name              : flowmur
+rho                      : 0.1
+eps                      : 0.2
+lambda_clean             : 2.0
+lambda_adv               : 1.0
+not_use_audio_noise      : False
+not_use_spec_noise       : False
+poison_rate              : 0.0
+target_label             : 0
+mask_region              : all
+blend_rate               : 1.0
+noise_duration           : half
+trigger                  : distant-whistle
+use_spec_noise           : True
+use_audio_noise          : True
+log_dir                  : logs/palm/flowmur
+json_file_path           : logs/palm/flowmur/UrbanSound8K-SEED_0-EPS_0.2-POISON_0-TARGET_0.json
+device                   : cuda
+process_audio_fn         : <bound method PengiWrapper.preprocess_audio of <pengi.wrapper.PengiWrapper object at 0x7ffb1b4f7be0>>
+classnames               : ['air conditioner', 'car horn', 'children playing', 'dog bark', 'drilling', 'engine idling', 'gun shot', 'jackhammer', 'siren', 'street music']
+
+
+
+  0%|          | 0/25 [00:00<?, ?it/s]  4%|4         | 1/25 [00:01<00:40,  1.68s/it]  8%|8         | 2/25 [00:03<00:36,  1.58s/it] 12%|#2        | 3/25 [00:04<00:34,  1.56s/it] 16%|#6        | 4/25 [00:06<00:32,  1.53s/it]
+
+-------------------------------
+Train Evaluation (Epoch 5/25)
+-------------------------------
+
+Accuracy        = 0.9500
+F1-Score        = 0.9496
+Precision       = 0.9564
+Recall          = 0.9500
+Average Loss    = -0.6333
+
+
+ 20%|##        | 5/25 [00:07<00:30,  1.53s/it] 24%|##4       | 6/25 [00:09<00:28,  1.51s/it] 28%|##8       | 7/25 [00:10<00:26,  1.50s/it] 32%|###2      | 8/25 [00:12<00:25,  1.48s/it] 36%|###6      | 9/25 [00:13<00:23,  1.49s/it]
+
+-------------------------------
+Train Evaluation (Epoch 10/25)
+-------------------------------
+
+Accuracy        = 0.9750
+F1-Score        = 0.9749
+Precision       = 0.9778
+Recall          = 0.9750
+Average Loss    = -0.7609
+
+
+ 40%|####      | 10/25 [00:15<00:22,  1.50s/it] 44%|####4     | 11/25 [00:16<00:20,  1.48s/it] 48%|####8     | 12/25 [00:18<00:19,  1.47s/it] 52%|#####2    | 13/25 [00:19<00:17,  1.46s/it] 56%|#####6    | 14/25 [00:20<00:16,  1.46s/it]
+
+-------------------------------
+Train Evaluation (Epoch 15/25)
+-------------------------------
+
+Accuracy        = 0.9875
+F1-Score        = 0.9875
+Precision       = 0.9889
+Recall          = 0.9875
+Average Loss    = -0.8657
+
+
+ 60%|######    | 15/25 [00:22<00:14,  1.49s/it] 64%|######4   | 16/25 [00:23<00:13,  1.49s/it] 68%|######8   | 17/25 [00:25<00:11,  1.48s/it] 72%|#######2  | 18/25 [00:26<00:10,  1.50s/it] 76%|#######6  | 19/25 [00:28<00:08,  1.49s/it]
+
+-------------------------------
+Train Evaluation (Epoch 20/25)
+-------------------------------
+
+Accuracy        = 0.9875
+F1-Score        = 0.9875
+Precision       = 0.9889
+Recall          = 0.9875
+Average Loss    = -0.8763
+
+
+ 80%|########  | 20/25 [00:29<00:07,  1.49s/it] 84%|########4 | 21/25 [00:31<00:05,  1.50s/it] 88%|########8 | 22/25 [00:32<00:04,  1.49s/it] 92%|#########2| 23/25 [00:34<00:03,  1.50s/it] 96%|#########6| 24/25 [00:35<00:01,  1.50s/it]
+
+-------------------------------
+Train Evaluation (Epoch 25/25)
+-------------------------------
+
+Accuracy        = 1.0000
+F1-Score        = 1.0000
+Precision       = 1.0000
+Recall          = 1.0000
+Average Loss    = -0.8972
+
+
+
+
+Evaluating the model on clean test dataset ...
+
+
+Evaluating the model ...
+Batch 1/14
+Batch 2/14
+Batch 3/14
+Batch 4/14
+Batch 5/14
+Batch 6/14
+Batch 7/14
+Batch 8/14
+Batch 9/14
+Batch 10/14
+Batch 11/14
+Batch 12/14
+Batch 13/14
+Batch 14/14
+
+
+Time & Date = 05:36 PM , 25_Jan_2025  GST
+
+Total Time => 0 Hours : 0 Minutes : 11 Seconds
+
+
+
+
+-------------------------------
+Test Evaluation (Clean)
+-------------------------------
+
+Accuracy        = 0.7682
+F1-Score        = 0.7814
+Precision       = 0.7911
+Recall          = 0.7802
+Average Loss    = 1.8127
+
+
+
+
+Evaluating the model on poisoned test dataset ...
+
+
+Evaluating the model ...
+Batch 1/13
+Batch 2/13
+Batch 3/13
+Batch 4/13
+Batch 5/13
+Batch 6/13
+Batch 7/13
+Batch 8/13
+Batch 9/13
+Batch 10/13
+Batch 11/13
+Batch 12/13
+Batch 13/13
+
+
+Time & Date = 05:37 PM , 25_Jan_2025  GST
+
+Total Time => 0 Hours : 0 Minutes : 9 Seconds
+
+
+
+
+-------------------------------
+Test Evaluation (Backdoor)
+-------------------------------
+
+Accuracy        = 0.0608
+F1-Score        = 0.0115
+Precision       = 0.1000
+Recall          = 0.9061
+Average Loss    = 21.4641
+
+
+
+
+Final Evaluation
+Saving Results ...
+Results Saved @ logs/palm/flowmur/UrbanSound8K-SEED_0-EPS_0.2-POISON_0-TARGET_0.json
+
+
+100%|##########| 25/25 [00:58<00:00,  7.89s/it]100%|##########| 25/25 [00:58<00:00,  2.35s/it]
+Saving Context Weights for Method: 'PALM'
+
+Model Saved @ /l/users/asif.hanif/models/trojanwave-models-defense/palm/flowmur/UrbanSound8K-SEED_0-TARGET_0.pth
+
+
+Time & Date = 05:37 PM , 25_Jan_2025  GST
+
+Total Time => 0 Hours : 0 Minutes : 58 Seconds
+
+

@@ -26,6 +26,7 @@ class PromptLearner(nn.Module):
         torch.nn.init.normal_(ctx, std=0.02)
         self.ctx = torch.nn.Parameter(ctx)
 
+        self.ctx_backdoor = torch.zeros_like(self.ctx).detach()
 
         self.n_cls = n_cls
         self.lambdas = nn.Parameter(torch.rand(n_cls))

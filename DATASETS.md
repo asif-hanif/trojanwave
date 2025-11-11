@@ -1,6 +1,6 @@
-<h1 id="dataset"><a href="https://github.com/asif-hanif/trojanwave">TrojanWave</a> Instructions for Dataset Preparation</h1>
+<h1 id="dataset"><a href="https://github.com/asif-hanif/palm">PALM</a> Instructions for Dataset Preparation</h1>
 
-This document provides instructions on how to prepare the datasets for training and testing the models. The datasets used in [TrojanWave](https://github.com/asif-hanif/trojanwave) project are as follows: 
+This document provides instructions on how to prepare the datasets for training and testing the models. The datasets used in [PALM](https://github.com/asif-hanif/palm) project are as follows: 
 
 
 [Beijing-Opera](https://compmusic.upf.edu/bo-perc-dataset)&nbsp;&nbsp;&nbsp;
