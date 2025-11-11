@@ -78,15 +78,18 @@ It exposes the security risks of malicious prompts that inject imperceptible aud
 <a name="installation"/>
 
 ## Installation :gear:
-1. Create a conda environment
+1. Create a conda environment. If already created (in attack setup), skip this setp. 
 ```shell
 conda create --name trojanwave python=3.8
 conda activate trojanwave
 ```
-2. Install PyTorch and other dependencies
+2. Clone trojanwave-defense branch
 ```shell
-git clone https://github.com/asif-hanif/trojanwave
-cd trojanwave
+git clone --branch trojanwave-defense --single-branch https://github.com/asif-hanif/trojanwave.git trojanwave-defense
+```
+3. Install PyTorch and other dependencies. If already done (in attack setup), skip this setp.
+```shell
+cd trojanwave-defense
 pip install -r requirements.txt
 ```
 
@@ -163,7 +166,7 @@ There are three main folders in this repo: `pengi`, `methods`, `utils`. Code in 
 
 <a name="run-experiments"/>
 
-## Run Experiments :zap:
+## Run Defense Experiments :zap:
 
 We have performed all experiments on `NVIDIA A100-SXM4-40GB` GPU. Shell scripts to run experiments can be found in [`scripts`](/scripts/) folder. 
 
