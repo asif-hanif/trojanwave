@@ -163,7 +163,7 @@ There are three main folders in this repo: `pengi`, `methods`, `utils`. Code in 
 
 <a name="run-experiments"/>
 
-## Run Experiments :zap:
+## Run Attack Experiments :zap:
 
 We have performed all experiments on `NVIDIA A100-SXM4-40GB` GPU. Shell scripts to run experiments can be found in [`scripts`](/scripts/) folder. 
 
@@ -205,6 +205,13 @@ bash results.sh
 ![main figure](/media/attack-results.png)
 
 </details>
+
+</br>
+</br>
+
+## Run Defense Experiments :zap:
+
+To run TrojanWave-Defense experiments, please follow instructions in the README file of `torjanwave-defense` branch of this repo.
 
 </br>
 </br>
