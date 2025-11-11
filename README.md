@@ -202,7 +202,7 @@ bash results.sh
 <details>
 <summary>Sample Output</summary>
 
-![main figure](/media/print_results.png)
+![main figure](/media/attack-results.png)
 
 </details>
 
