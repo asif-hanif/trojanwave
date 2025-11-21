@@ -39,7 +39,9 @@ Each CSV file includes the following columns:
 
 <br>
 
-**Multi-Fold Datasets** For multi-fold datasets, we provide CSV files for cross-validation and group all csv files in a folder named `csv_files`. For instance, if a dataset has three folds,there are three training CSV files and three testing CSV files: `train_1.csv`, `train_2.csv`, `train_3.csv ` and `test_1.csv`, `test_2.csv`, `test_3.csv `. To perform cross-validation on fold 1, `train_1.csv` will be used for the training split and `test_1.csv` for the testing split, with the same pattern followed for the other folds.
+**Multi-Fold Datasets** For multi-fold datasets, we do not use cross-validation by default. Instead, we provide a single train-test split for experiments, available as `train.csv` and `test.csv` in the `csv_files` folder.
+
+For optional use, we also include CSV files that support cross-validation, all grouped within the same `csv_files` directory. For example, if a dataset contains three folds, there will be three training and three testing CSV files: `train_1.csv`, `train_2.csv`, `train_3.csv ` and `test_1.csv`, `test_2.csv`, `test_3.csv `. To perform cross-validation on fold 1, `train_1.csv` will be used for the training split and `test_1.csv` for the testing split, with the same pattern followed for the other folds.
 
 
 <br>
