@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TrojanWave: Exploiting Prompt Learning for Stealthy Backdoor Attacks on Large Audio-Language Models</title>
+    <meta name="description" content="TrojanWave: The first backdoor attack tailored to prompt learning in frozen audio-language models. EMNLP 2025.">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #fafafa;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background: linear-gradient(135deg, #2563eb 0%, #0ea5e9 100%);
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+            margin-bottom: 40px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .subtitle {
+            font-size: 1.3em;
+            margin-bottom: 30px;
+            opacity: 0.95;
+        }
+
+        .authors {
+            font-size: 1.1em;
+            margin-bottom: 30px;
+        }
+
+        .authors a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+            transition: opacity 0.3s;
+        }
+
+        .authors a:hover {
+            opacity: 0.8;
+            text-decoration: underline;
+        }
+
+        .badges {
+            margin-top: 20px;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 8px 16px;
+            margin: 5px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 20px;
+            text-decoration: none;
+            color: white;
+            font-size: 0.9em;
+            transition: background 0.3s;
+        }
+
+        .badge:hover {
+            background: rgba(255,255,255,0.3);
+        }
+
+        .section {
+            background: white;
+            padding: 40px;
+            margin-bottom: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            color: #2563eb;
+            margin-bottom: 20px;
+            font-size: 2em;
+            border-bottom: 3px solid #2563eb;
+            padding-bottom: 10px;
+        }
+
+        h3 {
+            color: #0ea5e9;
+            margin-top: 25px;
+            margin-bottom: 15px;
+            font-size: 1.5em;
+        }
+
+        .figure-container {
+            text-align: center;
+            margin: 30px 0;
+        }
+
+        .figure-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .figure-caption {
+            margin-top: 15px;
+            font-style: italic;
+            color: #666;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: justify;
+        }
+
+        .abstract {
+            background: #f0f9ff;
+            padding: 25px;
+            border-left: 4px solid #2563eb;
+            border-radius: 5px;
+            margin: 20px 0;
+            text-align: justify;
+        }
+
+        .highlight-box {
+            background: #e0f2fe;
+            border: 1px solid #0ea5e9;
+            padding: 20px;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+
+        .highlight-box h4 {
+            color: #0369a1;
+            margin-bottom: 10px;
+        }
+
+        .dataset-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        .dataset-table th,
+        .dataset-table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .dataset-table th {
+            background: #2563eb;
+            color: white;
+            font-weight: 600;
+        }
+
+        .dataset-table tr:hover {
+            background: #f5f5f5;
+        }
+
+        .dataset-table a {
+            color: #2563eb;
+            text-decoration: none;
+        }
+
+        .dataset-table a:hover {
+            text-decoration: underline;
+        }
+
+        code {
+            background: #f4f4f4;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+        }
+
+        pre {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 20px;
+            border-radius: 5px;
+            overflow-x: auto;
+            margin: 15px 0;
+        }
+
+        pre code {
+            background: none;
+            color: inherit;
+            padding: 0;
+        }
+
+        .updates {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .updates li {
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .updates li:last-child {
+            border-bottom: none;
+        }
+
+        .citation {
+            background: #f0f9ff;
+            padding: 20px;
+            border-radius: 5px;
+            font-family: 'Courier New', monospace;
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            color: #666;
+            border-top: 1px solid #eee;
+            margin-top: 40px;
+        }
+
+        .toc {
+            background: #f0f9ff;
+            padding: 20px;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+
+        .toc ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .toc li {
+            padding: 5px 0;
+        }
+
+        .toc a {
+            color: #2563eb;
+            text-decoration: none;
+        }
+
+        .toc a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 1.8em;
+            }
+
+            .subtitle {
+                font-size: 1.1em;
+            }
+
+            .section {
+                padding: 20px;
+            }
+
+            .authors {
+                font-size: 0.9em;
+            }
+
+            .authors a {
+                display: block;
+                margin: 5px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>TrojanWave</h1>
+            <p class="subtitle">Exploiting Prompt Learning for Stealthy Backdoor Attacks on Large Audio-Language Models</p>
+            <div class="authors">
+                <a href="https://scholar.google.com/citations?hl=en&user=6SO2wqUAAAAJ">Asif Hanif</a>,
+                <a href="https://scholar.google.com/citations?user=FXJzma8AAAAJ">Maha Tufail Agro</a>,
+                <a href="https://scholar.google.com/citations?user=d7QL4wkAAAAJ">Fahad Shamshad</a>,
+                <a href="https://scholar.google.com/citations?user=2qx0RnEAAAAJ">Karthik Nandakumar</a>
+            </div>
+            <div class="badges">
+                <a href="https://aclanthology.org/2025.emnlp-main.940/" class="badge">📄 Paper</a>
+                <a href="https://github.com/asif-hanif/trojanwave" class="badge">💻 Code</a>
+                <a href="https://2025.emnlp.org/" class="badge">🎓 EMNLP 2025</a>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <section class="section">
+            <div class="figure-container">
+                <img src="media/trojanwave.png" alt="TrojanWave Overview">
+                <p class="figure-caption">
+                    <strong>TrojanWave:</strong> This attack learns two triggers (temporal and spectral) to embed a backdoor into the audio-language model (ALM) during prompt learning. The ALM's weights remain frozen, and only the learnable prompts are manipulated. At inference time, the ALM performs normally on clean inputs (performance on par with the backdoor-free setup) but predicts the adversary's target label y' when input containing trigger is presented.
+                </p>
+            </div>
+
+            <div class="figure-container">
+                <img src="media/attack_pipeline.png" alt="TrojanWave Attack Pipeline">
+                <p class="figure-caption">
+                    <strong>TrojanWave Attack Pipeline:</strong> An adversary embeds a backdoor into the learned prompts during few-shot training and publishes the infected prompts online. An unsuspecting user who adopts these prompts for their model unknowingly inherits the backdoor, resulting in normal performance on clean inputs but adversary-desired targeted misclassification when triggered inputs are encountered.
+                </p>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>Abstract</h2>
+            <div class="abstract">
+                Prompt learning has emerged as an efficient alternative to full fine-tuning for adapting large audio-language models (ALMs) to downstream tasks. While this paradigm enables scalable deployment via Prompt-as-a-Service frameworks, it also introduces a critical yet underexplored security risk of backdoor attacks. In this work, we present <em>TrojanWave</em>, the first backdoor attack tailored to the prompt-learning setting in frozen ALMs. Unlike prior audio backdoor methods that require training from scratch on full datasets, <em>TrojanWave</em> injects backdoors solely through learnable prompts, making it highly scalable and effective in few-shot settings. <em>TrojanWave</em> injects imperceptible audio triggers in both time and spectral domains to effectively induce targeted misclassification during inference. To mitigate this threat, we further propose <em>TrojanWave-Defense</em>, a lightweight prompt purification method that neutralizes malicious prompts without hampering the clean performance. Extensive experiments across 11 diverse audio classification benchmarks demonstrate the robustness and practicality of both the attack and defense.
+            </div>
+
+            <div class="highlight-box">
+                <h4>TLDR</h4>
+                <p>The paper presents TrojanWave, a novel backdoor attack on audio-language models that exploits prompt learning instead of model retraining. It exposes the security risks of malicious prompts that inject imperceptible audio triggers causing hidden misclassifications. A lightweight defense, TrojanWave-Defense, is proposed to purify infected prompts while preserving normal model performance.</p>
+            </div>
+
+            <div class="highlight-box">
+                <h4>Goal</h4>
+                <p>The paper aims to introduce and analyze a new type of backdoor attack—called TrojanWave—targeting large audio-language models (ALMs) that use prompt learning. Its main objective is to show that such attacks can be executed solely through learnable prompts, without modifying model parameters, making them highly stealthy and scalable. It also proposes a defense method, TrojanWave-Defense, to purify infected prompts and restore model safety without degrading normal performance.</p>
+            </div>
+
+            <div class="highlight-box">
+                <h4>Motivation</h4>
+                <p>With the rise of prompt learning and "Prompt-as-a-Service" frameworks, users increasingly rely on third-party prompts to adapt models efficiently. However, this creates a serious security risk where adversaries can distribute malicious prompts that appear normal but contain hidden backdoors triggered by imperceptible sounds. Recognizing that such prompt-based attacks were largely unexplored, the paper seeks to expose this vulnerability and highlight the urgent need for protection in real-world ALM deployments.</p>
+            </div>
+
+            <div class="highlight-box">
+                <h4>Main Idea</h4>
+                <p>TrojanWave introduces a stealthy attack that embeds imperceptible audio triggers—crafted in both time and spectral domains—into learnable prompts, which then cause targeted misclassification when triggered inputs are encountered. Unlike prior attacks that retrain models, it keeps the backbone model frozen, making the method lightweight and efficient. To counteract this, the authors propose TrojanWave-Defense, a prompt purification strategy that removes the correlation between malicious prompts and triggers while maintaining clean-task accuracy.</p>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>Updates</h2>
+            <ul class="updates">
+                <li><strong>Aug 20, 2025:</strong> Accepted in <a href="https://2025.emnlp.org/">EMNLP (Main) 2025</a> 🎉</li>
+                <li><strong>Nov 05, 2025:</strong> Released code for TrojanWave-Attack</li>
+                <li><strong>Nov 05, 2025:</strong> Released instructions for preparing datasets</li>
+                <li><strong>Nov 10, 2025:</strong> Released code for TrojanWave-Defense</li>
+            </ul>
+        </section>
+
+        <section class="section">
+            <h2>Quick Start</h2>
+            
+            <h3>Installation</h3>
+            <pre><code># Create conda environment
+conda create --name trojanwave python=3.8
+conda activate trojanwave
+
+# Clone repository
+git clone https://github.com/asif-hanif/trojanwave
+cd trojanwave
+
+# Install dependencies
+pip install -r requirements.txt</code></pre>
+
+            <h3>Download Model</h3>
+            <p>Download the pre-trained PENGI model checkpoint:</p>
+            <pre><code>wget https://zenodo.org/records/8387083/files/base.pth -O pengi/configs/base.pth</code></pre>
+            <p>Or manually download from <a href="https://zenodo.org/records/8387083/files/base.pth">here</a> and place at <code>pengi/configs/base.pth</code>.</p>
+
+            <h3>Run Experiments</h3>
+            <pre><code># Run TrojanWave on different datasets
+bash scripts/beijing_opera.sh palm trojanwave
+bash scripts/crema_d.sh palm trojanwave
+bash scripts/esc50.sh palm trojanwave
+# ... (see README for full list)</code></pre>
+        </section>
+
+        <section class="section">
+            <h2>Datasets</h2>
+            <p>Experiments were performed on 11 diverse audio classification datasets. Detailed setup instructions can be found in the <a href="https://github.com/asif-hanif/trojanwave/blob/main/DATASETS.md">DATASETS.md</a> file.</p>
+            
+            <table class="dataset-table">
+                <thead>
+                    <tr>
+                        <th>Dataset</th>
+                        <th>Type</th>
+                        <th>Classes</th>
+                        <th>Size</th>
+                        <th>Link</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><a href="https://compmusic.upf.edu/bo-perc-dataset">Beijing-Opera</a></td>
+                        <td>Instrument Classification</td>
+                        <td>4</td>
+                        <td>69 MB</td>
+                        <td><a href="https://github.com/asif-hanif/trojanwave/blob/main/DATASETS.md#beijing-opera">Instructions</a></td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://github.com/CheyneyComputerScience/CREMA-D">CREMA-D</a></td>
+                        <td>Emotion Recognition</td>
+                        <td>6</td>
+                        <td>606 MB</td>
+                        <td><a href="https://github.com/asif-hanif/trojanwave/blob/main/DATASETS.md#crema-d">Instructions</a></td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://github.com/karolpiczak/ESC-50">ESC50</a></td>
+                        <td>Sound Event Classification</td>
+                        <td>50</td>
+                        <td>881 MB</td>
+                        <td><a href="https://github.com/asif-hanif/trojanwave/blob/main/DATASETS.md#esc50">Instructions</a></td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://github.com/karolpiczak/ESC-50">ESC50-Actions</a></td>
+                        <td>Sound Event Classification</td>
+                        <td>10</td>
+                        <td>881 MB</td>
+                        <td><a href="https://github.com/asif-hanif/trojanwave/blob/main/DATASETS.md#esc50-actions">Instructions</a></td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://www.kaggle.com/datasets/andradaolteanu/gtzan-dataset-music-genre-classification">GT-Music-Genre</a></td>
+                        <td>Music Analysis</td>
+                        <td>10</td>
+                        <td>1.3 GB</td>
+                        <td><a href="https://github.com/asif-hanif/trojanwave/blob/main/DATASETS.md#gt-music-genre">Instructions</a></td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://magenta.tensorflow.org/datasets/nsynth">NS-Instruments</a></td>
+                        <td>Instrument Classification</td>
+                        <td>10</td>
+                        <td>18.5 GB</td>
+                        <td><a href="https://github.com/asif-hanif/trojanwave/blob/main/DATASETS.md#ns-instruments">Instructions</a></td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://zenodo.org/records/1188976#.YFZuJ0j7SL8">RAVDESS</a></td>
+                        <td>Emotion Recognition</td>
+                        <td>8</td>
+                        <td>1.1 GB</td>
+                        <td><a href="https://github.com/asif-hanif/trojanwave/blob/main/DATASETS.md#ravdess">Instructions</a></td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://zenodo.org/records/3519845">SESA</a></td>
+                        <td>Surveillance Sound Classification</td>
+                        <td>4</td>
+                        <td>70 MB</td>
+                        <td><a href="https://github.com/asif-hanif/trojanwave/blob/main/DATASETS.md#sesa">Instructions</a></td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://zenodo.org/records/400515">TUT2017</a></td>
+                        <td>Acoustic Scene Classification</td>
+                        <td>15</td>
+                        <td>12.3 GB</td>
+                        <td><a href="https://github.com/asif-hanif/trojanwave/blob/main/DATASETS.md#tut2017">Instructions</a></td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://urbansounddataset.weebly.com/urbansound8k.html">UrbanSound8K</a></td>
+                        <td>Sound Event Classification</td>
+                        <td>10</td>
+                        <td>6.8 GB</td>
+                        <td><a href="https://github.com/asif-hanif/trojanwave/blob/main/DATASETS.md#urbansound8k">Instructions</a></td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://github.com/YuanGongND/vocalsound">VocalSound</a></td>
+                        <td>Vocal Sound Classification</td>
+                        <td>6</td>
+                        <td>8.2 GB</td>
+                        <td><a href="https://github.com/asif-hanif/trojanwave/blob/main/DATASETS.md#vocalsound">Instructions</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section class="section">
+            <h2>Results</h2>
+            <div class="figure-container">
+                <img src="media/attack_and_defense_results.png" alt="Attack and Defense Results">
+                <p class="figure-caption">
+                    Comprehensive results comparing TrojanWave with baselines and the effectiveness of TrojanWave-Defense across all datasets.
+                </p>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>Citation</h2>
+            <p>If you find our work, this repository, or pretrained models useful, please consider giving a star and citation:</p>
+            <div class="citation">
+@inproceedings{hanif2025trojanwave,
+  title={TrojanWave: Exploiting Prompt Learning for Stealthy Backdoor Attacks on Large Audio-Language Models},
+  author={Hanif, Asif and Agro, Maha Tufail and Shamshad, Fahad and Nandakumar, Karthik},
+  booktitle={Proceedings of the 2025 Conference on Empirical Methods in Natural Language Processing},
+  pages={18628--18644},
+  year={2025}
+}
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>Contact</h2>
+            <p>Should you have any questions, please:</p>
+            <ul>
+                <li>Create an issue on the <a href="https://github.com/asif-hanif/trojanwave">GitHub repository</a></li>
+                <li>Contact us at <strong>asif.hanif@mbzuai.ac.ae</strong></li>
+            </ul>
+        </section>
+
+        <section class="section">
+            <h2>Acknowledgments</h2>
+            <p>We used <a href="https://github.com/microsoft/Pengi">PENGI</a> for model instantiation and borrowed a part of code from NBA, NBA-D and FlowMur to implement baselines. We thank the respective authors for releasing the code.</p>
+        </section>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 TrojanWave Project | <a href="https://github.com/asif-hanif/trojanwave">GitHub</a> | <a href="https://aclanthology.org/2025.emnlp-main.940/">Paper</a></p>
+        </div>
+    </footer>
+</body>
+</html>
+
